@@ -248,6 +248,22 @@
     .install-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .install .small { font-size: 13px; color: #52525b; margin-top: 22px; }
 
+    /* ---------- Support callout ---------- */
+    .support { padding: 70px 0; border-top: 1px solid #1e1e1e; }
+    .support-card {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 28px; padding: 26px 30px;
+      background: linear-gradient(135deg, rgba(74,222,128,0.08), rgba(167,139,250,0.04));
+      border: 1px solid rgba(74,222,128,0.25); border-radius: 14px;
+      flex-wrap: wrap;
+    }
+    .support-text strong {
+      font-size: 22px; font-weight: 800; color: #fafafa;
+      display: block; margin-bottom: 6px; letter-spacing: -0.3px;
+    }
+    .support-text p { font-size: 14.5px; color: #a1a1aa; max-width: 480px; line-height: 1.5; }
+    .support-card .btn { font-family: 'Inter', monospace; font-size: 14px; }
+
     /* ---------- Footer ---------- */
     .footer {
       padding: 36px 0 50px; border-top: 1px solid #1e1e1e;
@@ -275,6 +291,8 @@
       .shot-grid { grid-template-columns: 1fr; }
       .nav-links a:not(.nav-cta) { display: none; }
       .install h2 { font-size: 34px; }
+      .support-card { flex-direction: column; align-items: flex-start; padding: 24px; }
+      .support-card .btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -288,6 +306,7 @@
       <nav class="nav-links">
         <a href="#features">Features</a>
         <a href="#screenshots">Screenshots</a>
+        <a href="#support">Contact</a>
         <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
         <a href="#install" class="nav-cta">Install</a>
       </nav>
@@ -432,6 +451,18 @@
         <p class="small">Works in Chrome, Edge, Brave, Arc, Opera, and Firefox 121+.</p>
       </div>
     </section>
+
+    <section id="support" class="support">
+      <div class="container">
+        <div class="support-card">
+          <div class="support-text">
+            <strong>Need a real human?</strong>
+            <p>An extension that surfaces real customer service contacts had better have one of its own. Email anytime &mdash; we read every message.</p>
+          </div>
+          <a href="mailto:matthewduke0@gmail.com?subject=Find%20Me%20People%20support" class="btn btn-primary">matthewduke0@gmail.com</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -441,6 +472,7 @@
         Find Me People &middot; v1.2.1
       </div>
       <nav class="footer-links">
+        <a href="mailto:matthewduke0@gmail.com">Contact</a>
         <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
         <a href="https://github.com/MatthewDuke1/find-me-people/blob/master/PRIVACY_POLICY.md" target="_blank" rel="noopener">Privacy</a>
         <a href="https://github.com/MatthewDuke1/find-me-people#readme" target="_blank" rel="noopener">Docs</a>
