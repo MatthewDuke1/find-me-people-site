@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Me People &mdash; Real humans, really fast.</title>
+  <meta name="description" content="A free browser extension that surfaces hidden customer service emails and phone numbers on any website. Stop hunting through chatbot mazes -- find a real human in one click." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <meta property="og:title" content="Find Me People &mdash; Real humans, really fast." />
+  <meta property="og:description" content="A free browser extension that surfaces hidden customer service emails and phone numbers on any website." />
+  <meta property="og:image" content="screenshots/01-hero.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #fafafa;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: #4ade80; text-decoration: none; transition: color 0.15s; }
+    a:hover { color: #86efac; }
+    img { max-width: 100%; display: block; }
+
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px); background: rgba(10,10,10,0.7);
+      border-bottom: 1px solid rgba(30,30,30,0.6);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 0;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 16px; color: #fafafa;
+    }
+    .nav-brand .logo {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: linear-gradient(135deg, #2d8a2e, #4ade80);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 16px; box-shadow: 0 0 0 2px rgba(74,222,128,0.15);
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; font-size: 14px; }
+    .nav-links a { color: #a1a1aa; }
+    .nav-links a:hover { color: #fafafa; }
+    .nav-cta {
+      padding: 8px 14px; border-radius: 6px;
+      background: #4ade80; color: #0a0a0a !important; font-weight: 700;
+    }
+    .nav-cta:hover { background: #86efac; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 80px 0 100px; position: relative; overflow: hidden;
+      background:
+        radial-gradient(ellipse 900px 500px at 15% 10%, rgba(74,222,128,0.16) 0%, transparent 60%),
+        radial-gradient(ellipse 700px 500px at 90% 95%, rgba(167,139,250,0.08) 0%, transparent 60%);
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 999px;
+      background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25);
+      color: #4ade80; font-size: 12px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .eyebrow .pulse {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #4ade80; box-shadow: 0 0 0 0 rgba(74,222,128,0.7);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(74,222,128,0.6); }
+      70% { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+      100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+    }
+    .hero h1 {
+      font-size: 66px; font-weight: 900; line-height: 1.02;
+      letter-spacing: -2px; margin-bottom: 22px;
+    }
+    .hero h1 .accent { color: #4ade80; }
+    .hero .sub {
+      font-size: 19px; color: #a1a1aa; line-height: 1.55;
+      max-width: 540px; margin-bottom: 32px;
+    }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 22px; border-radius: 8px;
+      font-weight: 700; font-size: 15px;
+      transition: transform 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
+      cursor: pointer; border: 1px solid transparent;
+      font-family: inherit; white-space: nowrap;
+    }
+    .btn-primary { background: #4ade80; color: #0a0a0a; }
+    .btn-primary:hover { background: #86efac; transform: translateY(-1px); color: #0a0a0a; }
+    .btn-secondary { background: transparent; color: #fafafa; border-color: #27272a; }
+    .btn-secondary:hover { border-color: #4ade80; color: #4ade80; transform: translateY(-1px); }
+    .trust-row {
+      margin-top: 24px; font-size: 13px; color: #71717a;
+      display: flex; gap: 18px; flex-wrap: wrap;
+    }
+    .trust-row span { display: inline-flex; align-items: center; gap: 6px; }
+    .trust-row .check { color: #4ade80; font-weight: 700; }
+
+    /* Hero popup mockup */
+    .preview {
+      background: #111113; border: 1px solid #27272a; border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 0 1px rgba(74,222,128,0.06);
+    }
+    .preview-header {
+      padding: 14px 18px; border-bottom: 1px solid #1e1e1e;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .preview-header .icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: linear-gradient(135deg, #2d8a2e, #4ade80);
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
+    }
+    .preview-header .title { font-size: 14px; font-weight: 700; }
+    .preview-header .domain { margin-left: auto; font-size: 11px; color: #71717a; }
+    .preview .status {
+      padding: 10px 18px; font-size: 12px; color: #a1a1aa;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .preview .status .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; }
+    .preview .section-label {
+      padding: 6px 18px 4px; font-size: 10px; font-weight: 700;
+      color: #52525b; letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .preview .row {
+      margin: 4px 12px; padding: 10px 14px;
+      background: #0a0a0a; border: 1px solid #1e1e1e; border-radius: 8px;
+      border-left: 3px solid; display: flex; align-items: center; justify-content: space-between;
+    }
+    .preview .row.good { border-left-color: #4ade80; }
+    .preview .row.ok { border-left-color: #fbbf24; }
+    .preview .row .val { font-size: 13px; font-weight: 700; color: #fafafa; }
+    .preview .row .hint { font-size: 11px; color: #52525b; margin-top: 2px; }
+    .preview .badge {
+      font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
+    }
+    .preview .badge.green { background: rgba(74,222,128,0.15); color: #4ade80; }
+    .preview .badge.yellow { background: rgba(251,191,36,0.15); color: #fbbf24; }
+    .preview .footer-pad { height: 14px; }
+
+    /* ---------- Stats / Problem ---------- */
+    .stats { padding: 90px 0; border-top: 1px solid #1e1e1e; }
+    .stats h2 {
+      font-size: 38px; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px;
+    }
+    .stats .lead {
+      color: #a1a1aa; max-width: 640px; margin-bottom: 48px; font-size: 17px;
+    }
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    }
+    .stat {
+      padding: 28px 24px;
+      background: #111113; border: 1px solid #1e1e1e; border-radius: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .stat:hover { border-color: rgba(74,222,128,0.3); transform: translateY(-2px); }
+    .stat .num {
+      font-size: 38px; font-weight: 900; color: #4ade80;
+      line-height: 1; margin-bottom: 10px; letter-spacing: -1px;
+    }
+    .stat .num small { font-size: 17px; color: #4ade80; font-weight: 700; margin-left: 2px; }
+    .stat .label { font-size: 13px; color: #a1a1aa; line-height: 1.45; }
+    .stat .source {
+      font-size: 11px; color: #52525b; margin-top: 10px;
+      padding-top: 10px; border-top: 1px solid #1e1e1e;
+    }
+    .stat .source a { color: #71717a; }
+
+    /* ---------- Features ---------- */
+    .features { padding: 90px 0; border-top: 1px solid #1e1e1e; }
+    .section-title { text-align: center; margin-bottom: 56px; }
+    .section-title h2 { font-size: 38px; font-weight: 800; margin-bottom: 14px; letter-spacing: -1px; }
+    .section-title .lead { color: #a1a1aa; font-size: 17px; max-width: 580px; margin: 0 auto; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .feature-card {
+      padding: 30px;
+      background: #111113; border: 1px solid #1e1e1e; border-radius: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: rgba(74,222,128,0.3); transform: translateY(-2px); }
+    .feature-card .icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: rgba(74,222,128,0.12); color: #4ade80;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 800; margin-bottom: 18px;
+    }
+    .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .feature-card p { font-size: 14.5px; color: #a1a1aa; line-height: 1.6; }
+    .feature-card .new-badge {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 999px; margin-left: 8px;
+      background: rgba(167,139,250,0.15); color: #a78bfa;
+      text-transform: uppercase; letter-spacing: 1px;
+      vertical-align: middle;
+    }
+
+    /* ---------- Screenshots ---------- */
+    .shots { padding: 90px 0; border-top: 1px solid #1e1e1e; }
+    .shot-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
+    }
+    .shot {
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid #1e1e1e; background: #111113;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .shot:hover { border-color: rgba(74,222,128,0.3); transform: translateY(-2px); }
+    .shot img { width: 100%; height: auto; display: block; }
+
+    /* ---------- Install ---------- */
+    .install {
+      padding: 110px 0; border-top: 1px solid #1e1e1e;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 600px 300px at 50% 0%, rgba(74,222,128,0.10) 0%, transparent 70%);
+    }
+    .install h2 { font-size: 44px; font-weight: 900; margin-bottom: 16px; letter-spacing: -1.5px; }
+    .install h2 .accent { color: #4ade80; }
+    .install .sub {
+      color: #a1a1aa; font-size: 17px; margin: 0 auto 36px;
+      max-width: 540px;
+    }
+    .install-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .install .small { font-size: 13px; color: #52525b; margin-top: 22px; }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      padding: 36px 0 50px; border-top: 1px solid #1e1e1e;
+      color: #52525b; font-size: 13px;
+    }
+    .footer-row {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 18px;
+    }
+    .footer .footer-brand {
+      display: flex; align-items: center; gap: 10px;
+      color: #71717a; font-weight: 600;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #71717a; }
+    .footer-links a:hover { color: #4ade80; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px) {
+      .hero { padding: 56px 0 72px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero h1 { font-size: 46px; letter-spacing: -1.5px; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-grid { grid-template-columns: 1fr; }
+      .shot-grid { grid-template-columns: 1fr; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .install h2 { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="nav-brand">
+        <span class="logo">&#128100;</span> Find Me People
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
+        <a href="#install" class="nav-cta">Install</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> Now with Compose templates &amp; Call-via deep links</div>
+          <h1>Real humans,<br /><span class="accent">really fast.</span></h1>
+          <p class="sub">Stop hunting through chatbot mazes. Find Me People scans every page you visit and surfaces hidden customer service emails and phone numbers &mdash; in one click, no account, no data collection.</p>
+          <div class="cta-row">
+            <a href="#install" class="btn btn-primary">Install free &rarr;</a>
+            <a href="https://github.com/MatthewDuke1/find-me-people" class="btn btn-secondary" target="_blank" rel="noopener">View source on GitHub</a>
+          </div>
+          <div class="trust-row">
+            <span><span class="check">&#10003;</span> 100% local &mdash; no servers</span>
+            <span><span class="check">&#10003;</span> Open source (MIT)</span>
+            <span><span class="check">&#10003;</span> Chrome &amp; Firefox</span>
+          </div>
+        </div>
+
+        <div class="preview" aria-hidden="true">
+          <div class="preview-header">
+            <div class="icon">&#128100;</div>
+            <div class="title">Find Me People</div>
+            <div class="domain">company.com</div>
+          </div>
+          <div class="status"><span class="dot"></span> Found 4 contacts on this page</div>
+          <div class="section-label">Email</div>
+          <div class="row good">
+            <div>
+              <div class="val">support@company.com</div>
+              <div class="hint">Click to copy</div>
+            </div>
+            <span class="badge green">Likely support</span>
+          </div>
+          <div class="row good">
+            <div>
+              <div class="val">help@company.com</div>
+              <div class="hint">Click to copy</div>
+            </div>
+            <span class="badge green">Likely support</span>
+          </div>
+          <div class="section-label">Phone</div>
+          <div class="row good">
+            <div>
+              <div class="val">1-800-555-HELP</div>
+              <div class="hint">Tap to call &middot; WhatsApp &middot; FaceTime</div>
+            </div>
+            <span class="badge green">Likely support</span>
+          </div>
+          <div class="row ok">
+            <div>
+              <div class="val">info@company.com</div>
+              <div class="hint">General inbox</div>
+            </div>
+            <span class="badge yellow">Possible</span>
+          </div>
+          <div class="footer-pad"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container">
+        <h2>The annoyance economy is real.</h2>
+        <p class="lead">Customer service is being rationed. Companies bury contact info behind chatbot walls, knowing most people give up before reaching a person. Find Me People breaks that bet.</p>
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="num">10&ndash;15<small>min</small></div>
+            <div class="label">Average time to find a real support contact today</div>
+          </div>
+          <div class="stat">
+            <div class="num">45+<small>hrs</small></div>
+            <div class="label">Lost per person per year to support search and waiting</div>
+          </div>
+          <div class="stat">
+            <div class="num">74%</div>
+            <div class="label">Of customers reported a service problem in the last year &mdash; double 1976</div>
+          </div>
+          <div class="stat">
+            <div class="num">$165<small>B</small></div>
+            <div class="label">Annual cost of the &ldquo;annoyance economy&rdquo; in the US</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>What it does</h2>
+          <p class="lead">No setup, no account, no data leaves your browser. The extension scans every page silently and gives you the right human to contact.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="icon">&#9889;</div>
+            <h3>Auto-scans every page</h3>
+            <p>The moment a page loads, the extension scans for emails, phone numbers, and contact pages &mdash; quietly, in the background. A badge on the icon tells you how many it found.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">&#9733;</div>
+            <h3>Ranks by likely-support</h3>
+            <p>support@, help@, care@ score green. Marketing, careers, and noreply addresses get filtered to the bottom. Phone numbers near &ldquo;customer service&rdquo; or &ldquo;contact us&rdquo; get a boost.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">&#10148;</div>
+            <h3>Compose &amp; Call in one click <span class="new-badge">v1.2.1</span></h3>
+            <p>Pre-filled email templates for refunds, complaints, cancellations, billing, and support &mdash; opened in Gmail, Outlook, or your default mail client. Phone numbers deep-link into WhatsApp, Google Voice, FaceTime, Teams, or your dialer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screenshots" class="shots">
+      <div class="container">
+        <div class="section-title">
+          <h2>See it in action</h2>
+          <p class="lead">A small popup. A few seconds. Hours of your year, back.</p>
+        </div>
+        <div class="shot-grid">
+          <div class="shot"><img src="screenshots/01-hero.png" alt="Find Me People popup showing ranked support contacts on a real page" loading="lazy" /></div>
+          <div class="shot"><img src="screenshots/02-autoscan.png" alt="Auto-scan results with email and phone sections" loading="lazy" /></div>
+          <div class="shot"><img src="screenshots/03-scoring.png" alt="Scoring system: green for likely support, yellow for possible, gray for low match" loading="lazy" /></div>
+          <div class="shot"><img src="screenshots/04-copy.png" alt="One-click copy to clipboard" loading="lazy" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="install">
+      <div class="container">
+        <h2>Install in <span class="accent">two clicks.</span></h2>
+        <p class="sub">Free forever. Open source. Runs entirely in your browser &mdash; nothing ever leaves your machine.</p>
+        <div class="install-row">
+          <a href="https://chromewebstore.google.com/detail/find-me-people" class="btn btn-primary" target="_blank" rel="noopener">Add to Chrome</a>
+          <a href="https://addons.mozilla.org/firefox/addon/find-me-people/" class="btn btn-primary" target="_blank" rel="noopener">Get for Firefox</a>
+          <a href="https://github.com/MatthewDuke1/find-me-people#install" class="btn btn-secondary" target="_blank" rel="noopener">Install from source</a>
+        </div>
+        <p class="small">Works in Chrome, Edge, Brave, Arc, Opera, and Firefox 121+.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div class="footer-brand">
+        <span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2d8a2e,#4ade80);text-align:center;line-height:22px;font-size:12px;">&#128100;</span>
+        Find Me People &middot; v1.2.1
+      </div>
+      <nav class="footer-links">
+        <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/MatthewDuke1/find-me-people/blob/master/PRIVACY_POLICY.md" target="_blank" rel="noopener">Privacy</a>
+        <a href="https://github.com/MatthewDuke1/find-me-people#readme" target="_blank" rel="noopener">Docs</a>
+        <a href="https://github.com/MatthewDuke1/find-me-people/issues" target="_blank" rel="noopener">Report an issue</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
