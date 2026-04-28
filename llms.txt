@@ -1,0 +1,28 @@
+# Find Me People
+
+> Free browser extension that surfaces hidden customer service emails and phone numbers on any website -- no account, no data collection, 100% local processing.
+
+## What it does
+
+Find Me People auto-scans every page you visit, extracts contact info buried behind chatbot walls, ranks results by likelihood of reaching a real human support agent, and lets you compose an email or place a call without leaving the page. Templates for refunds, complaints, cancellations, billing, and support are built in. Phone numbers deep-link into your dialer of choice -- system phone, WhatsApp, Google Voice, FaceTime, or Microsoft Teams.
+
+## Key facts
+
+- Version: 1.2.1
+- License: MIT (open source)
+- Privacy: nothing leaves the browser; no servers, no analytics, no tracking
+- Permissions: activeTab and scripting only
+- Browsers: Chrome, Edge, Brave, Arc, Opera, and Firefox 121+
+- Developer: Matt Duke (matthewduke0@gmail.com)
+
+## Links
+
+- Homepage: https://find-me-people.com
+- Chrome Web Store: https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf
+- Firefox Add-ons: https://addons.mozilla.org/addon/find-me-people/
+- Source code: https://github.com/MatthewDuke1/find-me-people
+- Privacy policy: https://github.com/MatthewDuke1/find-me-people/blob/master/PRIVACY_POLICY.md
+
+## Why it exists
+
+Customer service is being rationed. Companies bury contact info behind chatbot walls, knowing most people give up before reaching a person. The average American spends 10-15 minutes searching for a real support contact and loses 45+ hours per year to support search and waiting. Find Me People exists to break that bet -- one click instead of a scavenger hunt.
