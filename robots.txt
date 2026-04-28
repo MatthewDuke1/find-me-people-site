@@ -1,0 +1,9 @@
+# robots.txt for find-me-people.com
+# Marketing site for the Find Me People browser extension.
+# All crawlers welcome -- including AI / LLM crawlers since the
+# whole site is one public marketing page meant to be quoted.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://find-me-people.com/sitemap.xml
