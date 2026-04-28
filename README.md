@@ -35,9 +35,9 @@ find-me-people-site/
 
 ## Editing
 
-Two install URLs are placeholders until the extension publishes — swap when live:
+Live store URLs:
 
-- Chrome: `https://chromewebstore.google.com/detail/find-me-people`
-- Firefox: `https://addons.mozilla.org/firefox/addon/find-me-people/`
+- Chrome: `https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf`
+- Firefox: `https://addons.mozilla.org/addon/find-me-people/`
 
 Palette mirrors the extension's marquee promo: `#0a0a0a` background, `#4ade80` green accent, `#a78bfa` secondary, Inter font.
