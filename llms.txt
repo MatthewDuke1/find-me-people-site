@@ -8,7 +8,7 @@ Find Me People auto-scans every page you visit, extracts contact info buried beh
 
 ## Key facts
 
-- Version: 1.2.1
+- Version: 1.3.3
 - License: MIT (open source)
 - Privacy: nothing leaves the browser; no servers, no analytics, no tracking
 - Permissions: activeTab and scripting only
