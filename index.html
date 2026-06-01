@@ -32,7 +32,7 @@
     "operatingSystem": "Chrome, Firefox, Edge, Brave, Arc, Opera",
     "description": "Browser extension that surfaces hidden customer service emails and phone numbers on any website. 100% local processing, no account, no data collection.",
     "url": "https://find-me-people.com",
-    "softwareVersion": "1.3.3",
+    "softwareVersion": "1.5.2",
     "image": "https://find-me-people.com/screenshots/01-hero.png",
     "license": "https://opensource.org/licenses/MIT",
     "offers": {
@@ -249,6 +249,12 @@
     }
     .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
     .feature-card p { font-size: 14.5px; color: #a1a1aa; line-height: 1.6; }
+    .feature-card code, .privacy code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.88em; color: #d4d4d8;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06);
+      padding: 1px 6px; border-radius: 4px;
+    }
     .feature-card .new-badge {
       display: inline-block; font-size: 10px; font-weight: 700;
       padding: 2px 8px; border-radius: 999px; margin-left: 8px;
@@ -355,7 +361,7 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow"><span class="pulse"></span> Now with Compose templates &amp; Call-via deep links</div>
+          <div class="eyebrow"><span class="pulse"></span> Now with side panel on every page &amp; deeper scanning</div>
           <h1>Real humans,<br /><span class="accent">really fast.</span></h1>
           <p class="sub">Stop hunting through chatbot mazes. Find Me People scans every page you visit and surfaces hidden customer service emails and phone numbers &mdash; in one click, no account, no data collection.</p>
           <div class="cta-row">
@@ -466,9 +472,19 @@
             <p>support@, help@, care@ score green. Marketing, careers, and noreply addresses get filtered to the bottom. Phone numbers near &ldquo;customer service&rdquo; or &ldquo;contact us&rdquo; get a boost.</p>
           </div>
           <div class="feature-card">
+            <div class="icon">&#9776;</div>
+            <h3>Side panel on every page <span class="new-badge">v1.5.2</span></h3>
+            <p>A discreet pull-tab on the right edge of any page where contacts were found. Click to expand a panel with the same ranked emails and phones, a history of what you&rsquo;ve copied, business hours, and the support pages worth visiting next.</p>
+          </div>
+          <div class="feature-card">
             <div class="icon">&#10148;</div>
-            <h3>Compose &amp; Call in one click <span class="new-badge">v1.3.3</span></h3>
-            <p>Pre-filled email templates for refunds, complaints, cancellations, billing, and support &mdash; opened in Gmail, Outlook, or your default mail client. Phone numbers deep-link into WhatsApp, Google Voice, FaceTime, Teams, or your dialer.</p>
+            <h3>Compose &amp; Call in one click</h3>
+            <p>Pre-filled email templates for refunds, complaints, cancellations, billing, and support &mdash; opened in Gmail, Outlook, or your default client. Phone numbers deep-link into WhatsApp, Google Voice, FaceTime, Teams, or your dialer.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">&#128269;</div>
+            <h3>Deeper scanning <span class="new-badge">v1.5.2</span></h3>
+            <p>Reads hydration state (<code>__NEXT_DATA__</code>, JSON-LD, schema.org) for contacts hidden in JS, scans same-origin iframes, and falls back to fetching common contact pages when the visible page itself is sparse.</p>
           </div>
         </div>
       </div>
@@ -507,12 +523,12 @@
     <div class="container footer-row">
       <div class="footer-brand">
         <span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2d8a2e,#4ade80);text-align:center;line-height:22px;font-size:12px;">&#128100;</span>
-        Find Me People &middot; v1.3.3
+        Find Me People &middot; v1.5.2
       </div>
       <nav class="footer-links">
         <a href="mailto:matthewduke0@gmail.com">Contact</a>
         <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://github.com/MatthewDuke1/find-me-people/blob/master/PRIVACY_POLICY.md" target="_blank" rel="noopener">Privacy</a>
+        <a href="privacy.html">Privacy</a>
         <a href="https://github.com/MatthewDuke1/find-me-people#readme" target="_blank" rel="noopener">Docs</a>
         <a href="https://github.com/MatthewDuke1/find-me-people/issues" target="_blank" rel="noopener">Report an issue</a>
       </nav>
