@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Find Me People &mdash; Real humans, really fast.</title>
-  <meta name="description" content="A free browser extension that surfaces hidden customer service emails and phone numbers on any website. Stop hunting through chatbot mazes -- find a real human in one click." />
+  <meta name="description" content="A free browser extension that bypasses chatbots and surfaces the real customer service emails and phone numbers companies hide behind support widgets. 100% local, no account, no data collection." />
   <meta name="theme-color" content="#0a0a0a" />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="canonical" href="https://find-me-people.com/" />
@@ -426,9 +426,9 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow"><span class="pulse"></span> Now with side panel on every page &amp; deeper scanning</div>
+          <div class="eyebrow"><span class="pulse"></span> Now reads the chatbot&rsquo;s own knowledge base</div>
           <h1>Real humans,<br /><span class="accent">really fast.</span></h1>
-          <p class="sub">Stop hunting through chatbot mazes. Find Me People scans every page you visit and surfaces hidden customer service emails and phone numbers &mdash; in one click, no account, no data collection.</p>
+          <p class="sub">Stop hunting through chatbot mazes. Find Me People reads the same knowledge base the chatbot uses, scans every page you visit, and surfaces the customer service emails and phone numbers companies bury behind support widgets &mdash; in one click, no account, no data collection.</p>
           <div class="cta-row">
             <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" class="btn btn-primary" target="_blank" rel="noopener">Install free &rarr;</a>
             <a href="https://github.com/MatthewDuke1/find-me-people" class="btn btn-secondary" target="_blank" rel="noopener">View source on GitHub</a>
@@ -548,9 +548,14 @@
             <p>Pre-filled email templates for refunds, complaints, cancellations, billing, and support &mdash; opened in Gmail, Outlook, or your default client. Phone numbers deep-link into WhatsApp, Google Voice, FaceTime, Teams, or your dialer.</p>
           </div>
           <div class="feature-card">
+            <div class="icon">&#129302;</div>
+            <h3>Sees what chatbots hide <span class="new-badge">New</span></h3>
+            <p>Detects Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat, Tawk, Freshchat, and Olark widgets. Reads the chatbot&rsquo;s own help-center articles via its public search API to surface the real support email the bot was trained to deflect from. No chat-UI dance.</p>
+          </div>
+          <div class="feature-card">
             <div class="icon">&#128269;</div>
-            <h3>Deeper scanning <span class="new-badge">v1.5.2</span></h3>
-            <p>Reads hydration state (<code>__NEXT_DATA__</code>, JSON-LD, schema.org) for contacts hidden in JS, scans same-origin iframes, and falls back to fetching common contact pages when the visible page itself is sparse.</p>
+            <h3>Deeper scanning</h3>
+            <p>Reads hydration state (<code>__NEXT_DATA__</code>, JSON-LD, schema.org) for contacts hidden in JS, scans same-origin iframes, falls back to fetching common contact pages when the visible page is sparse, and requires real contact-context proximity before surfacing a phone (no random snippet numbers from Google search).</p>
           </div>
         </div>
       </div>
