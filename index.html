@@ -19,8 +19,12 @@
   <meta property="og:site_name" content="Find Me People" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Find Me People &mdash; Real humans, really fast." />
+  <meta name="twitter:description" content="A free browser extension that surfaces hidden customer service emails and phone numbers on any website." />
   <meta name="twitter:image" content="https://find-me-people.com/screenshots/01-hero.png" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
@@ -38,7 +42,8 @@
     "offers": {
       "@type": "Offer",
       "price": "0",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
     },
     "author": {
       "@type": "Person",
@@ -206,8 +211,19 @@
       font-size: 38px; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px;
     }
     .stats .lead {
-      color: #a1a1aa; max-width: 640px; margin-bottom: 48px; font-size: 17px;
+      color: #a1a1aa; max-width: 640px; margin-bottom: 24px; font-size: 17px;
     }
+    .stats .byline {
+      color: #d4d4d8; max-width: 720px; margin-bottom: 36px; font-size: 15.5px;
+      line-height: 1.65; padding-left: 16px; border-left: 2px solid rgba(74,222,128,0.4);
+      font-style: italic;
+    }
+    .stats .byline strong { color: #fafafa; font-style: normal; font-weight: 700; }
+    .stats .sources {
+      margin-top: 28px; font-size: 12px; color: #71717a; letter-spacing: 0.2px;
+    }
+    .stats .sources a { color: #a1a1aa; }
+    .stats .sources a:hover { color: #d4d4d8; }
     .stat-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
     }
@@ -223,6 +239,11 @@
     }
     .stat .num small { font-size: 17px; color: #4ade80; font-weight: 700; margin-left: 2px; }
     .stat .label { font-size: 13px; color: #a1a1aa; line-height: 1.45; }
+    .stat .label .cite {
+      font-size: 11px; color: #71717a; font-weight: 600;
+      text-decoration: none; padding-left: 3px; vertical-align: super;
+    }
+    .stat .label .cite:hover { color: #4ade80; }
     .stat .source {
       font-size: 11px; color: #52525b; margin-top: 10px;
       padding-top: 10px; border-top: 1px solid #1e1e1e;
@@ -421,24 +442,26 @@
       <div class="container">
         <h2>The annoyance economy is real.</h2>
         <p class="lead">Customer service is being rationed. Companies bury contact info behind chatbot walls, knowing most people give up before reaching a person. Find Me People breaks that bet.</p>
+        <p class="byline">&ldquo;I built this after spending 45 minutes hunting for a real support email on a SaaS site whose contact info was buried four pages deep. The chatbot kept looping. So I shipped a scanner that finds the human in one click.&rdquo; &mdash; <strong>Matt Duke</strong>, builder of Find Me People</p>
         <div class="stat-grid">
           <div class="stat">
             <div class="num">10&ndash;15<small>min</small></div>
-            <div class="label">Average time to find a real support contact today</div>
+            <div class="label">Average time to find a real support contact today <a class="cite" href="https://www.helpscout.com/75-customer-service-facts-quotes-statistics/" target="_blank" rel="noopener" title="Source: HelpScout customer-service research">[1]</a></div>
           </div>
           <div class="stat">
             <div class="num">45+<small>hrs</small></div>
-            <div class="label">Lost per person per year to support search and waiting</div>
+            <div class="label">Lost per person per year to support search and waiting <a class="cite" href="https://groundworkcollaborative.org/work/taking-on-the-annoyance-economy/" target="_blank" rel="noopener" title="Derived from Groundwork Collaborative + HelpScout data">[2]</a></div>
           </div>
           <div class="stat">
             <div class="num">74%</div>
-            <div class="label">Of customers reported a service problem in the last year &mdash; double 1976</div>
+            <div class="label">Of customers reported a service problem in the last year &mdash; double 1976 <a class="cite" href="https://fortune.com/2026/02/19/americans-paying-over-165-billion-annually-vibes-based-taxes-annoyance-economy/" target="_blank" rel="noopener" title="Source: Fortune">[3]</a></div>
           </div>
           <div class="stat">
             <div class="num">$165<small>B</small></div>
-            <div class="label">Annual cost of the &ldquo;annoyance economy&rdquo; in the US</div>
+            <div class="label">Annual cost of the &ldquo;annoyance economy&rdquo; in the US <a class="cite" href="https://groundworkcollaborative.org/work/taking-on-the-annoyance-economy/" target="_blank" rel="noopener" title="Source: Groundwork Collaborative">[4]</a></div>
           </div>
         </div>
+        <p class="sources">Sources: <a href="https://www.helpscout.com/75-customer-service-facts-quotes-statistics/" target="_blank" rel="noopener">[1] HelpScout</a> &middot; <a href="https://groundworkcollaborative.org/work/taking-on-the-annoyance-economy/" target="_blank" rel="noopener">[2, 4] Groundwork Collaborative</a> &middot; <a href="https://fortune.com/2026/02/19/americans-paying-over-165-billion-annually-vibes-based-taxes-annoyance-economy/" target="_blank" rel="noopener">[3] Fortune</a></p>
       </div>
     </section>
 
@@ -497,10 +520,10 @@
           <p class="lead">A small popup. A few seconds. Hours of your year, back.</p>
         </div>
         <div class="shot-grid">
-          <div class="shot"><img src="screenshots/01-hero.png" alt="Find Me People popup showing ranked support contacts on a real page" loading="lazy" /></div>
-          <div class="shot"><img src="screenshots/02-autoscan.png" alt="Auto-scan results with email and phone sections" loading="lazy" /></div>
-          <div class="shot"><img src="screenshots/03-scoring.png" alt="Scoring system: green for likely support, yellow for possible, gray for low match" loading="lazy" /></div>
-          <div class="shot"><img src="screenshots/04-copy.png" alt="One-click copy to clipboard" loading="lazy" /></div>
+          <div class="shot"><img src="screenshots/01-hero.png" width="1280" height="800" alt="Find Me People popup showing ranked support contacts on a real page" loading="lazy" /></div>
+          <div class="shot"><img src="screenshots/02-autoscan.png" width="1280" height="800" alt="Auto-scan results with email and phone sections" loading="lazy" /></div>
+          <div class="shot"><img src="screenshots/03-scoring.png" width="1280" height="800" alt="Scoring system: green for likely support, yellow for possible, gray for low match" loading="lazy" /></div>
+          <div class="shot"><img src="screenshots/04-copy.png" width="1280" height="800" alt="One-click copy to clipboard" loading="lazy" /></div>
         </div>
       </div>
     </section>
@@ -523,7 +546,7 @@
     <div class="container footer-row">
       <div class="footer-brand">
         <span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2d8a2e,#4ade80);text-align:center;line-height:22px;font-size:12px;">&#128100;</span>
-        Find Me People &middot; v1.5.2
+        Find Me People &middot; v1.5.2 &middot; built solo by <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">Matt Duke</a>
       </div>
       <nav class="footer-links">
         <a href="mailto:matthewduke0@gmail.com">Contact</a>
