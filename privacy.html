@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy &mdash; Find Me People</title>
+  <meta name="description" content="Find Me People privacy policy. Local-first processing, no accounts, no telemetry, no third-party tracking. A short, honest list of every piece of data the extension touches." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="canonical" href="https://find-me-people.com/privacy.html" />
+
+  <meta property="og:title" content="Privacy Policy &mdash; Find Me People" />
+  <meta property="og:description" content="No accounts, no telemetry, no third-party tracking. A short, honest list of every piece of data the extension touches." />
+  <meta property="og:image" content="https://find-me-people.com/screenshots/01-hero.png" />
+  <meta property="og:url" content="https://find-me-people.com/privacy.html" />
+  <meta property="og:site_name" content="Find Me People" />
+  <meta property="og:type" content="website" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #fafafa;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: #4ade80; text-decoration: none; transition: color 0.15s; }
+    a:hover { color: #86efac; }
+
+    .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px); background: rgba(10,10,10,0.7);
+      border-bottom: 1px solid rgba(30,30,30,0.6);
+    }
+    .nav-inner {
+      max-width: 1180px; margin: 0 auto; padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 16px; color: #fafafa;
+    }
+    .nav-brand .logo {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: linear-gradient(135deg, #2d8a2e, #4ade80);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .nav-links { display: flex; gap: 26px; align-items: center; }
+    .nav-links a { color: #d4d4d8; font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: #fafafa; }
+
+    .hero-pp {
+      padding: 72px 0 32px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 999px;
+      background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.25);
+      color: #86efac; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.3px; margin-bottom: 22px;
+    }
+    .hero-pp h1 {
+      font-size: 48px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .hero-pp h1 .accent {
+      background: linear-gradient(135deg, #4ade80, #86efac);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-pp .lead { font-size: 17px; color: #a1a1aa; max-width: 620px; }
+    .hero-pp .updated { margin-top: 22px; color: #71717a; font-size: 13px; }
+
+    .privacy { padding: 56px 0 96px; }
+    .privacy h2 {
+      font-size: 22px; font-weight: 800; margin-top: 44px; margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+    .privacy h2:first-child { margin-top: 0; }
+    .privacy h3 {
+      font-size: 16px; font-weight: 700; margin-top: 24px; margin-bottom: 8px;
+      color: #d4d4d8;
+    }
+    .privacy p { color: #c4c4c8; margin-bottom: 14px; }
+    .privacy p strong { color: #fafafa; }
+    .privacy ul { margin: 8px 0 18px 22px; color: #c4c4c8; }
+    .privacy li { margin-bottom: 6px; }
+    .privacy code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.88em; color: #d4d4d8;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06);
+      padding: 1px 6px; border-radius: 4px;
+    }
+    .callout {
+      margin: 18px 0; padding: 18px 22px; border-radius: 12px;
+      background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.18);
+    }
+    .callout strong { color: #86efac; }
+
+    .perm-table {
+      width: 100%; border-collapse: collapse; margin: 12px 0 22px;
+      font-size: 14.5px;
+    }
+    .perm-table th, .perm-table td {
+      text-align: left; padding: 12px 14px; vertical-align: top;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .perm-table th {
+      color: #a1a1aa; font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .perm-table td:first-child {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      color: #86efac; font-size: 13px; white-space: nowrap;
+    }
+    .perm-table td:nth-child(2) { color: #d4d4d8; }
+    .perm-table td:nth-child(3) { color: #a1a1aa; }
+
+    .footer {
+      border-top: 1px solid #1e1e1e; padding: 32px 0;
+      color: #71717a; font-size: 14px;
+    }
+    .footer-row {
+      max-width: 1180px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+
+    @media (max-width: 720px) {
+      .hero-pp { padding: 48px 0 28px; }
+      .hero-pp h1 { font-size: 36px; letter-spacing: -1px; }
+      .privacy { padding: 40px 0 64px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .perm-table th, .perm-table td { padding: 10px 8px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <span class="logo">&#128100;</span> Find Me People
+      </a>
+      <nav class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#screenshots">Screenshots</a>
+        <a href="/#support">Contact</a>
+        <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-pp">
+      <div class="container">
+        <div class="eyebrow">&#128274; Plain English. Short on purpose.</div>
+        <h1>Privacy <span class="accent">policy.</span></h1>
+        <p class="lead">No accounts. No telemetry. No third-party tracking. Below is a short, honest list of every piece of data the extension touches &mdash; and every network request it makes.</p>
+        <div class="updated">Last updated: June 1, 2026 &middot; Applies to Find Me People v1.5.2</div>
+      </div>
+    </section>
+
+    <section class="privacy">
+      <div class="container">
+
+        <div class="callout">
+          <strong>The short version.</strong>
+          <p style="margin: 8px 0 0;">The extension scans pages locally to find customer service contacts. It never creates an account, never identifies you, never sends your browsing data anywhere. The only network requests it makes are <em>same-origin</em> fetches of common contact pages on the site you&rsquo;re already visiting &mdash; equivalent to you typing <code>/contact</code> into the address bar yourself. No cookies are sent with those fetches.</p>
+        </div>
+
+        <h2>What the extension reads</h2>
+        <p>When you visit a website, Find Me People reads the current page in your browser to extract:</p>
+        <ul>
+          <li>Email addresses visible on the page</li>
+          <li>Phone numbers visible on the page</li>
+          <li>Links to contact, support, help, and similar pages</li>
+          <li>Business hours, when available (from schema.org / JSON-LD / microdata)</li>
+          <li>Hydration state on JavaScript-rendered pages (e.g. <code>__NEXT_DATA__</code>, JSON-LD blocks) so contacts hidden in JS still surface</li>
+          <li>The content of any <em>same-origin</em> iframes the page embeds (e.g. an embedded support widget on the same domain)</li>
+        </ul>
+        <p>All of this is content that is already loaded into your browser. The extension does not access any data that is not already visible to you on the page.</p>
+
+        <h2>What the extension stores</h2>
+        <p>The extension uses <code>chrome.storage.local</code> for two things, both kept on your device:</p>
+        <ul>
+          <li><strong>Preferences.</strong> Whether the side panel is enabled, which mail client you prefer for Compose, which sites you&rsquo;ve hidden the panel on, and where you&rsquo;ve dragged the side panel tab vertically.</li>
+          <li><strong>Copy history.</strong> When you click to copy an email or phone, a record of what was copied (value, hostname, score, timestamp) is added so the History tab can show it later. Capped at 50 entries; older ones are dropped.</li>
+        </ul>
+        <p>You can clear the entire history at any time from the History tab&rsquo;s &ldquo;Clear all&rdquo; button. Nothing is written to cookies, IndexedDB, or any other browser storage.</p>
+
+        <h2>What the extension transmits</h2>
+        <p>The extension makes <strong>one kind of network request</strong>, and only under one condition:</p>
+        <ul>
+          <li><strong>When the in-page scan finds zero contacts</strong>, the extension fires up to three <em>same-origin</em> GET requests to common contact-page URLs on the site you&rsquo;re already on &mdash; <code>/contact</code>, <code>/contact-us</code>, <code>/about</code>, <code>/about-us</code>, <code>/support</code>, <code>/help</code>, <code>/customer-service</code> &mdash; and parses the responses for emails and phones.</li>
+        </ul>
+        <p>How those requests are constrained:</p>
+        <ul>
+          <li><strong><code>credentials: 'omit'</code>.</strong> No cookies are attached. The server cannot identify you from the request.</li>
+          <li><strong>Same-origin only.</strong> If the URL redirects to a different domain, the response is discarded.</li>
+          <li><strong>Once per origin per browsing session.</strong> A flag in <code>sessionStorage</code> prevents the same site from being re-probed.</li>
+          <li><strong>Bounded size.</strong> Responses larger than 1 MB are discarded without parsing.</li>
+          <li><strong>Stops at the first hit.</strong> As soon as one of the candidate URLs returns useful results, the rest are skipped.</li>
+        </ul>
+        <p>That is the complete list. No telemetry, no analytics, no error reporting, no usage statistics, no third-party services. The extension does not contact any server we operate, because we do not operate any server.</p>
+
+        <h2>What the extension shares</h2>
+        <p><strong>Nothing.</strong> No data is shared with any third party, for any purpose, ever. The extension has no business model, no advertisers, and no analytics partners.</p>
+
+        <h2>Permissions explained</h2>
+        <table class="perm-table">
+          <thead>
+            <tr><th>Permission</th><th>What it does</th><th>Why we need it</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>activeTab</td>
+              <td>Lets the extension interact with the tab you&rsquo;re currently viewing when you click the toolbar icon.</td>
+              <td>Required to read the page content from the active tab.</td>
+            </tr>
+            <tr>
+              <td>scripting</td>
+              <td>Lets the extension inject the scanner into a page if it didn&rsquo;t auto-load.</td>
+              <td>Required to recover after browser restarts and on pages that loaded before the extension was enabled.</td>
+            </tr>
+            <tr>
+              <td>storage</td>
+              <td>Lets the extension write to <code>chrome.storage.local</code>.</td>
+              <td>Required for the two preference items and the copy history described above.</td>
+            </tr>
+            <tr>
+              <td>host_permissions: <code>&lt;all_urls&gt;</code></td>
+              <td>Lets the scanner run on any website.</td>
+              <td>Required because customer service info can appear on any site &mdash; the scanner has to be allowed to run everywhere to be useful.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>No remote code</h2>
+        <p>The extension does not load, execute, or reference any remote JavaScript. There are no CDN imports, no external <code>&lt;script&gt;</code> tags, no <code>eval()</code> calls, no dynamic code loading, and no WebAssembly modules. Every line of code that runs in the extension is bundled in the package you install &mdash; reviewable line-by-line in the open-source repository linked below.</p>
+
+        <h2>No accounts, no cookies, no analytics</h2>
+        <p>The extension does not require or support user accounts, login, or registration. It does not create, read, modify, or delete cookies. It does not include any analytics SDK, crash reporter, A/B testing framework, or feature flag service.</p>
+
+        <h2>Children&rsquo;s privacy</h2>
+        <p>The extension does not knowingly collect any information from anyone, including children under 13. Because the extension collects no information at all, this applies to every user equally.</p>
+
+        <h2>Changes to this policy</h2>
+        <p>If this policy changes, the updated version will be published at this URL and the &ldquo;Last updated&rdquo; date at the top will be revised. The full history of changes is visible in the website&rsquo;s <a href="https://github.com/MatthewDuke1/find-me-people-site" target="_blank" rel="noopener">git repository</a>.</p>
+
+        <h2>Open source</h2>
+        <p>The extension and this website are both open source under the MIT license. You can verify every claim on this page by reading the code:</p>
+        <ul>
+          <li>Extension source: <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people</a></li>
+          <li>Website source: <a href="https://github.com/MatthewDuke1/find-me-people-site" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people-site</a></li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>Questions about this policy? Email <a href="mailto:matthewduke0@gmail.com?subject=Find%20Me%20People%20privacy">matthewduke0@gmail.com</a> or open an issue on the <a href="https://github.com/MatthewDuke1/find-me-people/issues" target="_blank" rel="noopener">extension&rsquo;s GitHub</a>.</p>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-row">
+      <div>
+        <span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2d8a2e,#4ade80);text-align:center;line-height:22px;font-size:12px;vertical-align:middle;margin-right:6px;">&#128100;</span>
+        Find Me People &middot; v1.5.2
+      </div>
+      <nav class="footer-links">
+        <a href="/">Home</a>
+        <a href="mailto:matthewduke0@gmail.com">Contact</a>
+        <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/MatthewDuke1/find-me-people/issues" target="_blank" rel="noopener">Report an issue</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

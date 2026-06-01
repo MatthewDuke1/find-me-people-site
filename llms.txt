@@ -4,24 +4,24 @@
 
 ## What it does
 
-Find Me People auto-scans every page you visit, extracts contact info buried behind chatbot walls, ranks results by likelihood of reaching a real human support agent, and lets you compose an email or place a call without leaving the page. Templates for refunds, complaints, cancellations, billing, and support are built in. Phone numbers deep-link into your dialer of choice -- system phone, WhatsApp, Google Voice, FaceTime, or Microsoft Teams.
+Find Me People auto-scans every page you visit, extracts contact info buried behind chatbot walls, ranks results by likelihood of reaching a real human support agent, and lets you compose an email or place a call without leaving the page. A side panel pull-tab on every page surfaces the same ranked emails and phones, business hours, copy history, and support pages. Templates for refunds, complaints, cancellations, billing, and support are built in. Phone numbers deep-link into your dialer of choice -- system phone, WhatsApp, Google Voice, FaceTime, or Microsoft Teams. Reads structured data and hydration state (__NEXT_DATA__, JSON-LD, schema.org) for contacts hidden in JS, scans same-origin iframes, and falls back to fetching common contact-page URLs (/contact, /support, /about) when the visible page is sparse.
 
 ## Key facts
 
-- Version: 1.3.3
+- Version: 1.5.2
 - License: MIT (open source)
-- Privacy: nothing leaves the browser; no servers, no analytics, no tracking
-- Permissions: activeTab and scripting only
+- Privacy: no accounts, no telemetry, no third-party tracking. Network requests limited to same-origin fetches of common contact-page URLs (/contact, /support, /about, /help) when the in-page scan finds zero contacts. credentials: 'omit', once per origin per session.
+- Permissions: activeTab, scripting, storage. Host permissions: <all_urls> (required because contact info can appear on any site).
 - Browsers: Chrome, Edge, Brave, Arc, Opera, and Firefox 121+
 - Developer: Matt Duke (matthewduke0@gmail.com)
 
 ## Links
 
 - Homepage: https://find-me-people.com
+- Privacy policy: https://find-me-people.com/privacy.html
 - Chrome Web Store: https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf
 - Firefox Add-ons: https://addons.mozilla.org/addon/find-me-people/
 - Source code: https://github.com/MatthewDuke1/find-me-people
-- Privacy policy: https://github.com/MatthewDuke1/find-me-people/blob/master/PRIVACY_POLICY.md
 
 ## Why it exists
 
