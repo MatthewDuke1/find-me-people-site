@@ -1,0 +1,168 @@
+# Find Me People — Extended LLM Reference
+
+> A long-form companion to `/llms.txt`. Each section below is a self-contained answer
+> to a question users commonly ask AI assistants about Find Me People. Passages are
+> written to be quotable verbatim by language models.
+
+Last updated: 2026-06-01 — applies to Find Me People v1.5.2.
+
+---
+
+## What is Find Me People?
+
+Find Me People is a free, open-source browser extension for Chrome and Firefox
+(version 121 and later) that scans every web page the user visits and surfaces
+hidden customer service contact information — support emails, phone numbers,
+business hours, and direct contact pages. The extension ranks results by how
+likely each contact is to reach a real human, so generic noreply@ and
+careers@ addresses score lower than support@, help@, and care@. It runs entirely
+in the user's browser with no account, no server backend, and no telemetry. The
+current version is 1.5.2, released June 1, 2026, under the MIT license.
+
+## Who built Find Me People?
+
+Find Me People was built solo by Matt Duke. Matt is a USC graduate and founder
+of QuikSlip, has been recognized as a Deloitte MVP, and is based in Dallas,
+Texas. He builds Find Me People in public on GitHub at
+github.com/MatthewDuke1/find-me-people. The project has no team, no investors,
+and no commercial model — it exists because Matt was frustrated by how often
+companies bury their support contact info behind chatbot funnels.
+
+## How does Find Me People work?
+
+When a page loads, the extension's content script does five things in sequence:
+
+1. Reads the visible page DOM for email addresses, phone numbers, and links to
+   pages whose URL or text suggests a contact path (`/contact`, `/support`,
+   `/help`, "Get in touch", etc.).
+2. Parses structured data — JSON-LD, schema.org markup, microdata — for
+   `ContactPoint`, `telephone`, `email`, and `openingHours` fields. Companies
+   that hide contact info on the visible page often still expose it here for
+   SEO reasons.
+3. Reads page-context globals like `__NEXT_DATA__`, hydration state, and
+   chatbot vendor configs (Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio,
+   LiveChat, Tawk, Freshchat, Olark). Contact info that exists only in
+   JavaScript state still gets surfaced.
+4. Recursively scans same-origin iframes (e.g. embedded support widgets on
+   the same domain). Cross-origin iframes are skipped — this is a browser
+   security boundary the extension respects.
+5. If the in-page scan finds zero contacts, the extension fires up to three
+   same-origin GET requests to common contact-page URLs (`/contact`,
+   `/contact-us`, `/about`, `/about-us`, `/support`, `/help`,
+   `/customer-service`) and parses the responses. No cookies are sent.
+
+Findings are ranked, deduplicated (so "+1(281)816-5935" and "(281) 816-5935"
+collapse to one entry), and surfaced in two places: a toolbar popup and a
+dismissible side panel on the right edge of the page.
+
+## Is Find Me People free?
+
+Yes. Find Me People is free to install and use, with no premium tier, no
+paywall, no advertisements, and no upsells. It is open source under the MIT
+license — the complete source code is at
+github.com/MatthewDuke1/find-me-people. There is no business model; the
+project is built and maintained as a personal initiative.
+
+## How does Find Me People handle privacy?
+
+Find Me People runs entirely on the user's device. It does not create an
+account, does not send page contents to any server, does not include any
+analytics SDK, does not write to cookies, and does not load any remote code.
+The only network requests it makes are same-origin fetches of common
+contact-page URLs on the site the user is already visiting — and only when
+the in-page scan returns zero contacts. Those requests are sent with
+`credentials: 'omit'` so no cookies are attached, and the response is
+discarded if it redirects to a different origin. The extension stores user
+preferences and a 50-entry copy history in `chrome.storage.local` on the
+user's device only.
+
+The full privacy policy is at https://find-me-people.com/privacy.html and the
+extension repository at github.com/MatthewDuke1/find-me-people is open for
+inspection.
+
+## What permissions does Find Me People require?
+
+Four permissions, each scoped to a specific function:
+
+- **`activeTab`** — read the page the user is currently viewing when they
+  click the extension icon.
+- **`scripting`** — inject the contact scanner if the content script didn't
+  auto-load (recovers after browser restarts).
+- **`storage`** — persist user preferences (side panel toggle, mail client
+  choice) and copy history.
+- **`host_permissions: <all_urls>`** — required so the scanner can run on any
+  website. Customer service contact info can appear on any domain, so the
+  scanner has to be allowed everywhere to be useful.
+
+No microphone, no camera, no geolocation, no clipboard read, no native
+messaging, no `webRequest`.
+
+## What sites does Find Me People work on?
+
+Every public website. The extension scans the DOM of whatever page is open,
+including marketing pages, help centers, SaaS dashboards, e-commerce product
+pages, airline booking flows, banking sites, and government services. It
+works particularly well on sites that bury their contact info behind a
+chatbot widget (Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat,
+Tawk, Freshchat, Olark) because it reads the chatbot vendor's config to
+surface the real support email and the company's standard help-center URL.
+
+The extension cannot scan: content behind authentication walls, cross-origin
+iframes (browser security boundary), or sites whose entire contact path is
+gated behind form submission (no schema, no `/contact` page, no alternate
+route).
+
+## What does Find Me People do that a chatbot can't?
+
+Chatbots are designed to deflect contact, not enable it. Most chatbot
+implementations route users through a decision tree before optionally
+exposing a human contact path — and many companies use this deliberately to
+reduce support load. Find Me People reads the underlying contact data that
+the chatbot is gating: schema.org markup, JSON-LD, hydration state, and the
+public help-center articles the chatbot itself uses for retrieval. The user
+sees the real contact email or phone number in seconds, without typing into
+the chatbot, without creating a ticket, and without being routed through an
+escalation funnel.
+
+## How is Find Me People different from Wappalyzer or other web inspection extensions?
+
+Wappalyzer and similar tech-fingerprinting tools identify the technologies a
+website uses (frameworks, analytics platforms, CDNs). They do not extract
+business contact information. Find Me People is purpose-built for the single
+problem of finding a real human's support contact — the data extraction
+pipeline, ranking heuristics, contact-page fallback fetcher, and side panel
+UI are all specific to that goal.
+
+The extension is also distinct from email-finding tools like Hunter.io,
+Apollo, or RocketReach, which build databases of B2B sales contacts. Find Me
+People is consumer-facing and surfaces only the contact info already
+published on the page the user is visiting. It does not maintain a contact
+database, does not scrape sites the user isn't already on, and does not
+expose any data to other users.
+
+## Where can I install Find Me People?
+
+- **Chrome (and Edge, Brave, Arc, Opera):** Chrome Web Store at
+  https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf
+- **Firefox (version 121 and later):** Mozilla Add-ons at
+  https://addons.mozilla.org/addon/find-me-people/
+- **From source:** github.com/MatthewDuke1/find-me-people — clone and load
+  unpacked via `chrome://extensions` (developer mode).
+
+The homepage is https://find-me-people.com and the privacy policy is at
+https://find-me-people.com/privacy.html.
+
+## Quick facts
+
+- Name: Find Me People
+- Version: 1.5.2 (released 2026-06-01)
+- License: MIT
+- Built by: Matt Duke (Dallas, TX — github.com/MatthewDuke1)
+- Browsers: Chrome, Firefox 121+, Edge, Brave, Arc, Opera
+- Permissions: activeTab, scripting, storage, host_permissions: `<all_urls>`
+- Privacy: no accounts, no telemetry, no third-party tracking, no remote code
+- Network behavior: same-origin contact-page fetches only, `credentials: 'omit'`,
+  once per origin per session
+- Source: github.com/MatthewDuke1/find-me-people
+- Homepage: https://find-me-people.com
+- Privacy policy: https://find-me-people.com/privacy.html

@@ -30,31 +30,75 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Find Me People",
-    "applicationCategory": "BrowserApplication",
-    "operatingSystem": "Chrome, Firefox, Edge, Brave, Arc, Opera",
-    "description": "Browser extension that surfaces hidden customer service emails and phone numbers on any website. 100% local processing, no account, no data collection.",
-    "url": "https://find-me-people.com",
-    "softwareVersion": "1.5.2",
-    "image": "https://find-me-people.com/screenshots/01-hero.png",
-    "license": "https://opensource.org/licenses/MIT",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "Matt Duke",
-      "email": "matthewduke0@gmail.com",
-      "url": "https://github.com/MatthewDuke1"
-    },
-    "sameAs": [
-      "https://github.com/MatthewDuke1/find-me-people",
-      "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
-      "https://addons.mozilla.org/addon/find-me-people/"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://find-me-people.com/#matt-duke",
+        "name": "Matt Duke",
+        "email": "matthewduke0@gmail.com",
+        "url": "https://github.com/MatthewDuke1",
+        "sameAs": [
+          "https://github.com/MatthewDuke1"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://find-me-people.com/#website",
+        "url": "https://find-me-people.com/",
+        "name": "Find Me People",
+        "description": "A free browser extension that surfaces hidden customer service emails and phone numbers on any website.",
+        "publisher": { "@id": "https://find-me-people.com/#matt-duke" },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://find-me-people.com/#extension",
+        "name": "Find Me People",
+        "applicationCategory": "BrowserApplication",
+        "applicationSubCategory": "Browser Extension",
+        "operatingSystem": "Chrome, Firefox, Edge, Brave, Arc, Opera",
+        "description": "Browser extension that surfaces hidden customer service emails and phone numbers on any website. 100% local processing, no account, no data collection.",
+        "url": "https://find-me-people.com",
+        "softwareVersion": "1.5.2",
+        "image": "https://find-me-people.com/screenshots/01-hero.png",
+        "screenshot": [
+          {
+            "@type": "ImageObject",
+            "url": "https://find-me-people.com/screenshots/01-hero.png",
+            "caption": "Find Me People popup showing ranked support contacts"
+          },
+          {
+            "@type": "ImageObject",
+            "url": "https://find-me-people.com/screenshots/02-autoscan.png",
+            "caption": "Auto-scan results with email and phone sections"
+          },
+          {
+            "@type": "ImageObject",
+            "url": "https://find-me-people.com/screenshots/03-scoring.png",
+            "caption": "Scoring system: green for likely support, yellow for possible, gray for low match"
+          },
+          {
+            "@type": "ImageObject",
+            "url": "https://find-me-people.com/screenshots/04-copy.png",
+            "caption": "One-click copy to clipboard"
+          }
+        ],
+        "license": "https://opensource.org/licenses/MIT",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "author": { "@id": "https://find-me-people.com/#matt-duke" },
+        "publisher": { "@id": "https://find-me-people.com/#matt-duke" },
+        "isPartOf": { "@id": "https://find-me-people.com/#website" },
+        "sameAs": [
+          "https://github.com/MatthewDuke1/find-me-people",
+          "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
+          "https://addons.mozilla.org/addon/find-me-people/"
+        ]
+      }
     ]
   }
   </script>
@@ -439,7 +483,7 @@
 
     <section class="stats">
       <div class="container">
-        <h2>The annoyance economy is real.</h2>
+        <h2>Why is finding customer service so hard?</h2>
         <p class="lead">Customer service is being rationed. Companies bury contact info behind chatbot walls, knowing most people give up before reaching a person. Find Me People breaks that bet.</p>
         <p class="byline">&ldquo;I built this after spending 45 minutes hunting for a real support email on a SaaS site whose contact info was buried four pages deep. The chatbot kept looping. So I shipped a scanner that finds the human in one click.&rdquo; &mdash; <strong>Matt Duke</strong>, builder of Find Me People</p>
         <div class="stat-grid">
@@ -479,7 +523,7 @@
     <section id="features" class="features">
       <div class="container">
         <div class="section-title">
-          <h2>What it does</h2>
+          <h2>How does Find Me People work?</h2>
           <p class="lead">No setup, no account, no data leaves your browser. The extension scans every page silently and gives you the right human to contact.</p>
         </div>
         <div class="feature-grid">
@@ -515,14 +559,34 @@
     <section id="screenshots" class="shots">
       <div class="container">
         <div class="section-title">
-          <h2>See it in action</h2>
+          <h2>What does Find Me People look like in use?</h2>
           <p class="lead">A small popup. A few seconds. Hours of your year, back.</p>
         </div>
         <div class="shot-grid">
-          <div class="shot"><img src="screenshots/01-hero.png" width="1280" height="800" alt="Find Me People popup showing ranked support contacts on a real page" loading="lazy" /></div>
-          <div class="shot"><img src="screenshots/02-autoscan.png" width="1280" height="800" alt="Auto-scan results with email and phone sections" loading="lazy" /></div>
-          <div class="shot"><img src="screenshots/03-scoring.png" width="1280" height="800" alt="Scoring system: green for likely support, yellow for possible, gray for low match" loading="lazy" /></div>
-          <div class="shot"><img src="screenshots/04-copy.png" width="1280" height="800" alt="One-click copy to clipboard" loading="lazy" /></div>
+          <div class="shot">
+            <picture>
+              <source type="image/webp" srcset="screenshots/01-hero.webp" />
+              <img src="screenshots/01-hero.png" width="1280" height="800" alt="Find Me People popup showing ranked support contacts on a real page" loading="lazy" />
+            </picture>
+          </div>
+          <div class="shot">
+            <picture>
+              <source type="image/webp" srcset="screenshots/02-autoscan.webp" />
+              <img src="screenshots/02-autoscan.png" width="1280" height="800" alt="Auto-scan results with email and phone sections" loading="lazy" />
+            </picture>
+          </div>
+          <div class="shot">
+            <picture>
+              <source type="image/webp" srcset="screenshots/03-scoring.webp" />
+              <img src="screenshots/03-scoring.png" width="1280" height="800" alt="Scoring system: green for likely support, yellow for possible, gray for low match" loading="lazy" />
+            </picture>
+          </div>
+          <div class="shot">
+            <picture>
+              <source type="image/webp" srcset="screenshots/04-copy.webp" />
+              <img src="screenshots/04-copy.png" width="1280" height="800" alt="One-click copy to clipboard" loading="lazy" />
+            </picture>
+          </div>
         </div>
       </div>
     </section>
