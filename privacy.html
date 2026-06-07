@@ -9,6 +9,14 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="canonical" href="https://find-me-people.com/privacy.html" />
 
+  <!--
+    Security headers (meta-tag tier). See SECURITY-HEADERS.md for the
+    Cloudflare migration plan that closes the HTTP-response-only gap.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()" />
+
   <meta property="og:title" content="Privacy Policy &mdash; Find Me People" />
   <meta property="og:description" content="No accounts, no telemetry, no third-party tracking. A short, honest list of every piece of data the extension touches." />
   <meta property="og:image" content="https://find-me-people.com/screenshots/01-hero.png" />

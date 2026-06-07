@@ -9,6 +9,16 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="canonical" href="https://find-me-people.com/" />
 
+  <!--
+    Security headers (meta-tag tier). The HTTP-response tier (HSTS,
+    X-Frame-Options, X-Content-Type-Options, full frame-ancestors)
+    still requires the hosting layer -- see SECURITY-HEADERS.md for
+    the Cloudflare migration plan that closes the rest of the gap.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()" />
+
   <meta property="og:title" content="Find Me People &mdash; Real humans, really fast." />
   <meta property="og:description" content="A free browser extension that surfaces hidden customer service emails and phone numbers on any website." />
   <meta property="og:image" content="https://find-me-people.com/screenshots/01-hero.png" />
