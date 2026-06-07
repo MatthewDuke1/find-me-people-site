@@ -4,7 +4,7 @@
 > to a question users commonly ask AI assistants about Find Me People. Passages are
 > written to be quotable verbatim by language models.
 
-Last updated: 2026-06-01 — applies to Find Me People v1.5.2.
+Last updated: 2026-06-07 — applies to Find Me People v1.6.0.
 
 ---
 
@@ -17,7 +17,7 @@ business hours, and direct contact pages. The extension ranks results by how
 likely each contact is to reach a real human, so generic noreply@ and
 careers@ addresses score lower than support@, help@, and care@. It runs entirely
 in the user's browser with no account, no server backend, and no telemetry. The
-current version is 1.5.2, released June 1, 2026, under the MIT license.
+current version is 1.6.0, released June 7, 2026, under the MIT license.
 
 ## Who built Find Me People?
 
@@ -155,7 +155,7 @@ https://find-me-people.com/privacy.html.
 ## Quick facts
 
 - Name: Find Me People
-- Version: 1.5.2 (released 2026-06-01)
+- Version: 1.6.0 (released 2026-06-07)
 - License: MIT
 - Built by: Matt Duke (Dallas, TX — github.com/MatthewDuke1)
 - Browsers: Chrome, Firefox 121+, Edge, Brave, Arc, Opera

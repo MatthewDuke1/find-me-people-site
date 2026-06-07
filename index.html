@@ -69,9 +69,9 @@
         "operatingSystem": "Chrome, Firefox, Edge, Brave, Arc, Opera",
         "description": "Browser extension that surfaces hidden customer service emails and phone numbers on any website. 100% local processing, no account, no data collection.",
         "url": "https://find-me-people.com/",
-        "softwareVersion": "1.5.2",
+        "softwareVersion": "1.6.0",
         "datePublished": "2026-04-27",
-        "dateModified": "2026-06-01",
+        "dateModified": "2026-06-07",
         "downloadUrl": [
           "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
           "https://addons.mozilla.org/addon/find-me-people/"
@@ -562,6 +562,97 @@
       .faq-q { font-size: 15.5px; padding: 18px 20px; }
       .faq-item p { padding: 0 20px 20px; font-size: 14.5px; }
     }
+
+    /* "As featured on" -- scrolling marquee of launch-platform badges.
+       Track is duplicated inside the markup so the -50% translate loops
+       seamlessly without a snap. Mask fades the edges into the background
+       so badges enter and exit gracefully instead of clipping. */
+    .featured {
+      padding: 36px 0 40px;
+      border-top: 1px solid #18181b;
+      border-bottom: 1px solid #18181b;
+      background: #0a0a0a;
+      overflow: hidden;
+    }
+    .featured-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: #52525b;
+      margin-bottom: 22px;
+    }
+    .marquee {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 32px;
+      width: max-content;
+      animation: featured-scroll 28s linear infinite;
+    }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    @keyframes featured-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: #fafafa;
+      background: #131316;
+      border: 1px solid #27272a;
+      border-radius: 10px;
+      white-space: nowrap;
+      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    }
+    .featured-badge:hover {
+      color: #fafafa;
+      transform: translateY(-2px);
+      background: #18181b;
+    }
+    .featured-badge::before {
+      content: "";
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .featured-badge .featured-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #71717a;
+      padding-left: 8px;
+      border-left: 1px solid #27272a;
+    }
+    .badge-ph::before { background: #da552f; box-shadow: 0 0 12px rgba(218, 85, 47, 0.7); }
+    .badge-ph:hover   { border-color: #da552f; }
+    .badge-bl::before { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.7); }
+    .badge-bl:hover   { border-color: #ef4444; }
+    .badge-jl::before { background: #facc15; box-shadow: 0 0 12px rgba(250, 204, 21, 0.7); }
+    .badge-jl:hover   { border-color: #facc15; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track {
+        animation: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+      }
+      /* When motion is reduced, hide the duplicate set so reduced-motion
+         users see exactly one badge per platform instead of two. */
+      .marquee-track .marquee-dupe { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -641,6 +732,33 @@
       </div>
     </section>
 
+    <section class="featured" aria-label="Find Me People has been featured on these launch platforms">
+      <div class="featured-label">As featured on</div>
+      <div class="marquee">
+        <div class="marquee-track">
+          <a class="featured-badge badge-ph" href="https://www.producthunt.com/products/find-me-people" target="_blank" rel="noopener" aria-label="Featured on Product Hunt">
+            Product Hunt <span class="featured-tag">Featured</span>
+          </a>
+          <a class="featured-badge badge-bl" href="https://betalist.com/startups/find-me-people" target="_blank" rel="noopener" aria-label="Featured on Betalist">
+            Betalist <span class="featured-tag">Featured</span>
+          </a>
+          <a class="featured-badge badge-jl" href="https://www.justlaunched.com/products/find-me-people" target="_blank" rel="noopener" aria-label="Featured on JustLaunched">
+            JustLaunched <span class="featured-tag">Featured</span>
+          </a>
+          <!-- Duplicate set so the -50% translate loops seamlessly. Hidden under prefers-reduced-motion. -->
+          <a class="featured-badge badge-ph marquee-dupe" href="https://www.producthunt.com/products/find-me-people" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+            Product Hunt <span class="featured-tag">Featured</span>
+          </a>
+          <a class="featured-badge badge-bl marquee-dupe" href="https://betalist.com/startups/find-me-people" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+            Betalist <span class="featured-tag">Featured</span>
+          </a>
+          <a class="featured-badge badge-jl marquee-dupe" href="https://www.justlaunched.com/products/find-me-people" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+            JustLaunched <span class="featured-tag">Featured</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section class="stats">
       <div class="container">
         <h2>Why is finding customer service so hard?</h2>
@@ -700,7 +818,7 @@
           </div>
           <div class="feature-card">
             <div class="icon">&#9776;</div>
-            <h3>Side panel on every page <span class="new-badge">v1.5.2</span></h3>
+            <h3>Side panel on every page</h3>
             <p>A discreet pull-tab on the right edge of any page where contacts were found. Click to expand a panel with the same ranked emails and phones, a history of what you&rsquo;ve copied, business hours, and the support pages worth visiting next.</p>
           </div>
           <div class="feature-card">
@@ -810,7 +928,7 @@
     <div class="container footer-row">
       <div class="footer-brand">
         <span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2d8a2e,#4ade80);text-align:center;line-height:22px;font-size:12px;">&#128100;</span>
-        Find Me People &middot; v1.5.2 &middot; built solo by <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">Matt Duke</a>
+        Find Me People &middot; v1.6.0 &middot; built solo by <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">Matt Duke</a>
       </div>
       <nav class="footer-links">
         <a href="mailto:matthewduke0@gmail.com">Contact</a>
