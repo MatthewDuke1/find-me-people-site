@@ -37,6 +37,16 @@
         "name": "Matt Duke",
         "email": "matthewduke0@gmail.com",
         "url": "https://github.com/MatthewDuke1",
+        "jobTitle": "Founder",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "QuikSlip"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Southern California"
+        },
+        "award": "Deloitte MVP",
         "sameAs": [
           "https://github.com/MatthewDuke1"
         ]
@@ -58,8 +68,15 @@
         "applicationSubCategory": "Browser Extension",
         "operatingSystem": "Chrome, Firefox, Edge, Brave, Arc, Opera",
         "description": "Browser extension that surfaces hidden customer service emails and phone numbers on any website. 100% local processing, no account, no data collection.",
-        "url": "https://find-me-people.com",
+        "url": "https://find-me-people.com/",
         "softwareVersion": "1.6.0",
+        "datePublished": "2026-04-27",
+        "dateModified": "2026-06-07",
+        "downloadUrl": [
+          "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
+          "https://addons.mozilla.org/addon/find-me-people/"
+        ],
+        "featureList": "Local-first processing, no account required, auto-scan, ranked contact results, bypasses Intercom / Zendesk / Drift / Crisp / HubSpot / Tidio / LiveChat / Tawk / Freshchat / Olark chatbots, reads vendor help-center knowledge bases, email composer templates, one-click VOIP deep links, copy history, business-hours extraction, side panel on every page",
         "image": "https://find-me-people.com/screenshots/01-hero.png",
         "screenshot": [
           {
@@ -97,6 +114,53 @@
           "https://github.com/MatthewDuke1/find-me-people",
           "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
           "https://addons.mozilla.org/addon/find-me-people/"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://find-me-people.com/#faq",
+        "isPartOf": { "@id": "https://find-me-people.com/#website" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Find Me People free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Find Me People is free with no premium tier, no advertisements, and no upsells. It is open source under the MIT license, and the complete source code is published at github.com/MatthewDuke1/find-me-people. There is no business model -- the project is built and maintained as a personal initiative."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Find Me People collect any of my data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The extension runs entirely on your device. It does not create an account, send page contents to any server, include any analytics SDK, write to cookies, or load any remote code. The only network requests are same-origin fetches of common contact pages on the site you are already visiting, and only when the in-page scan finds zero contacts. The full privacy policy is at find-me-people.com/privacy.html."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What browsers does Find Me People work on?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Chrome, Edge, Brave, Arc, Opera, and Firefox 121 and later. Chrome-family browsers install from the Chrome Web Store. Firefox installs from Mozilla Add-ons. All versions ship the same scanner, ranking heuristics, and side panel."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Find Me People work on sites where I am logged in?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The extension reads only the public DOM of the page you have open, with the same access your browser already has. It does not transmit page contents anywhere. It also filters out your own logged-in identity (the email visible in account dropdowns) so you do not see your own Gmail address in the results."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is Find Me People different from just Googling for a phone number?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Googling routes you to the company's own help-center page, which is usually where the chatbot lives. Find Me People reads the underlying contact data the chatbot is gating -- schema.org markup, JSON-LD, hydration state, and the chatbot vendor's public help-center articles -- and surfaces the real support email or phone number in seconds. No chat-UI dance."
+            }
+          }
         ]
       }
     ]
@@ -404,6 +468,101 @@
       .support-card .btn { width: 100%; justify-content: center; }
     }
 
+    /* Author bio under the builder quote -- surfaces Matt's E-E-A-T
+       credentials (USC / Deloitte MVP / QuikSlip) in the indexable
+       HTML body, not just in llms-full.txt. */
+    .stats .author-bio {
+      color: #a1a1aa;
+      font-size: 14px;
+      font-style: italic;
+      max-width: 700px;
+      margin: -8px 0 26px;
+    }
+    .stats .author-bio a { color: #86efac; }
+    .stats .author-bio a:hover { color: #4ade80; }
+
+    /* FAQ section -- native <details>/<summary> accordions, no JS.
+       Matches the FAQPage JSON-LD verbatim so the rich-result schema
+       reflects visible page content (Google's policy). */
+    .faq {
+      padding: 80px 0 90px;
+      border-top: 1px solid #18181b;
+    }
+    .faq h2 {
+      font-size: 40px; font-weight: 800; letter-spacing: -1px;
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .faq .sub {
+      color: #a1a1aa; font-size: 16px; max-width: 620px;
+      margin-bottom: 32px;
+    }
+    .faq-item {
+      border: 1px solid #1e1e1e;
+      border-radius: 12px;
+      background: #131316;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.15s;
+    }
+    .faq-item[open] { border-color: rgba(74,222,128,0.25); }
+    .faq-q {
+      padding: 20px 24px;
+      font-weight: 700; font-size: 16.5px;
+      color: #fafafa; cursor: pointer;
+      list-style: none;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 18px;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q::after {
+      content: "+";
+      color: #71717a;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1;
+      transition: transform 0.2s, color 0.15s;
+      flex-shrink: 0;
+    }
+    .faq-item[open] .faq-q::after { content: "\2212"; color: #4ade80; }
+    .faq-q:hover { color: #86efac; }
+    .faq-item p {
+      padding: 0 24px 22px;
+      color: #c4c4c8;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .faq-item a { color: #4ade80; }
+
+    /* Chrome Web Store rating callout under install buttons. Real
+       data sourced from the live store listing -- 5.0 stars from 6
+       reviews. Install count intentionally not shown until it would
+       reinforce rather than dilute the social-proof signal. */
+    .store-rating {
+      margin: 22px 0 12px;
+      font-size: 14.5px;
+      color: #d4d4d8;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .store-rating .stars {
+      color: #facc15;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+      line-height: 1;
+    }
+    .store-rating strong { color: #fafafa; font-weight: 700; }
+    .store-rating a { color: #86efac; }
+    .store-rating a:hover { color: #4ade80; }
+
+    @media (max-width: 720px) {
+      .faq { padding: 56px 0 64px; }
+      .faq h2 { font-size: 32px; letter-spacing: -0.8px; }
+      .faq-q { font-size: 15.5px; padding: 18px 20px; }
+      .faq-item p { padding: 0 20px 20px; font-size: 14.5px; }
+    }
+
     /* "As featured on" -- scrolling marquee of launch-platform badges.
        Track is duplicated inside the markup so the -50% translate loops
        seamlessly without a snap. Mask fades the edges into the background
@@ -506,6 +665,7 @@
       <nav class="nav-links">
         <a href="#features">Features</a>
         <a href="#screenshots">Screenshots</a>
+        <a href="#faq">FAQ</a>
         <a href="#support">Contact</a>
         <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
         <a href="#install" class="nav-cta">Install</a>
@@ -604,6 +764,7 @@
         <h2>Why is finding customer service so hard?</h2>
         <p class="lead">Customer service is being rationed. Companies bury contact info behind chatbot walls, knowing most people give up before reaching a person. Find Me People breaks that bet.</p>
         <p class="byline">&ldquo;I built this after spending 45 minutes hunting for a real support email on a SaaS site whose contact info was buried four pages deep. The chatbot kept looping. So I shipped a scanner that finds the human in one click.&rdquo; &mdash; <strong>Matt Duke</strong>, builder of Find Me People</p>
+        <p class="author-bio">Matt is a University of Southern California graduate, recognized as a Deloitte MVP, and the founder of QuikSlip. He ships Find Me People publicly on <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">GitHub</a>.</p>
         <div class="stat-grid">
           <div class="stat">
             <div class="num">10&ndash;15<small>min</small></div>
@@ -714,6 +875,38 @@
       </div>
     </section>
 
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2>Common questions.</h2>
+        <p class="sub">Short, direct answers. The same passages back the FAQPage schema so AI search assistants can quote them verbatim.</p>
+
+        <details class="faq-item">
+          <summary class="faq-q">Is Find Me People free?</summary>
+          <p>Yes. Find Me People is free with no premium tier, no advertisements, and no upsells. It is open source under the MIT license, and the complete source code is published at <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people</a>. There is no business model &mdash; the project is built and maintained as a personal initiative.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Does Find Me People collect any of my data?</summary>
+          <p>No. The extension runs entirely on your device. It does not create an account, send page contents to any server, include any analytics SDK, write to cookies, or load any remote code. The only network requests are same-origin fetches of common contact pages on the site you are already visiting, and only when the in-page scan finds zero contacts. The full <a href="privacy.html">privacy policy</a> walks through every byte the extension touches.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">What browsers does Find Me People work on?</summary>
+          <p>Chrome, Edge, Brave, Arc, Opera, and Firefox 121 and later. Chrome-family browsers install from the <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" target="_blank" rel="noopener">Chrome Web Store</a>. Firefox installs from <a href="https://addons.mozilla.org/addon/find-me-people/" target="_blank" rel="noopener">Mozilla Add-ons</a>. All versions ship the same scanner, ranking heuristics, and side panel.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Does Find Me People work on sites where I&rsquo;m logged in?</summary>
+          <p>Yes. The extension reads only the public DOM of the page you have open, with the same access your browser already has. It does not transmit page contents anywhere. It also filters out your own logged-in identity (the email visible in account dropdowns) so you do not see your own Gmail address in the results.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">How is Find Me People different from just Googling for a phone number?</summary>
+          <p>Googling routes you to the company&rsquo;s own help-center page, which is usually where the chatbot lives. Find Me People reads the underlying contact data the chatbot is gating &mdash; schema.org markup, JSON-LD, hydration state, and the chatbot vendor&rsquo;s public help-center articles &mdash; and surfaces the real support email or phone number in seconds. No chat-UI dance.</p>
+        </details>
+      </div>
+    </section>
+
     <section id="install" class="install">
       <div class="container">
         <h2>Install in <span class="accent">two clicks.</span></h2>
@@ -721,6 +914,10 @@
         <div class="install-row">
           <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" class="btn btn-primary" target="_blank" rel="noopener">Add to Chrome</a>
           <a href="https://addons.mozilla.org/addon/find-me-people/" class="btn btn-primary" target="_blank" rel="noopener">Get for Firefox</a>
+        </div>
+        <div class="store-rating">
+          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span><strong>5.0</strong> from 6 reviews on the <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" target="_blank" rel="noopener">Chrome Web Store</a></span>
         </div>
         <p class="small">Works in Chrome, Edge, Brave, Arc, Opera, and Firefox 121+.</p>
       </div>
