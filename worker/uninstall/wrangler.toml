@@ -1,0 +1,19 @@
+name = "fmp-uninstall-survey"
+main = "src/index.js"
+compatibility_date = "2026-06-01"
+
+# Bind the Worker to the same-origin API path the survey page POSTs to.
+# Requires find-me-people.com to be an active zone on this Cloudflare account
+# (see README.md, Part A). You can also set this route in the dashboard:
+# Workers & Pages -> fmp-uninstall-survey -> Settings -> Triggers -> Routes.
+routes = [
+  { pattern = "find-me-people.com/api/uninstall", zone_name = "find-me-people.com" }
+]
+
+# D1 (SQLite) storage. `database_id` is printed by `wrangler d1 create
+# fmp-uninstalls` — paste it here. It is NOT a secret (D1 access still requires
+# your authenticated Cloudflare account), so it's safe to commit.
+[[d1_databases]]
+binding = "DB"
+database_name = "fmp-uninstalls"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
