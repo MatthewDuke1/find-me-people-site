@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sorry to see you go &mdash; Find Me People</title>
+  <meta name="description" content="You uninstalled Find Me People. Mind telling us why? A short, anonymous, optional survey that helps make the extension better." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="canonical" href="https://find-me-people.com/uninstall.html" />
+
+  <!--
+    Same strict security-header posture as index.html / privacy.html.
+    Note what this CSP forces for this page specifically:
+      - script-src 'self'  -> survey logic lives in the external uninstall.js
+                              (NO inline <script> is allowed).
+      - connect-src 'self' + form-action 'none' -> the survey may only POST to
+                              a SAME-ORIGIN endpoint. A third-party form host
+                              (Formspree/Tally/Google Forms) would need a CSP
+                              relaxation; see UNINSTALL-SURVEY.md. The default
+                              same-origin path lines up with the planned
+                              Cloudflare Worker (SECURITY-HEADERS.md).
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()" />
+  <!-- This is an exit page; keep it out of search results. -->
+  <meta name="robots" content="noindex, follow" />
+
+  <meta property="og:title" content="Sorry to see you go &mdash; Find Me People" />
+  <meta property="og:description" content="A short, anonymous, optional survey that helps make the extension better." />
+  <meta property="og:url" content="https://find-me-people.com/uninstall.html" />
+  <meta property="og:site_name" content="Find Me People" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #fafafa;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: #4ade80; text-decoration: none; transition: color 0.15s; }
+    a:hover { color: #86efac; }
+
+    .wrap {
+      flex: 1;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 56px 24px 40px;
+    }
+
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 16px; color: #fafafa;
+      margin-bottom: 40px;
+    }
+    .brand .logo {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: linear-gradient(135deg, #2d8a2e, #4ade80);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 999px;
+      background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.25);
+      color: #86efac; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.3px; margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 34px; font-weight: 900; letter-spacing: -1px; line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .lead { font-size: 16px; color: #a1a1aa; margin-bottom: 32px; }
+    .lead strong { color: #d4d4d8; font-weight: 600; }
+
+    /* Reason list -- clickable cards, each wrapping a hidden radio. */
+    fieldset { border: 0; }
+    legend {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: #71717a; margin-bottom: 14px;
+    }
+    .reason {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,0.09); border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+      cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    }
+    .reason:hover { border-color: rgba(74,222,128,0.4); background: rgba(74,222,128,0.04); }
+    .reason input { position: absolute; opacity: 0; pointer-events: none; }
+    .reason .dot {
+      flex: 0 0 auto; width: 18px; height: 18px; border-radius: 50%;
+      border: 2px solid #52525b; transition: border-color 0.15s;
+      position: relative;
+    }
+    .reason input:checked ~ .dot { border-color: #4ade80; }
+    .reason input:checked ~ .dot::after {
+      content: ""; position: absolute; inset: 3px;
+      border-radius: 50%; background: #4ade80;
+    }
+    .reason span.txt { font-size: 15px; color: #d4d4d8; }
+    .reason:has(input:checked) {
+      border-color: rgba(74,222,128,0.55); background: rgba(74,222,128,0.07);
+    }
+    .reason:has(input:checked) span.txt { color: #fafafa; }
+    /* Keyboard focus ring for accessibility (radios are visually hidden). */
+    .reason:focus-within { outline: 2px solid rgba(74,222,128,0.55); outline-offset: 2px; }
+
+    .comment-wrap { margin: 18px 0 8px; }
+    label.comment-label {
+      display: block; font-size: 13px; color: #a1a1aa; margin-bottom: 8px;
+    }
+    textarea {
+      width: 100%; min-height: 96px; resize: vertical;
+      padding: 12px 14px; border-radius: 12px;
+      background: rgba(255,255,255,0.03); color: #fafafa;
+      border: 1px solid rgba(255,255,255,0.10);
+      font-family: inherit; font-size: 15px; line-height: 1.5;
+    }
+    textarea:focus { outline: none; border-color: rgba(74,222,128,0.5); }
+    textarea::placeholder { color: #52525b; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 20px; width: 100%;
+      padding: 14px 22px; border-radius: 12px; border: 0;
+      background: linear-gradient(135deg, #2d8a2e, #4ade80);
+      color: #06210b; font-weight: 800; font-size: 15px; cursor: pointer;
+      transition: filter 0.15s, opacity 0.15s; font-family: inherit;
+    }
+    .btn:hover { filter: brightness(1.08); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; filter: none; }
+
+    .skip {
+      margin-top: 18px; text-align: center; font-size: 13px; color: #71717a;
+    }
+
+    /* Thank-you state */
+    .done { display: none; text-align: center; padding-top: 8px; }
+    .done.show { display: block; }
+    form.hide { display: none; }
+    .done .check {
+      width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 22px;
+      background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.3);
+      display: flex; align-items: center; justify-content: center; font-size: 30px;
+    }
+    .done h2 { font-size: 26px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; }
+    .done p { color: #a1a1aa; font-size: 15px; margin-bottom: 26px; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 18px; border-radius: 10px; font-weight: 700; font-size: 14px;
+    }
+    .cta.primary { background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.35); color: #86efac; }
+    .cta.primary:hover { background: rgba(74,222,128,0.18); color: #bbf7d0; }
+    .cta.ghost { border: 1px solid rgba(255,255,255,0.12); color: #d4d4d8; }
+    .cta.ghost:hover { border-color: rgba(255,255,255,0.25); color: #fafafa; }
+
+    .footer {
+      border-top: 1px solid #1e1e1e; padding: 22px 24px;
+      color: #71717a; font-size: 13px; text-align: center;
+    }
+    .footer .priv { color: #a1a1aa; }
+
+    @media (max-width: 520px) {
+      .wrap { padding-top: 40px; }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <span class="brand"><span class="logo">🔎</span> Find Me People</span>
+
+    <!-- Survey -->
+    <form id="survey" novalidate>
+      <span class="eyebrow">👋 Sorry to see you go</span>
+      <h1>Mind telling us why?</h1>
+      <p class="lead">
+        Find Me People is built by one person. Your reason &mdash;
+        <strong>completely anonymous</strong> &mdash; is the single most useful
+        thing for making it better. Takes five seconds.
+      </p>
+
+      <fieldset>
+        <legend>What made you uninstall?</legend>
+
+        <label class="reason">
+          <input type="radio" name="reason" value="not_using" />
+          <span class="dot"></span><span class="txt">I wasn't using it enough</span>
+        </label>
+        <label class="reason">
+          <input type="radio" name="reason" value="no_results" />
+          <span class="dot"></span><span class="txt">It didn't find the contacts I was looking for</span>
+        </label>
+        <label class="reason">
+          <input type="radio" name="reason" value="performance" />
+          <span class="dot"></span><span class="txt">It was too slow or slowed down my browser</span>
+        </label>
+        <label class="reason">
+          <input type="radio" name="reason" value="found_alternative" />
+          <span class="dot"></span><span class="txt">I found a better alternative</span>
+        </label>
+        <label class="reason">
+          <input type="radio" name="reason" value="privacy" />
+          <span class="dot"></span><span class="txt">I had privacy or permissions concerns</span>
+        </label>
+        <label class="reason">
+          <input type="radio" name="reason" value="one_time" />
+          <span class="dot"></span><span class="txt">I only needed it for a one-time task</span>
+        </label>
+        <label class="reason">
+          <input type="radio" name="reason" value="confusing" />
+          <span class="dot"></span><span class="txt">It was confusing or hard to use</span>
+        </label>
+        <label class="reason">
+          <input type="radio" name="reason" value="bug" />
+          <span class="dot"></span><span class="txt">Something was broken &mdash; it didn't work right</span>
+        </label>
+        <label class="reason">
+          <input type="radio" name="reason" value="other" />
+          <span class="dot"></span><span class="txt">Other</span>
+        </label>
+      </fieldset>
+
+      <div class="comment-wrap">
+        <label class="comment-label" for="comment">Anything else? (optional)</label>
+        <textarea id="comment" name="comment" maxlength="1000"
+          placeholder="If something was broken or missing, a sentence here helps a lot."></textarea>
+      </div>
+
+      <button type="submit" class="btn" id="submit">Send feedback</button>
+
+      <p class="skip">
+        Just browsing? You can close this tab &mdash; nothing is sent unless you click above.
+      </p>
+    </form>
+
+    <!-- Thank-you (revealed after submit, or if the user skips) -->
+    <section class="done" id="thanks" aria-live="polite">
+      <div class="check">✓</div>
+      <h2 id="thanks-title">Thank you &mdash; that genuinely helps.</h2>
+      <p id="thanks-body">
+        Every reason gets read. If you ever need to find a real human at a
+        company again, the door's open.
+      </p>
+      <div class="cta-row">
+        <a class="cta primary" href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf">↺ Reinstall</a>
+        <a class="cta ghost" href="mailto:matthewduke0@gmail.com?subject=Find%20Me%20People%20feedback">✉ Email us directly</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="priv">Anonymous. No name, no email, no browsing data &mdash; just the reason.</span><br />
+    <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; Find Me People
+  </footer>
+
+  <!-- script-src 'self' forbids inline JS; survey logic is external. -->
+  <script src="uninstall.js" defer></script>
+</body>
+</html>
