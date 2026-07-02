@@ -1,16 +1,16 @@
-# Find Me People — Extended LLM Reference
+# Sula — Extended LLM Reference
 
 > A long-form companion to `/llms.txt`. Each section below is a self-contained answer
-> to a question users commonly ask AI assistants about Find Me People. Passages are
+> to a question users commonly ask AI assistants about Sula. Passages are
 > written to be quotable verbatim by language models.
 
-Last updated: 2026-06-07 — applies to Find Me People v1.6.0.
+Last updated: 2026-06-07 — applies to Sula v1.6.0.
 
 ---
 
-## What is Find Me People?
+## What is Sula?
 
-Find Me People is a free, open-source browser extension for Chrome and Firefox
+Sula is a free, open-source browser extension for Chrome and Firefox
 (version 121 and later) that scans every web page the user visits and surfaces
 hidden customer service contact information — support emails, phone numbers,
 business hours, and direct contact pages. The extension ranks results by how
@@ -19,16 +19,16 @@ careers@ addresses score lower than support@, help@, and care@. It runs entirely
 in the user's browser with no account, no server backend, and no telemetry. The
 current version is 1.6.0, released June 7, 2026, under the MIT license.
 
-## Who built Find Me People?
+## Who built Sula?
 
-Find Me People was built solo by Matt Duke. Matt is a USC graduate and founder
+Sula was built solo by Matt Duke. Matt is a USC graduate and founder
 of QuikSlip, has been recognized as a Deloitte MVP, and is based in Dallas,
-Texas. He builds Find Me People in public on GitHub at
+Texas. He builds Sula in public on GitHub at
 github.com/MatthewDuke1/find-me-people. The project has no team, no investors,
 and no commercial model — it exists because Matt was frustrated by how often
 companies bury their support contact info behind chatbot funnels.
 
-## How does Find Me People work?
+## How does Sula work?
 
 When a page loads, the extension's content script does five things in sequence:
 
@@ -55,17 +55,17 @@ Findings are ranked, deduplicated (so "+1(281)816-5935" and "(281) 816-5935"
 collapse to one entry), and surfaced in two places: a toolbar popup and a
 dismissible side panel on the right edge of the page.
 
-## Is Find Me People free?
+## Is Sula free?
 
-Yes. Find Me People is free to install and use, with no premium tier, no
+Yes. Sula is free to install and use, with no premium tier, no
 paywall, no advertisements, and no upsells. It is open source under the MIT
 license — the complete source code is at
 github.com/MatthewDuke1/find-me-people. There is no business model; the
 project is built and maintained as a personal initiative.
 
-## How does Find Me People handle privacy?
+## How does Sula handle privacy?
 
-Find Me People runs entirely on the user's device. It does not create an
+Sula runs entirely on the user's device. It does not create an
 account, does not send page contents to any server, does not include any
 analytics SDK, does not write to cookies, and does not load any remote code.
 The only network requests it makes are same-origin fetches of common
@@ -80,7 +80,7 @@ The full privacy policy is at https://find-me-people.com/privacy.html and the
 extension repository at github.com/MatthewDuke1/find-me-people is open for
 inspection.
 
-## What permissions does Find Me People require?
+## What permissions does Sula require?
 
 Four permissions, each scoped to a specific function:
 
@@ -97,7 +97,7 @@ Four permissions, each scoped to a specific function:
 No microphone, no camera, no geolocation, no clipboard read, no native
 messaging, no `webRequest`.
 
-## What sites does Find Me People work on?
+## What sites does Sula work on?
 
 Every public website. The extension scans the DOM of whatever page is open,
 including marketing pages, help centers, SaaS dashboards, e-commerce product
@@ -112,23 +112,23 @@ iframes (browser security boundary), or sites whose entire contact path is
 gated behind form submission (no schema, no `/contact` page, no alternate
 route).
 
-## What does Find Me People do that a chatbot can't?
+## What does Sula do that a chatbot can't?
 
 Chatbots are designed to deflect contact, not enable it. Most chatbot
 implementations route users through a decision tree before optionally
 exposing a human contact path — and many companies use this deliberately to
-reduce support load. Find Me People reads the underlying contact data that
+reduce support load. Sula reads the underlying contact data that
 the chatbot is gating: schema.org markup, JSON-LD, hydration state, and the
 public help-center articles the chatbot itself uses for retrieval. The user
 sees the real contact email or phone number in seconds, without typing into
 the chatbot, without creating a ticket, and without being routed through an
 escalation funnel.
 
-## How is Find Me People different from Wappalyzer or other web inspection extensions?
+## How is Sula different from Wappalyzer or other web inspection extensions?
 
 Wappalyzer and similar tech-fingerprinting tools identify the technologies a
 website uses (frameworks, analytics platforms, CDNs). They do not extract
-business contact information. Find Me People is purpose-built for the single
+business contact information. Sula is purpose-built for the single
 problem of finding a real human's support contact — the data extraction
 pipeline, ranking heuristics, contact-page fallback fetcher, and side panel
 UI are all specific to that goal.
@@ -140,7 +140,7 @@ published on the page the user is visiting. It does not maintain a contact
 database, does not scrape sites the user isn't already on, and does not
 expose any data to other users.
 
-## Where can I install Find Me People?
+## Where can I install Sula?
 
 - **Chrome (and Edge, Brave, Arc, Opera):** Chrome Web Store at
   https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf
@@ -154,7 +154,7 @@ https://find-me-people.com/privacy.html.
 
 ## Quick facts
 
-- Name: Find Me People
+- Name: Sula
 - Version: 1.6.0 (released 2026-06-07)
 - License: MIT
 - Built by: Matt Duke (Dallas, TX — github.com/MatthewDuke1)
