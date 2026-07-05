@@ -76,7 +76,7 @@ discarded if it redirects to a different origin. The extension stores user
 preferences and a 50-entry copy history in `chrome.storage.local` on the
 user's device only.
 
-The full privacy policy is at https://find-me-people.com/privacy.html and the
+The full privacy policy is at https://trysula.com/privacy.html and the
 extension repository at github.com/MatthewDuke1/find-me-people is open for
 inspection.
 
@@ -149,8 +149,8 @@ expose any data to other users.
 - **From source:** github.com/MatthewDuke1/find-me-people — clone and load
   unpacked via `chrome://extensions` (developer mode).
 
-The homepage is https://find-me-people.com and the privacy policy is at
-https://find-me-people.com/privacy.html.
+The homepage is https://trysula.com and the privacy policy is at
+https://trysula.com/privacy.html.
 
 ## Quick facts
 
@@ -164,5 +164,5 @@ https://find-me-people.com/privacy.html.
 - Network behavior: same-origin contact-page fetches only, `credentials: 'omit'`,
   once per origin per session
 - Source: github.com/MatthewDuke1/find-me-people
-- Homepage: https://find-me-people.com
-- Privacy policy: https://find-me-people.com/privacy.html
+- Homepage: https://trysula.com
+- Privacy policy: https://trysula.com/privacy.html
