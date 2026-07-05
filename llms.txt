@@ -8,7 +8,7 @@ Sula auto-scans every page you visit, detects the chatbot vendor a company uses 
 
 ## Key facts
 
-- Version: 1.6.0 (chatbot vendor detection and Zendesk / Freshdesk / Crisp help-center search are live; per-domain result cache and confidence-explanation panel landed in this release)
+- Version: 2.0.0 (chatbot vendor detection and Zendesk / Freshdesk / Crisp help-center search are live; per-domain result cache and confidence-explanation panel landed in this release)
 - License: MIT (open source)
 - Privacy: no accounts, no telemetry, no third-party tracking. Two anonymous network-request paths: (1) same-origin fetches of common contact pages on the site you're already on, and (2) when a Zendesk chatbot is detected, one query to that vendor's public help-center search API. Both `credentials: 'omit'`, both once-per-session-per-target. Detailed in the privacy policy.
 - Permissions: activeTab, scripting, storage. Host permissions: <all_urls> (required because contact info can appear on any site).

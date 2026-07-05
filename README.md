@@ -1,6 +1,6 @@
 # find-me-people-site
 
-Marketing site for the [Find Me People](https://github.com/MatthewDuke1/find-me-people) browser extension.
+Marketing site for the [Sula](https://github.com/MatthewDuke1/find-me-people) browser extension.
 
 A single static page (no framework, no build step) deployed via GitHub Pages.
 

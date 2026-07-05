@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sula &mdash; Find contact info on any page</title>
+  <title>Sula - Find people quickly. Real contact info on any page.</title>
   <meta name="description" content="A free browser extension that bypasses chatbots and surfaces the real customer service emails and phone numbers companies hide behind support widgets. 100% local, no account, no data collection." />
-  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="theme-color" content="#070d1a" />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="canonical" href="https://find-me-people.com/" />
 
@@ -19,7 +19,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()" />
 
-  <meta property="og:title" content="Sula &mdash; Find contact info on any page" />
+  <meta property="og:title" content="Sula - Find people quickly" />
   <meta property="og:description" content="A free browser extension that surfaces hidden customer service emails and phone numbers on any website." />
   <meta property="og:image" content="https://find-me-people.com/sula-logo.png" />
   <meta property="og:image:width" content="512" />
@@ -29,7 +29,7 @@
   <meta property="og:site_name" content="Sula" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sula &mdash; Find contact info on any page" />
+  <meta name="twitter:title" content="Sula - Find people quickly" />
   <meta name="twitter:description" content="A free browser extension that surfaces hidden customer service emails and phone numbers on any website." />
   <meta name="twitter:image" content="https://find-me-people.com/sula-logo.png" />
 
@@ -74,7 +74,7 @@
         "@type": "WebPage",
         "@id": "https://find-me-people.com/#webpage",
         "url": "https://find-me-people.com/",
-        "name": "Sula — Real humans, really fast.",
+        "name": "Sula — Find people quickly",
         "description": "A free browser extension that bypasses chatbots and surfaces the real customer service emails and phone numbers companies hide behind support widgets. 100% local, no account, no data collection.",
         "inLanguage": "en-US",
         "isPartOf": { "@id": "https://find-me-people.com/#website" },
@@ -83,7 +83,7 @@
         "about": { "@id": "https://find-me-people.com/#extension" },
         "author": { "@id": "https://find-me-people.com/#matt-duke" },
         "datePublished": "2026-04-27",
-        "dateModified": "2026-06-07",
+        "dateModified": "2026-07-03",
         "speakable": {
           "@type": "SpeakableSpecification",
           "cssSelector": [".hero h1", ".hero .sub", ".stats h2", ".stats .lead"]
@@ -98,9 +98,9 @@
         "operatingSystem": "Chrome, Firefox, Edge, Brave, Arc, Opera",
         "description": "Browser extension that surfaces hidden customer service emails and phone numbers on any website. 100% local processing, no account, no data collection.",
         "url": "https://find-me-people.com/",
-        "softwareVersion": "1.6.0",
+        "softwareVersion": "2.0.0",
         "datePublished": "2026-04-27",
-        "dateModified": "2026-06-07",
+        "dateModified": "2026-07-03",
         "downloadUrl": [
           "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
           "https://addons.mozilla.org/addon/find-me-people/"
@@ -157,7 +157,7 @@
             "name": "Is Sula free?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Sula is free with no premium tier, no advertisements, and no upsells. It is open source under the MIT license, and the complete source code is published at github.com/MatthewDuke1/find-me-people. There is no business model -- the project is built and maintained as a personal initiative."
+              "text": "Finding and copying contacts is free, and stays free. The code is open source under the MIT license at github.com/MatthewDuke1/find-me-people. A paid Pro tier is in the works for heavier outbound work (exporting a whole page, saving leads to a CRM, drafted first emails); the free core keeps working without it, and there are no ads."
             }
           },
           {
@@ -203,8 +203,8 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
-      background: #0a0a0a;
-      color: #fafafa;
+      background: #070d1a;
+      color: #f8fafc;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
@@ -227,20 +227,20 @@
     }
     .nav-brand {
       display: flex; align-items: center; gap: 10px;
-      font-weight: 800; font-size: 16px; color: #fafafa;
+      font-weight: 800; font-size: 16px; color: #f8fafc;
     }
     .nav-brand .logo {
       width: 30px; height: 30px; border-radius: 50%;
       object-fit: cover; box-shadow: 0 0 0 2px rgba(59,130,246,0.25);
     }
     .nav-links { display: flex; gap: 28px; align-items: center; font-size: 14px; }
-    .nav-links a { color: #a1a1aa; }
-    .nav-links a:hover { color: #fafafa; }
+    .nav-links a { color: #94a3b8; }
+    .nav-links a:hover { color: #f8fafc; }
     .nav-cta {
       padding: 8px 14px; border-radius: 6px;
-      background: #3b82f6; color: #0a0a0a !important; font-weight: 700;
+      background: #60a5fa; color: #071022 !important; font-weight: 700;
     }
-    .nav-cta:hover { background: #60a5fa; }
+    .nav-cta:hover { background: #93c5fd; }
 
     /* ---------- Hero ---------- */
     .hero {
@@ -275,9 +275,9 @@
       font-size: 66px; font-weight: 900; line-height: 1.02;
       letter-spacing: -2px; margin-bottom: 22px;
     }
-    .hero h1 .accent { color: #fbbf24; }
+    .hero h1 .accent { color: #60a5fa; }
     .hero .sub {
-      font-size: 19px; color: #a1a1aa; line-height: 1.55;
+      font-size: 19px; color: #94a3b8; line-height: 1.55;
       max-width: 540px; margin-bottom: 32px;
     }
     .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -289,12 +289,12 @@
       cursor: pointer; border: 1px solid transparent;
       font-family: inherit; white-space: nowrap;
     }
-    .btn-primary { background: #3b82f6; color: #0a0a0a; }
-    .btn-primary:hover { background: #60a5fa; transform: translateY(-1px); color: #0a0a0a; }
-    .btn-secondary { background: transparent; color: #fafafa; border-color: #27272a; }
-    .btn-secondary:hover { border-color: #3b82f6; color: #3b82f6; transform: translateY(-1px); }
+    .btn-primary { background: #60a5fa; color: #071022; }
+    .btn-primary:hover { background: #93c5fd; transform: translateY(-1px); color: #071022; }
+    .btn-secondary { background: transparent; color: #f8fafc; border-color: #1f2d47; }
+    .btn-secondary:hover { border-color: #60a5fa; color: #60a5fa; transform: translateY(-1px); }
     .trust-row {
-      margin-top: 24px; font-size: 13px; color: #71717a;
+      margin-top: 24px; font-size: 13px; color: #64748b;
       display: flex; gap: 18px; flex-wrap: wrap;
     }
     .trust-row span { display: inline-flex; align-items: center; gap: 6px; }
@@ -302,12 +302,12 @@
 
     /* Hero popup mockup */
     .preview {
-      background: #111113; border: 1px solid #27272a; border-radius: 14px;
+      background: #0c1322; border: 1px solid #1f2d47; border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 0 1px rgba(59,130,246,0.06);
     }
     .preview-header {
-      padding: 14px 18px; border-bottom: 1px solid #1e1e1e;
+      padding: 14px 18px; border-bottom: 1px solid #182339;
       display: flex; align-items: center; gap: 10px;
     }
     .preview-header .icon {
@@ -316,25 +316,25 @@
       display: flex; align-items: center; justify-content: center; font-size: 13px;
     }
     .preview-header .title { font-size: 14px; font-weight: 700; }
-    .preview-header .domain { margin-left: auto; font-size: 11px; color: #71717a; }
+    .preview-header .domain { margin-left: auto; font-size: 11px; color: #64748b; }
     .preview .status {
-      padding: 10px 18px; font-size: 12px; color: #a1a1aa;
+      padding: 10px 18px; font-size: 12px; color: #94a3b8;
       display: flex; align-items: center; gap: 6px;
     }
     .preview .status .dot { width: 8px; height: 8px; border-radius: 50%; background: #3b82f6; }
     .preview .section-label {
       padding: 6px 18px 4px; font-size: 10px; font-weight: 700;
-      color: #52525b; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #526079; letter-spacing: 1.5px; text-transform: uppercase;
     }
     .preview .row {
       margin: 4px 12px; padding: 10px 14px;
-      background: #0a0a0a; border: 1px solid #1e1e1e; border-radius: 8px;
+      background: #070d1a; border: 1px solid #182339; border-radius: 8px;
       border-left: 3px solid; display: flex; align-items: center; justify-content: space-between;
     }
     .preview .row.good { border-left-color: #3b82f6; }
     .preview .row.ok { border-left-color: #fbbf24; }
-    .preview .row .val { font-size: 13px; font-weight: 700; color: #fafafa; }
-    .preview .row .hint { font-size: 11px; color: #52525b; margin-top: 2px; }
+    .preview .row .val { font-size: 13px; font-weight: 700; color: #f8fafc; }
+    .preview .row .hint { font-size: 11px; color: #526079; margin-top: 2px; }
     .preview .badge {
       font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
     }
@@ -343,30 +343,30 @@
     .preview .footer-pad { height: 14px; }
 
     /* ---------- Stats / Problem ---------- */
-    .stats { padding: 90px 0; border-top: 1px solid #1e1e1e; }
+    .stats { padding: 90px 0; border-top: 1px solid #182339; }
     .stats h2 {
       font-size: 38px; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px;
     }
     .stats .lead {
-      color: #a1a1aa; max-width: 640px; margin-bottom: 24px; font-size: 17px;
+      color: #94a3b8; max-width: 640px; margin-bottom: 24px; font-size: 17px;
     }
     .stats .byline {
-      color: #d4d4d8; max-width: 720px; margin-bottom: 36px; font-size: 15.5px;
+      color: #cbd5e1; max-width: 720px; margin-bottom: 36px; font-size: 15.5px;
       line-height: 1.65; padding-left: 16px; border-left: 2px solid rgba(59,130,246,0.4);
       font-style: italic;
     }
-    .stats .byline strong { color: #fafafa; font-style: normal; font-weight: 700; }
+    .stats .byline strong { color: #f8fafc; font-style: normal; font-weight: 700; }
     .stats .sources {
-      margin-top: 28px; font-size: 12px; color: #71717a; letter-spacing: 0.2px;
+      margin-top: 28px; font-size: 12px; color: #64748b; letter-spacing: 0.2px;
     }
-    .stats .sources a { color: #a1a1aa; }
-    .stats .sources a:hover { color: #d4d4d8; }
+    .stats .sources a { color: #94a3b8; }
+    .stats .sources a:hover { color: #cbd5e1; }
     .stat-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
     }
     .stat {
       padding: 28px 24px;
-      background: #111113; border: 1px solid #1e1e1e; border-radius: 12px;
+      background: #0c1322; border: 1px solid #182339; border-radius: 12px;
       transition: border-color 0.2s, transform 0.2s;
     }
     .stat:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); }
@@ -375,27 +375,27 @@
       line-height: 1; margin-bottom: 10px; letter-spacing: -1px;
     }
     .stat .num small { font-size: 17px; color: #3b82f6; font-weight: 700; margin-left: 2px; }
-    .stat .label { font-size: 13px; color: #a1a1aa; line-height: 1.45; }
+    .stat .label { font-size: 13px; color: #94a3b8; line-height: 1.45; }
     .stat .label .cite {
-      font-size: 11px; color: #71717a; font-weight: 600;
+      font-size: 11px; color: #64748b; font-weight: 600;
       text-decoration: none; padding-left: 3px; vertical-align: super;
     }
     .stat .label .cite:hover { color: #3b82f6; }
     .stat .source {
-      font-size: 11px; color: #52525b; margin-top: 10px;
-      padding-top: 10px; border-top: 1px solid #1e1e1e;
+      font-size: 11px; color: #526079; margin-top: 10px;
+      padding-top: 10px; border-top: 1px solid #182339;
     }
-    .stat .source a { color: #71717a; }
+    .stat .source a { color: #64748b; }
 
     /* ---------- Features ---------- */
-    .features { padding: 90px 0; border-top: 1px solid #1e1e1e; }
+    .features { padding: 90px 0; border-top: 1px solid #182339; }
     .section-title { text-align: center; margin-bottom: 56px; }
     .section-title h2 { font-size: 38px; font-weight: 800; margin-bottom: 14px; letter-spacing: -1px; }
-    .section-title .lead { color: #a1a1aa; font-size: 17px; max-width: 580px; margin: 0 auto; }
+    .section-title .lead { color: #94a3b8; font-size: 17px; max-width: 580px; margin: 0 auto; }
     .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
     .feature-card {
       padding: 30px;
-      background: #111113; border: 1px solid #1e1e1e; border-radius: 14px;
+      background: #0c1322; border: 1px solid #182339; border-radius: 14px;
       transition: border-color 0.2s, transform 0.2s;
     }
     .feature-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); }
@@ -406,10 +406,10 @@
       font-size: 22px; font-weight: 800; margin-bottom: 18px;
     }
     .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-    .feature-card p { font-size: 14.5px; color: #a1a1aa; line-height: 1.6; }
+    .feature-card p { font-size: 14.5px; color: #94a3b8; line-height: 1.6; }
     .feature-card code, .privacy code {
       font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-      font-size: 0.88em; color: #d4d4d8;
+      font-size: 0.88em; color: #cbd5e1;
       background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06);
       padding: 1px 6px; border-radius: 4px;
     }
@@ -422,13 +422,13 @@
     }
 
     /* ---------- Screenshots ---------- */
-    .shots { padding: 90px 0; border-top: 1px solid #1e1e1e; }
+    .shots { padding: 90px 0; border-top: 1px solid #182339; }
     .shot-grid {
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
     }
     .shot {
       border-radius: 14px; overflow: hidden;
-      border: 1px solid #1e1e1e; background: #111113;
+      border: 1px solid #182339; background: #0c1322;
       transition: border-color 0.2s, transform 0.2s;
     }
     .shot:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); }
@@ -436,22 +436,22 @@
 
     /* ---------- Install ---------- */
     .install {
-      padding: 110px 0; border-top: 1px solid #1e1e1e;
+      padding: 110px 0; border-top: 1px solid #182339;
       text-align: center;
       background:
         radial-gradient(ellipse 600px 300px at 50% 0%, rgba(59,130,246,0.10) 0%, transparent 70%);
     }
     .install h2 { font-size: 44px; font-weight: 900; margin-bottom: 16px; letter-spacing: -1.5px; }
-    .install h2 .accent { color: #fbbf24; }
+    .install h2 .accent { color: #60a5fa; }
     .install .sub {
-      color: #a1a1aa; font-size: 17px; margin: 0 auto 36px;
+      color: #94a3b8; font-size: 17px; margin: 0 auto 36px;
       max-width: 540px;
     }
     .install-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .install .small { font-size: 13px; color: #52525b; margin-top: 22px; }
+    .install .small { font-size: 13px; color: #526079; margin-top: 22px; }
 
     /* ---------- Support callout ---------- */
-    .support { padding: 70px 0; border-top: 1px solid #1e1e1e; }
+    .support { padding: 70px 0; border-top: 1px solid #182339; }
     .support-card {
       display: flex; align-items: center; justify-content: space-between;
       gap: 28px; padding: 26px 30px;
@@ -460,16 +460,16 @@
       flex-wrap: wrap;
     }
     .support-text strong {
-      font-size: 22px; font-weight: 800; color: #fafafa;
+      font-size: 22px; font-weight: 800; color: #f8fafc;
       display: block; margin-bottom: 6px; letter-spacing: -0.3px;
     }
-    .support-text p { font-size: 14.5px; color: #a1a1aa; max-width: 480px; line-height: 1.5; }
+    .support-text p { font-size: 14.5px; color: #94a3b8; max-width: 480px; line-height: 1.5; }
     .support-card .btn { font-family: 'Inter', monospace; font-size: 14px; }
 
     /* ---------- Footer ---------- */
     .footer {
-      padding: 36px 0 50px; border-top: 1px solid #1e1e1e;
-      color: #52525b; font-size: 13px;
+      padding: 36px 0 50px; border-top: 1px solid #182339;
+      color: #526079; font-size: 13px;
     }
     .footer-row {
       display: flex; justify-content: space-between; align-items: center;
@@ -477,10 +477,10 @@
     }
     .footer .footer-brand {
       display: flex; align-items: center; gap: 10px;
-      color: #71717a; font-weight: 600;
+      color: #64748b; font-weight: 600;
     }
     .footer-links { display: flex; gap: 24px; }
-    .footer-links a { color: #71717a; }
+    .footer-links a { color: #64748b; }
     .footer-links a:hover { color: #3b82f6; }
 
     /* ---------- Responsive ---------- */
@@ -501,7 +501,7 @@
        credentials (USC / Deloitte MVP / QuikSlip) in the indexable
        HTML body, not just in llms-full.txt. */
     .stats .author-bio {
-      color: #a1a1aa;
+      color: #94a3b8;
       font-size: 14px;
       font-style: italic;
       max-width: 700px;
@@ -515,18 +515,18 @@
        reflects visible page content (Google's policy). */
     .faq {
       padding: 80px 0 90px;
-      border-top: 1px solid #18181b;
+      border-top: 1px solid #101a2e;
     }
     .faq h2 {
       font-size: 40px; font-weight: 800; letter-spacing: -1px;
       line-height: 1.05; margin-bottom: 10px;
     }
     .faq .sub {
-      color: #a1a1aa; font-size: 16px; max-width: 620px;
+      color: #94a3b8; font-size: 16px; max-width: 620px;
       margin-bottom: 32px;
     }
     .faq-item {
-      border: 1px solid #1e1e1e;
+      border: 1px solid #182339;
       border-radius: 12px;
       background: #131316;
       margin-bottom: 12px;
@@ -537,7 +537,7 @@
     .faq-q {
       padding: 20px 24px;
       font-weight: 700; font-size: 16.5px;
-      color: #fafafa; cursor: pointer;
+      color: #f8fafc; cursor: pointer;
       list-style: none;
       display: flex; align-items: center; justify-content: space-between;
       gap: 18px;
@@ -545,7 +545,7 @@
     .faq-q::-webkit-details-marker { display: none; }
     .faq-q::after {
       content: "+";
-      color: #71717a;
+      color: #64748b;
       font-size: 22px;
       font-weight: 400;
       line-height: 1;
@@ -569,7 +569,7 @@
     .store-rating {
       margin: 22px 0 12px;
       font-size: 14.5px;
-      color: #d4d4d8;
+      color: #cbd5e1;
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -581,7 +581,7 @@
       letter-spacing: 1.5px;
       line-height: 1;
     }
-    .store-rating strong { color: #fafafa; font-weight: 700; }
+    .store-rating strong { color: #f8fafc; font-weight: 700; }
     .store-rating a { color: #60a5fa; }
     .store-rating a:hover { color: #3b82f6; }
 
@@ -598,9 +598,9 @@
        so badges enter and exit gracefully instead of clipping. */
     .featured {
       padding: 36px 0 40px;
-      border-top: 1px solid #18181b;
-      border-bottom: 1px solid #18181b;
-      background: #0a0a0a;
+      border-top: 1px solid #101a2e;
+      border-bottom: 1px solid #101a2e;
+      background: #070d1a;
       overflow: hidden;
     }
     .featured-label {
@@ -609,7 +609,7 @@
       font-weight: 700;
       letter-spacing: 2.4px;
       text-transform: uppercase;
-      color: #52525b;
+      color: #526079;
       margin-bottom: 22px;
     }
     .marquee {
@@ -636,17 +636,17 @@
       font-weight: 700;
       font-size: 15px;
       letter-spacing: -0.01em;
-      color: #fafafa;
+      color: #f8fafc;
       background: #131316;
-      border: 1px solid #27272a;
+      border: 1px solid #1f2d47;
       border-radius: 10px;
       white-space: nowrap;
       transition: border-color 0.2s, transform 0.2s, background 0.2s;
     }
     .featured-badge:hover {
-      color: #fafafa;
+      color: #f8fafc;
       transform: translateY(-2px);
-      background: #18181b;
+      background: #101a2e;
     }
     .featured-badge::before {
       content: "";
@@ -660,9 +660,9 @@
       font-weight: 600;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: #71717a;
+      color: #64748b;
       padding-left: 8px;
-      border-left: 1px solid #27272a;
+      border-left: 1px solid #1f2d47;
     }
     .badge-ph::before { background: #da552f; box-shadow: 0 0 12px rgba(218, 85, 47, 0.7); }
     .badge-ph:hover   { border-color: #da552f; }
@@ -684,6 +684,19 @@
          users see exactly one badge per platform instead of two. */
       .marquee-track .marquee-dupe { display: none; }
     }
+
+    /* Sula polish: nav blur, hero glow, card lift */
+    .nav { background: rgba(7,13,26,0.72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .hero { position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; top: -220px; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 520px; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(closest-side, rgba(96,165,250,0.16), rgba(96,165,250,0)); }
+    .hero-grid { position: relative; }
+    .btn-primary { box-shadow: 0 6px 24px rgba(96,165,250,0.25); }
+    .feature-card { border-radius: 14px; transition: transform .18s, border-color .18s; }
+    .feature-card:hover { transform: translateY(-3px); border-color: #60a5fa; }
+    .preview { border-radius: 16px; box-shadow: 0 24px 60px rgba(3,8,20,0.55), 0 0 0 1px rgba(96,165,250,0.10); }
+    .stat { border-radius: 14px; }
   </style>
 </head>
 <body>
@@ -709,8 +722,8 @@
       <div class="container hero-grid">
         <div>
           <div class="eyebrow"><span class="pulse"></span> Now reads the chatbot&rsquo;s own knowledge base</div>
-          <h1>Real humans,<br /><span class="accent">really fast.</span></h1>
-          <p class="sub">Stop hunting through chatbot mazes. Sula reads the same knowledge base the chatbot uses, scans every page you visit, and surfaces the customer service emails and phone numbers companies bury behind support widgets &mdash; in one click, no account, no data collection.</p>
+          <h1>Find people,<br /><span class="accent">quickly.</span></h1>
+          <p class="sub">Chatbots are built to outlast you. Sula reads the page instead: it pulls the real customer service emails and phone numbers out of the code and ranks them by how likely they are to reach a person. One click. No account. Nothing leaves your browser.</p>
           <div class="cta-row">
             <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" class="btn btn-primary" target="_blank" rel="noopener">Install free &rarr;</a>
             <a href="https://github.com/MatthewDuke1/find-me-people" class="btn btn-secondary" target="_blank" rel="noopener">View source on GitHub</a>
@@ -723,7 +736,7 @@
 
         <div class="preview" aria-hidden="true">
           <div class="preview-header">
-            <div class="icon">&#128100;</div>
+            <div class="icon"><img src="sula-logo.png" alt="" style="width:100%;height:100%;border-radius:inherit;object-fit:cover;" /></div>
             <div class="title">Sula</div>
             <div class="domain">company.com</div>
           </div>
@@ -831,7 +844,7 @@
             <strong>Need a real human?</strong>
             <p>An extension that surfaces real customer service contacts had better have one of its own. Email anytime &mdash; we read every message.</p>
           </div>
-          <a href="mailto:matthewduke0@gmail.com?subject=Find%20Me%20People%20support" class="btn btn-primary">matthewduke0@gmail.com</a>
+          <a href="mailto:matthewduke0@gmail.com?subject=Sula%20support" class="btn btn-primary">matthewduke0@gmail.com</a>
         </div>
       </div>
     </section>
@@ -915,11 +928,11 @@
     <section id="faq" class="faq">
       <div class="container">
         <h2>Common questions.</h2>
-        <p class="sub">Short, direct answers. The same passages back the FAQPage schema so AI search assistants can quote them verbatim.</p>
+        <p class="sub">Short, direct answers.</p>
 
         <details class="faq-item">
           <summary class="faq-q">Is Sula free?</summary>
-          <p>Yes. Sula is free with no premium tier, no advertisements, and no upsells. It is open source under the MIT license, and the complete source code is published at <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people</a>. There is no business model &mdash; the project is built and maintained as a personal initiative.</p>
+          <p>Finding and copying contacts is free, and stays free. The code is open source under the MIT license at <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people</a>, so you can check every claim yourself. A paid Pro tier is in the works for heavier outbound work (exporting a whole page, saving leads to a CRM, drafted first emails), and none of it takes anything away from the free core. No ads either way.</p>
         </details>
 
         <details class="faq-item">
@@ -964,8 +977,8 @@
   <footer class="footer">
     <div class="container footer-row">
       <div class="footer-brand">
-        <span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#3b82f6);text-align:center;line-height:22px;font-size:12px;">&#128100;</span>
-        Sula &middot; v1.6.0 &middot; built solo by <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">Matt Duke</a>
+        <img src="sula-logo.png" alt="" style="width:22px;height:22px;border-radius:50%;" />
+        Sula &middot; v2.0.0 &middot; built solo by <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">Matt Duke</a>
       </div>
       <nav class="footer-links">
         <a href="mailto:matthewduke0@gmail.com">Contact</a>
