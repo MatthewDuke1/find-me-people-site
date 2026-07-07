@@ -15,7 +15,7 @@
     still requires the hosting layer -- see SECURITY-HEADERS.md for
     the Cloudflare migration plan that closes the rest of the gap.
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://bestaitoolsfinder.com; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()" />
 
@@ -648,8 +648,9 @@
     .badge-bl:hover   { border-color: #ef4444; }
     .badge-jl::before { background: #facc15; box-shadow: 0 0 12px rgba(250, 204, 21, 0.7); }
     .badge-jl:hover   { border-color: #facc15; }
-    .badge-baitf::before { background: #8b5cf6; box-shadow: 0 0 12px rgba(139, 92, 246, 0.7); }
-    .badge-baitf:hover   { border-color: #8b5cf6; }
+    .baitf-badge { display: inline-flex; align-items: center; }
+    .baitf-badge img { height: 48px; width: auto; border-radius: 8px; transition: transform .15s; }
+    .baitf-badge:hover img { transform: translateY(-2px); }
 
     @media (prefers-reduced-motion: reduce) {
       .marquee-track {
@@ -766,8 +767,10 @@
           <a class="featured-badge badge-jl" href="https://www.justlaunched.com/products/find-me-people" target="_blank" rel="noopener" aria-label="Featured on JustLaunched">
             JustLaunched <span class="featured-tag">Featured</span>
           </a>
-          <a class="featured-badge badge-baitf" href="https://bestaitoolsfinder.com/" target="_blank" rel="noopener" aria-label="Launched on Best AI Tools Finder">
-            Best AI Tools Finder <span class="featured-tag">Featured</span>
+          <a class="baitf-badge" href="https://bestaitoolsfinder.com" data-badge="baitf-8d5e3700-98c6-4534-bf6a-4bfdfb2b26df" target="_blank" rel="noopener">
+            <img src="https://bestaitoolsfinder.com/badge/launch-badge-light.png"
+                 alt="Launched on Best AI Tools Finder"
+                 width="240" height="64" loading="lazy" />
           </a>
           <!-- Duplicate set so the -50% translate loops seamlessly. Hidden under prefers-reduced-motion. -->
           <a class="featured-badge badge-ph marquee-dupe" href="https://www.producthunt.com/products/find-me-people" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
@@ -779,8 +782,10 @@
           <a class="featured-badge badge-jl marquee-dupe" href="https://www.justlaunched.com/products/find-me-people" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
             JustLaunched <span class="featured-tag">Featured</span>
           </a>
-          <a class="featured-badge badge-baitf marquee-dupe" href="https://bestaitoolsfinder.com/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
-            Best AI Tools Finder <span class="featured-tag">Featured</span>
+          <a class="baitf-badge marquee-dupe" href="https://bestaitoolsfinder.com" data-badge="baitf-8d5e3700-98c6-4534-bf6a-4bfdfb2b26df" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+            <img src="https://bestaitoolsfinder.com/badge/launch-badge-light.png"
+                 alt=""
+                 width="240" height="64" loading="lazy" />
           </a>
         </div>
       </div>
