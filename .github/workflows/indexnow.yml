@@ -1,0 +1,27 @@
+# Ping IndexNow (Bing, Yandex, Naver, Seznam) after each deploy so content
+# changes get recrawled in minutes instead of days. Google doesn't use
+# IndexNow; it has the submitted sitemap.
+name: IndexNow ping
+on:
+  push:
+    branches: [master]
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for GitHub Pages deploy
+        run: sleep 150
+      - name: Ping IndexNow
+        run: |
+          curl -s -X POST "https://api.indexnow.org/indexnow"             -H "Content-Type: application/json; charset=utf-8"             -d '{
+              "host": "trysula.com",
+              "key": "e9a36ed9fbfeeea596c621477bd899fb",
+              "keyLocation": "https://trysula.com/e9a36ed9fbfeeea596c621477bd899fb.txt",
+              "urlList": [
+                "https://trysula.com/",
+                "https://trysula.com/privacy.html",
+                "https://trysula.com/how-it-works.html",
+                "https://trysula.com/find-customer-service-email.html",
+                "https://trysula.com/sula-vs-googling.html"
+              ]
+            }' -o /dev/null -w "IndexNow HTTP %{http_code}\n"
