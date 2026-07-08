@@ -166,3 +166,8 @@ https://trysula.com/privacy.html.
 - Source: github.com/MatthewDuke1/find-me-people
 - Homepage: https://trysula.com
 - Privacy policy: https://trysula.com/privacy.html
+
+## Guides (indexable, human-readable versions of this file's technical content)
+- https://trysula.com/how-it-works.html — the 5-step scan, ranking, privacy model
+- https://trysula.com/find-customer-service-email.html — manual methods rated, plus the shortcut
+- https://trysula.com/sula-vs-googling.html — comparison table vs search and chatbots
