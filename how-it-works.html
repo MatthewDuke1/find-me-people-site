@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Sula finds contact info on any page — the 5-step scan</title>
+  <meta name="description" content="What actually happens when Sula scans a page: visible text, structured data, the JavaScript layer, iframes, and a contact-page fallback. All local." />
+  <meta name="theme-color" content="#070d1a" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="canonical" href="https://trysula.com/how-it-works.html" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <meta property="og:title" content="How Sula finds contact info on any page" />
+  <meta property="og:description" content="The 5-step scan: visible text, structured data, the JavaScript layer, iframes, and a contact-page fallback. All local." />
+  <meta property="og:image" content="https://trysula.com/social-card.png" />
+  <meta property="og:url" content="https://trysula.com/how-it-works.html" />
+  <meta property="og:site_name" content="Sula" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://trysula.com/social-card.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://trysula.com/how-it-works.html#webpage",
+        "url": "https://trysula.com/how-it-works.html",
+        "name": "How Sula finds contact info on any page",
+        "description": "What actually happens when Sula scans a page: visible text, structured data, the JavaScript layer, iframes, and a contact-page fallback. All local.",
+        "inLanguage": "en-US",
+        "isPartOf": { "@id": "https://trysula.com/#website" },
+        "about": { "@id": "https://trysula.com/#extension" },
+        "author": { "@id": "https://trysula.com/#matt-duke" },
+        "datePublished": "2026-07-08",
+        "dateModified": "2026-07-08",
+        "breadcrumb": { "@id": "https://trysula.com/how-it-works.html#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://trysula.com/how-it-works.html#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Sula", "item": "https://trysula.com/" },
+          { "@type": "ListItem", "position": 2, "name": "How it works", "item": "https://trysula.com/how-it-works.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+      background:
+        radial-gradient(ellipse at 25% 0%, rgba(96,165,250,0.10) 0%, transparent 50%),
+        #070d1a;
+      color: #f8fafc; line-height: 1.65; -webkit-font-smoothing: antialiased;
+    }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { color: #93c5fd; }
+    .nav {
+      position: sticky; top: 0; z-index: 10; border-bottom: 1px solid #182339;
+      background: rgba(7,13,26,0.72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      max-width: 860px; margin: 0 auto; padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; color: #f8fafc; }
+    .nav-brand img { width: 28px; height: 28px; border-radius: 50%; }
+    .nav-links { display: flex; gap: 18px; align-items: center; font-size: 13px; }
+    .nav-links a { color: #94a3b8; }
+    .nav-links a:hover { color: #f8fafc; }
+    .nav-cta {
+      background: #60a5fa; color: #071022 !important; font-weight: 700;
+      padding: 8px 14px; border-radius: 8px; min-height: 40px; display: inline-flex; align-items: center;
+    }
+    .nav-cta:hover { background: #93c5fd; }
+    main { max-width: 860px; margin: 0 auto; padding: 48px 24px 64px; }
+    .crumb { font-size: 13px; color: #7c8aa3; margin-bottom: 18px; }
+    h1 { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1.12; margin-bottom: 14px; }
+    .lead { font-size: 18px; color: #94a3b8; margin-bottom: 36px; max-width: 640px; }
+    h2 { font-size: 23px; font-weight: 800; letter-spacing: -0.4px; margin: 40px 0 12px; }
+    p { color: #b5c1d4; font-size: 16px; margin-bottom: 14px; max-width: 700px; }
+    code { background: #0c1322; border: 1px solid #1f2d47; border-radius: 5px; padding: 1px 6px; font-size: 14px; color: #93c5fd; }
+    .step {
+      background: #0c1322; border: 1px solid #182339; border-left: 3px solid #60a5fa;
+      border-radius: 12px; padding: 20px 22px; margin: 18px 0;
+    }
+    .step h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; }
+    .step .n { color: #60a5fa; margin-right: 8px; }
+    .step p { margin-bottom: 0; font-size: 15px; }
+    ul { color: #b5c1d4; margin: 0 0 14px 22px; font-size: 15px; }
+    li { margin-bottom: 6px; }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(96,165,250,0.10), rgba(37,99,235,0.05));
+      border: 1px solid rgba(96,165,250,0.25); border-radius: 14px;
+      padding: 26px; margin-top: 44px; text-align: center;
+    }
+    .cta-box .btn {
+      display: inline-block; background: #60a5fa; color: #071022; font-weight: 800;
+      padding: 12px 22px; border-radius: 10px; margin-top: 12px;
+    }
+    .cta-box .btn:hover { background: #93c5fd; }
+    .footer { border-top: 1px solid #182339; margin-top: 24px; }
+    .footer-inner {
+      max-width: 860px; margin: 0 auto; padding: 22px 24px;
+      display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-size: 13px; color: #7c8aa3;
+    }
+    .footer a { color: #7c8aa3; margin-right: 14px; }
+    .footer a:hover { color: #f8fafc; }
+    @media (max-width: 720px) {
+      h1 { font-size: 30px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand"><img src="sula-logo-144.png" alt="Sula logo" width="28" height="28" /> Sula</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="find-customer-service-email.html">Find a support email</a>
+        <a href="sula-vs-googling.html">Vs Googling</a>
+        <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" class="nav-cta" rel="noopener" target="_blank">Install</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="crumb"><a href="/">Sula</a> / How it works</div>
+    <h1>How Sula finds contact info hidden on any page</h1>
+    <p class="lead">A contact page that shows you a chatbot usually still contains the real email and phone number. It's just stored where you can't see it. Here is exactly where Sula looks, in the order it looks there.</p>
+
+    <p>Everything below runs inside your browser, on the page you already have open. Sula has no database of contacts and no server of its own. If the information exists anywhere in the page, the scan finds it; if it doesn't, Sula tells you that instead of guessing.</p>
+
+    <div class="step">
+      <h3><span class="n">1</span>The visible page</h3>
+      <p>First pass is the text you could read yourself: emails, phone numbers, and links to support pages. Sula also decodes the obfuscation tricks sites use to beat simple scrapers, like "jane (at) acme (dot) com", HTML-entity encoding, and the scrambled addresses Cloudflare produces. Numbers only count as contacts when they appear near words like "customer service" or "contact us" — that's how a tracking code avoids showing up as a phone number.</p>
+    </div>
+
+    <div class="step">
+      <h3><span class="n">2</span>The data published for search engines</h3>
+      <p>Most companies publish their contact details in structured data (schema.org and JSON-LD) so Google can show them in search results, then leave them out of the visible page. Sula reads that layer directly. The same markup that powers a Google result panel gives up an email address, a phone number, and often the support hours.</p>
+    </div>
+
+    <div class="step">
+      <h3><span class="n">3</span>The JavaScript layer, including the chatbot itself</h3>
+      <p>Modern sites ship their content as JavaScript state before rendering it — objects like <code>__NEXT_DATA__</code> on Next.js sites. Contact details often sit in there even when no page ever displays them. This step also reads the configuration of chat widgets (Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat, Tawk, Freshchat, Olark). The widget's own account ID reveals the company's public help center, and for Zendesk, Sula queries that help center's public search API for its contact articles — the same data the chatbot was trained to paraphrase at you.</p>
+    </div>
+
+    <div class="step">
+      <h3><span class="n">4</span>Embedded frames</h3>
+      <p>Contact forms and footers often live in iframes served from the same site. Sula scans those too, with the same rules. Frames from other domains stay off-limits.</p>
+    </div>
+
+    <div class="step">
+      <h3><span class="n">5</span>The fallback: fetching the contact page for you</h3>
+      <p>If the page yields nothing, Sula fetches up to three of the site's own likely contact pages (<code>/contact</code>, <code>/support</code>, <code>/help</code> and similar) and scans the responses. These requests carry no cookies, stay on the same site, stop at the first hit, and happen once per site per session. It's what you would have done by hand, minus the clicking.</p>
+    </div>
+
+    <h2>How the ranking works</h2>
+    <p>Finding twelve email addresses helps nobody. Sula scores each result so the one most likely to reach a person sits on top:</p>
+    <ul>
+      <li><code>support@</code>, <code>help@</code>, and <code>care@</code> addresses score high. Marketing, careers, and <code>noreply@</code> sink to the bottom.</li>
+      <li>An address whose domain matches the site you're on outranks a stray third-party address.</li>
+      <li>Each email also gets a quality label — a named person at a real company domain reads "Direct", <code>info@</code> reads "Role inbox", and known throwaway domains read "Disposable" — so you can judge before you write.</li>
+    </ul>
+
+    <h2>What never happens</h2>
+    <p>No page content leaves your machine. There's no account, no analytics, and no server on our side to send anything to. The two narrow network requests the extension can make (the same-site contact-page fetch and the Zendesk help-center query) are anonymous and documented line by line in the <a href="privacy.html">privacy policy</a>. The code is open source, so you can check rather than trust.</p>
+
+    <div class="cta-box">
+      <strong>See it on a site that's been hiding its support email.</strong><br />
+      <span style="color:#94a3b8;font-size:14px;">Free. No account. Works in Chrome, Edge, Brave, Arc, Opera, and Firefox.</span><br />
+      <a class="btn" href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" rel="noopener" target="_blank">Add Sula to your browser</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <a href="/">Home</a>
+        <a href="find-customer-service-email.html">Find a support email</a>
+        <a href="sula-vs-googling.html">Sula vs Googling</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+      <div>Sula &middot; built by <a href="https://github.com/MatthewDuke1" rel="noopener" target="_blank">Matt Duke</a></div>
+    </div>
+  </footer>
+</body>
+</html>
