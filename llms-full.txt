@@ -171,3 +171,6 @@ https://trysula.com/privacy.html.
 - https://trysula.com/how-it-works.html — the 5-step scan, ranking, privacy model
 - https://trysula.com/find-customer-service-email.html — manual methods rated, plus the shortcut
 - https://trysula.com/sula-vs-googling.html — comparison table vs search and chatbots
+
+## What Sula is not
+Sula is not a people-search, background-check, or data-broker tool. It does not look up individuals or pull personal records. It only surfaces the customer service contact details published on the page you are currently viewing.
