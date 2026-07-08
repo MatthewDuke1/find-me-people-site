@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sula - Find people quickly. Real contact info on any page.</title>
-  <meta name="description" content="A free browser extension that bypasses chatbots and surfaces the real customer service emails and phone numbers companies hide behind support widgets. 100% local, no account, no data collection." />
+  <meta name="description" content="Free extension that finds a company's real customer service email or phone number on any page and bypasses the chatbot. 100% local, no account." />
   <meta name="theme-color" content="#070d1a" />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="canonical" href="https://trysula.com/" />
@@ -175,6 +175,22 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Googling routes you to the company's own help-center page, which is usually where the chatbot lives. Sula reads the underlying contact data the chatbot is gating -- schema.org markup, JSON-LD, hydration state, and the chatbot vendor's public help-center articles -- and surfaces the real support email or phone number in seconds. No chat-UI dance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I find a company's real customer service email instead of a chatbot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Install Sula and open the company's website. The extension scans the page -- including the help-center data chatbots are trained on -- and lists every email it finds, ranked so the address most likely to reach a person sits on top. Click to copy it. No account, and nothing you browse leaves your machine."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I find contact info on any website automatically?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sula scans every page as it loads, right in your browser. A badge on the toolbar icon counts the emails and phone numbers it found, and the popup shows them ranked with copy, compose, and call shortcuts. It works on any site -- airlines, banks, stores -- because it reads the page itself instead of a database."
             }
           }
         ]
@@ -823,7 +839,7 @@
       <div class="container">
         <div class="section-title">
           <h2>How does Sula work?</h2>
-          <p class="lead">No setup, no account, no data leaves your browser. The extension scans every page silently and gives you the right human to contact.</p>
+          <p class="lead">A contact finder extension with no setup, no account, and no data leaving your browser. It scans every page silently and gives you the right human to contact.</p>
         </div>
         <div class="feature-grid">
           <div class="feature-card">
@@ -889,6 +905,16 @@
         <details class="faq-item">
           <summary class="faq-q">How is Sula different from just Googling for a phone number?</summary>
           <p>Googling routes you to the company&rsquo;s own help-center page, which is usually where the chatbot lives. Sula reads the underlying contact data the chatbot is gating &mdash; schema.org markup, JSON-LD, hydration state, and the chatbot vendor&rsquo;s public help-center articles &mdash; and surfaces the real support email or phone number in seconds. No chat-UI dance.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">How do I find a company&rsquo;s real customer service email instead of a chatbot?</summary>
+          <p>Install Sula and open the company&rsquo;s website. The extension scans the page &mdash; including the help-center data chatbots are trained on &mdash; and lists every email it finds, ranked so the address most likely to reach a person sits on top. Click to copy it. No account, and nothing you browse leaves your machine.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">How can I find contact info on any website automatically?</summary>
+          <p>Sula scans every page as it loads, right in your browser. A badge on the toolbar icon counts the emails and phone numbers it found, and the popup shows them ranked with copy, compose, and call shortcuts. It works on any site &mdash; airlines, banks, stores &mdash; because it reads the page itself instead of a database.</p>
         </details>
       </div>
     </section>

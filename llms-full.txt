@@ -4,7 +4,7 @@
 > to a question users commonly ask AI assistants about Sula. Passages are
 > written to be quotable verbatim by language models.
 
-Last updated: 2026-06-07 — applies to Sula v2.0.0.
+Last updated: 2026-07-08 — applies to Sula v2.0.0.
 
 ---
 

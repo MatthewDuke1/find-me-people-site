@@ -3,6 +3,22 @@
 # All crawlers welcome -- including AI / LLM crawlers since the
 # whole site is one public marketing page meant to be quoted.
 
+# Search + answer-engine crawlers, named explicitly as a legible opt-in.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 User-agent: *
 Allow: /
 
