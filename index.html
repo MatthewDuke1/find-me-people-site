@@ -15,7 +15,7 @@
     still requires the hosting layer -- see SECURITY-HEADERS.md for
     the Cloudflare migration plan that closes the rest of the gap.
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://bestaitoolsfinder.com; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()" />
 
@@ -399,18 +399,6 @@
       vertical-align: middle;
     }
 
-    /* ---------- Screenshots ---------- */
-    .shots { padding: 90px 0; border-top: 1px solid #182339; }
-    .shot-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
-    }
-    .shot {
-      border-radius: 14px; overflow: hidden;
-      border: 1px solid #182339; background: #0c1322;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .shot:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); }
-    .shot img { width: 100%; height: auto; display: block; }
 
     /* ---------- Install ---------- */
     .install {
@@ -682,7 +670,7 @@
   <header class="nav">
     <div class="container nav-inner">
       <a href="#top" class="nav-brand">
-        <img class="logo" src="sula-logo.png" alt="Sula logo" /> Sula
+        <img class="logo" src="sula-logo-144.png" alt="Sula logo" width="30" height="30" /> Sula
       </a>
       <nav class="nav-links">
         <a href="#features">Features</a>
@@ -713,7 +701,7 @@
 
         <div class="preview" aria-hidden="true">
           <div class="preview-header">
-            <div class="icon"><img src="sula-logo.png" alt="" style="width:100%;height:100%;border-radius:inherit;object-fit:cover;" /></div>
+            <div class="icon"><img src="sula-logo-144.png" alt="" width="24" height="24" style="width:100%;height:100%;border-radius:inherit;object-fit:cover;" /></div>
             <div class="title">Sula</div>
             <div class="domain">company.com</div>
           </div>
@@ -764,7 +752,7 @@
             Betalist <span class="featured-tag">Featured</span>
           </a>
           <a class="baitf-badge" href="https://bestaitoolsfinder.com" data-badge="baitf-8d5e3700-98c6-4534-bf6a-4bfdfb2b26df" target="_blank" rel="noopener">
-            <img src="https://bestaitoolsfinder.com/badge/launch-badge-light.png"
+            <img src="badge-baitf.webp"
                  alt="Launched on Best AI Tools Finder"
                  width="240" height="64" loading="lazy" />
           </a>
@@ -776,7 +764,7 @@
             Betalist <span class="featured-tag">Featured</span>
           </a>
           <a class="baitf-badge marquee-dupe" href="https://bestaitoolsfinder.com" data-badge="baitf-8d5e3700-98c6-4534-bf6a-4bfdfb2b26df" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
-            <img src="https://bestaitoolsfinder.com/badge/launch-badge-light.png"
+            <img src="badge-baitf.webp"
                  alt=""
                  width="240" height="64" loading="lazy" />
           </a>
