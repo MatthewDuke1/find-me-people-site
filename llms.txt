@@ -32,3 +32,6 @@ Customer service is being rationed. Companies bury contact info behind chatbot w
 - [How Sula finds contact info on any page](https://trysula.com/how-it-works.html): the 5-step scan, ranking, and privacy model
 - [How to find a company's customer service email](https://trysula.com/find-customer-service-email.html): manual methods rated honestly, plus the shortcut
 - [Sula vs Googling for a support number](https://trysula.com/sula-vs-googling.html): honest comparison table
+
+## What Sula is not
+Sula is not a people-search, background-check, or data-broker tool. It does not look up individuals or pull personal records. It only surfaces the customer service contact details published on the page you are currently viewing.
