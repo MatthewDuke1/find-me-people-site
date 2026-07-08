@@ -46,8 +46,8 @@
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
     }
-    a { color: #4ade80; text-decoration: none; transition: color 0.15s; }
-    a:hover { color: #86efac; }
+    a { color: #60a5fa; text-decoration: none; transition: color 0.15s; }
+    a:hover { color: #93c5fd; }
 
     .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
 
@@ -66,9 +66,7 @@
     }
     .nav-brand .logo {
       width: 30px; height: 30px; border-radius: 50%;
-      background: linear-gradient(135deg, #2d8a2e, #4ade80);
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 16px;
+      object-fit: cover; box-shadow: 0 0 0 2px rgba(96,165,250,0.25);
     }
     .nav-links { display: flex; gap: 26px; align-items: center; }
     .nav-links a { color: #cbd5e1; font-size: 14px; font-weight: 500; }
@@ -81,8 +79,8 @@
     .eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 6px 12px; border-radius: 999px;
-      background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.25);
-      color: #86efac; font-size: 12px; font-weight: 600;
+      background: rgba(96,165,250,0.10); border: 1px solid rgba(96,165,250,0.25);
+      color: #93c5fd; font-size: 12px; font-weight: 600;
       letter-spacing: 0.3px; margin-bottom: 22px;
     }
     .hero-pp h1 {
@@ -90,7 +88,7 @@
       margin-bottom: 16px;
     }
     .hero-pp h1 .accent {
-      background: linear-gradient(135deg, #4ade80, #86efac);
+      background: linear-gradient(135deg, #60a5fa, #93c5fd);
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
     .hero-pp .lead { font-size: 17px; color: #94a3b8; max-width: 620px; }
@@ -118,9 +116,9 @@
     }
     .callout {
       margin: 18px 0; padding: 18px 22px; border-radius: 12px;
-      background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.18);
+      background: rgba(96,165,250,0.06); border: 1px solid rgba(96,165,250,0.18);
     }
-    .callout strong { color: #86efac; }
+    .callout strong { color: #93c5fd; }
 
     .perm-table {
       width: 100%; border-collapse: collapse; margin: 12px 0 22px;
@@ -136,7 +134,7 @@
     }
     .perm-table td:first-child {
       font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-      color: #86efac; font-size: 13px; white-space: nowrap;
+      color: #93c5fd; font-size: 13px; white-space: nowrap;
     }
     .perm-table td:nth-child(2) { color: #cbd5e1; }
     .perm-table td:nth-child(3) { color: #94a3b8; }
@@ -176,7 +174,7 @@
   <header class="nav">
     <div class="nav-inner">
       <a href="/" class="nav-brand">
-        <span class="logo">&#128100;</span> Sula
+        <img class="logo" src="sula-logo.png" alt="Sula logo" /> Sula
       </a>
       <nav class="nav-links">
         <a href="/#features">Features</a>
@@ -310,7 +308,7 @@
   <footer class="footer">
     <div class="footer-row">
       <div>
-        <span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2d8a2e,#4ade80);text-align:center;line-height:22px;font-size:12px;vertical-align:middle;margin-right:6px;">&#128100;</span>
+        <img src="sula-logo.png" alt="" style="width:22px;height:22px;border-radius:50%;vertical-align:middle;margin-right:6px;" />
         Sula &middot; v2.0.0
       </div>
       <nav class="footer-links">
