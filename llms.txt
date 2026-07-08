@@ -27,3 +27,8 @@ Sula auto-scans every page you visit, detects the chatbot vendor a company uses 
 ## Why it exists
 
 Customer service is being rationed. Companies bury contact info behind chatbot walls, knowing most people give up before reaching a person. The average American spends 10-15 minutes searching for a real support contact and loses 45+ hours per year to support search and waiting. Sula exists to break that bet -- one click instead of a scavenger hunt.
+
+## Guides
+- [How Sula finds contact info on any page](https://trysula.com/how-it-works.html): the 5-step scan, ranking, and privacy model
+- [How to find a company's customer service email](https://trysula.com/find-customer-service-email.html): manual methods rated honestly, plus the shortcut
+- [Sula vs Googling for a support number](https://trysula.com/sula-vs-googling.html): honest comparison table
