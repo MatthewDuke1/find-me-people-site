@@ -35,7 +35,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
   {
@@ -378,7 +378,7 @@
     .stat .num small { font-size: 17px; color: #3b82f6; font-weight: 700; margin-left: 2px; }
     .stat .label { font-size: 13px; color: #94a3b8; line-height: 1.45; }
     .stat .label .cite {
-      font-size: 11px; color: #64748b; font-weight: 600;
+      font-size: 11px; color: #7c8aa3; font-weight: 600;
       text-decoration: none; padding-left: 3px; vertical-align: super;
     }
     .stat .label .cite:hover { color: #3b82f6; }
@@ -469,14 +469,18 @@
       color: #64748b; font-weight: 600;
     }
     .footer-links { display: flex; gap: 24px; }
-    .footer-links a { color: #64748b; }
+    .footer-links a { color: #7c8aa3; }
     .footer-links a:hover { color: #3b82f6; }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 960px) {
-      .hero { padding: 56px 0 72px; }
+      .hero { padding: 40px 0 56px; }
       .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-      .hero h1 { font-size: 46px; letter-spacing: -1.5px; }
+      .hero h1 { font-size: 38px; letter-spacing: -1.2px; margin-bottom: 14px; }
+      .eyebrow { margin-bottom: 16px; padding: 5px 10px; }
+      .hero .sub { font-size: 16px; margin-bottom: 22px; }
+      .trust-row { margin-top: 14px; }
+      .nav-cta { padding: 11px 16px; min-height: 44px; display: inline-flex; align-items: center; }
       .stat-grid { grid-template-columns: repeat(2, 1fr); }
       .feature-grid { grid-template-columns: 1fr; }
       .shot-grid { grid-template-columns: 1fr; }
@@ -598,7 +602,7 @@
       font-weight: 700;
       letter-spacing: 2.4px;
       text-transform: uppercase;
-      color: #526079;
+      color: #7c8aa3;
       margin-bottom: 22px;
     }
     .marquee {
