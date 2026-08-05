@@ -38,6 +38,6 @@ find-me-people-site/
 Live store URLs:
 
 - Chrome: `https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf`
-- Firefox: `https://addons.mozilla.org/addon/find-me-people/`
+- Firefox: `https://addons.mozilla.org/addon/sula/`
 
 Palette mirrors the extension's marquee promo: `#0a0a0a` background, `#4ade80` green accent, `#a78bfa` secondary, Inter font.

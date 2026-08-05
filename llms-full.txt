@@ -145,7 +145,7 @@ expose any data to other users.
 - **Chrome (and Edge, Brave, Arc, Opera):** Chrome Web Store at
   https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf
 - **Firefox (version 121 and later):** Mozilla Add-ons at
-  https://addons.mozilla.org/addon/find-me-people/
+  https://addons.mozilla.org/addon/sula/
 - **From source:** github.com/MatthewDuke1/find-me-people — clone and load
   unpacked via `chrome://extensions` (developer mode).
 
