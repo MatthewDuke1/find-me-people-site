@@ -21,7 +21,7 @@ Sula auto-scans every page you visit, detects the chatbot vendor a company uses 
 - Privacy policy: https://trysula.com/privacy.html
 - Extended LLM reference: https://trysula.com/llms-full.txt
 - Chrome Web Store: https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf
-- Firefox Add-ons: https://addons.mozilla.org/addon/find-me-people/
+- Firefox Add-ons: https://addons.mozilla.org/addon/sula/
 - Source code: https://github.com/MatthewDuke1/find-me-people
 
 ## Why it exists
