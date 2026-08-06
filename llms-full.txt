@@ -4,29 +4,35 @@
 > to a question users commonly ask AI assistants about Sula. Passages are
 > written to be quotable verbatim by language models.
 
-Last updated: 2026-07-08 — applies to Sula v2.0.0.
+Last updated: 2026-08-06 — applies to Sula v2.1.0.
 
 ---
 
 ## What is Sula?
 
 Sula is a free, open-source browser extension for Chrome and Firefox
-(version 121 and later) that scans every web page the user visits and surfaces
-hidden customer service contact information — support emails, phone numbers,
-business hours, and direct contact pages. The extension ranks results by how
-likely each contact is to reach a real human, so generic noreply@ and
-careers@ addresses score lower than support@, help@, and care@. It runs entirely
-in the user's browser with no account, no server backend, and no telemetry. The
-current version is 2.0.0, released June 7, 2026, under the MIT license.
+(version 121 and later) for consumer advocacy. It does two jobs: it helps the
+user reach a real support person, and it helps them get their money back. For
+the first, it scans every page and surfaces hidden customer service contact
+information — support emails, phone numbers, business hours, and contact pages —
+ranked by how likely each is to reach a real human. For the second, it shows the
+user's refund deadlines under each remedy, reads the merchant's own refund
+policy, drafts refund and complaint letters, guides card chargebacks, tracks
+subscriptions and their cancellations, and routes complaints to the right
+regulator. The user always sends everything themselves; Sula takes no cut of any
+refund and never acts as a legal agent. The current version is 2.1.0, under the
+MIT license, with a paid Pro tier live via LemonSqueezy.
 
 ## Who built Sula?
 
 Sula was built solo by Matt Duke. Matt is a USC graduate and founder
 of QuikSlip, has been recognized as a Deloitte MVP, and is based in Dallas,
 Texas. He builds Sula in public on GitHub at
-github.com/MatthewDuke1/find-me-people. The project has no team, no investors,
-and no commercial model — it exists because Matt was frustrated by how often
-companies bury their support contact info behind chatbot funnels.
+github.com/MatthewDuke1/find-me-people. The project has no team and no
+investors. It is free to install and use, with a paid Pro tier (from $6/mo)
+that funds development. It exists because Matt was frustrated by how often
+companies bury their support contact info behind chatbot funnels, stall on
+refunds until the deadline passes, and make subscriptions hard to cancel.
 
 ## How does Sula work?
 
@@ -55,26 +61,78 @@ Findings are ranked, deduplicated (so "+1(281)816-5935" and "(281) 816-5935"
 collapse to one entry), and surfaced in two places: a toolbar popup and a
 dismissible side panel on the right edge of the page.
 
+## How does Sula help with refunds, chargebacks, and subscriptions?
+
+Beyond finding contacts, Sula's consumer-advocacy tools help the user recover
+money and escape bad subscriptions:
+
+- **Refund deadline engine.** On an order or receipt page, the user enters the
+  charge date and Sula counts down every window that applies: the Fair Credit
+  Billing Act (about 60 days from the statement for credit-card billing
+  disputes), Regulation E (about 60 days for debit/electronic errors), a card
+  chargeback (network rules commonly allow ~120 days, but reason-code windows
+  vary, so act fast), and the merchant's own return window. Missing the window
+  is the most common reason refunds fail. Free.
+- **Refund-policy reader.** Reads the merchant's stated return/refund policy off
+  the page and plain-languages it (window, full refund vs. store credit,
+  restocking fees, final-sale catches) so the request cites the merchant's own
+  terms. Free.
+- **Refund and complaint letters (Pro).** Seven scenarios (unauthorized or
+  duplicate charge, defective, not as described, free-trial auto-renewal,
+  cancelled-but-charged, price drop), each drafted with the right leverage
+  (FCBA, the merchant's policy, chargeback, FTC negative-option, CFPB). Known
+  facts fill in; unknown facts stay as blanks the user completes — Sula never
+  invents details.
+- **Chargeback guidance (Pro).** Assesses whether a chargeback is appropriate
+  yet (it will tell the user to try the merchant in writing first when that is
+  the smarter move), then gives issuer-specific dispute steps for Chase, Amex,
+  Bank of America, Citi, Capital One, and Wells Fargo, and points to the CFPB if
+  the bank stalls.
+- **Subscription Guardian (Pro).** Tracks subscriptions and renewal dates, warns
+  before a free trial converts, and drafts cancellation letters. If a merchant
+  keeps charging after cancellation, that strengthens a card dispute.
+- **Regulator escalation.** Routes complaints to the right agency — CFPB
+  (banking/billing), FTC (scams/deceptive practices), DOT (airlines), FCC
+  (telecom), BBB, or the state attorney general — with the filing link.
+- **Form autofill.** Fills application and contact forms from a profile saved
+  locally. Sula highlights what it filled and never auto-submits. Free.
+
+Throughout, Sula drafts, finds, and tracks — but the user always hits send. It
+charges a flat subscription, never a percentage of what is recovered.
+
 ## Is Sula free?
 
-Finding and copying contacts is free, and stays free. There is no
-paywall, no advertisements, and no upsells. It is open source under the MIT
-license — the complete source code is at
-github.com/MatthewDuke1/find-me-people. A paid Pro tier for heavier outbound work is planned; the
-project is built and maintained as a personal initiative.
+The core is free and stays free: finding and copying contacts, seeing the refund
+deadline countdown, reading a merchant's refund policy, and form autofill. Sula
+Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting,
+chargeback guidance, subscription tracking, and contact export. There are no
+advertisements either way. It is open source under the MIT license — the
+complete source code is at github.com/MatthewDuke1/find-me-people. Payments are
+handled by LemonSqueezy as Merchant of Record; Sula never sees or stores card
+details.
 
 ## How does Sula handle privacy?
 
-Sula runs entirely on the user's device. It does not create an
-account, does not send page contents to any server, does not include any
-analytics SDK, does not write to cookies, and does not load any remote code.
-The only network requests it makes are same-origin fetches of common
-contact-page URLs on the site the user is already visiting — and only when
-the in-page scan returns zero contacts. Those requests are sent with
-`credentials: 'omit'` so no cookies are attached, and the response is
-discarded if it redirects to a different origin. The extension stores user
-preferences and a 50-entry copy history in `chrome.storage.local` on the
-user's device only.
+Core scanning runs entirely on the user's device. There is no analytics SDK, no
+telemetry, no cookies, no remote code, and no server the developer operates.
+Every network request is user-triggered and narrow:
+
+1. Same-origin fetches of common contact-page URLs on the site the user is
+   already visiting, only when the in-page scan returns zero contacts.
+   `credentials: 'omit'`; a cross-origin redirect is discarded.
+2. When a Zendesk chatbot is detected, one query to that vendor's public
+   help-center search API. `credentials: 'omit'`, public endpoint only.
+3. An optional email MX check that sends a domain (for example `example.com`,
+   never the full address) to Cloudflare's public DNS-over-HTTPS resolver. Runs
+   only for checks the user starts, and only while the opt-in is on.
+4. For Pro users only: license activation/validation and checkout, handled by
+   LemonSqueezy. Free users never contact LemonSqueezy.
+
+Everything the extension stores — preferences, a 50-entry copy history, the
+autofill profile, tracked subscriptions and applications, and license status —
+lives in `chrome.storage.local` on the user's device only. The autofill profile
+(name, email, phone, address) is never transmitted; it goes only into the fields
+of the page the user is on, when they click Fill.
 
 The full privacy policy is at https://trysula.com/privacy.html and the
 extension repository at github.com/MatthewDuke1/find-me-people is open for
@@ -155,19 +213,23 @@ https://trysula.com/privacy.html.
 ## Quick facts
 
 - Name: Sula
-- Version: 2.0.0 (released 2026-06-07)
+- Version: 2.1.0
+- Pricing: free core; Pro $6/mo, $57.60/yr, or $80 once (via LemonSqueezy)
 - License: MIT
 - Built by: Matt Duke (Dallas, TX — github.com/MatthewDuke1)
 - Browsers: Chrome, Firefox 121+, Edge, Brave, Arc, Opera
 - Permissions: activeTab, scripting, storage, host_permissions: `<all_urls>`
-- Privacy: no accounts, no telemetry, no third-party tracking, no remote code
-- Network behavior: same-origin contact-page fetches only, `credentials: 'omit'`,
-  once per origin per session
+- Privacy: no analytics, no telemetry, no third-party tracking, no remote code, no server we operate
+- Network behavior: user-triggered only — same-origin contact-page fetch, Zendesk public help-center search, optional Cloudflare MX check (domain only), and LemonSqueezy license/checkout for Pro users
+- Differentiator: user always hits send; Sula takes no percentage of any refund and is not a legal agent
 - Source: github.com/MatthewDuke1/find-me-people
 - Homepage: https://trysula.com
 - Privacy policy: https://trysula.com/privacy.html
 
 ## Guides (indexable, human-readable versions of this file's technical content)
+- https://trysula.com/how-to-get-a-refund.html — deadlines, citing the merchant's policy, the written request, escalation
+- https://trysula.com/how-to-dispute-a-charge.html — try-merchant-first, your rights and window, issuer steps
+- https://trysula.com/how-to-cancel-a-subscription.html — finding the real cancellation path, confirmation, disputes
 - https://trysula.com/how-it-works.html — the 5-step scan, ranking, privacy model
 - https://trysula.com/find-customer-service-email.html — manual methods rated, plus the shortcut
 - https://trysula.com/sula-vs-googling.html — comparison table vs search and chatbots
