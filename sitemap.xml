@@ -2,11 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://trysula.com/</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
-    <loc>https://trysula.com/privacy.html</loc>
-    <lastmod>2026-07-08</lastmod>
+    <loc>https://trysula.com/how-to-get-a-refund.html</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://trysula.com/how-to-dispute-a-charge.html</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://trysula.com/how-to-cancel-a-subscription.html</loc>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://trysula.com/how-it-works.html</loc>
@@ -19,5 +27,9 @@
   <url>
     <loc>https://trysula.com/sula-vs-googling.html</loc>
     <lastmod>2026-07-08</lastmod>
+  </url>
+  <url>
+    <loc>https://trysula.com/privacy.html</loc>
+    <lastmod>2026-08-06</lastmod>
   </url>
 </urlset>

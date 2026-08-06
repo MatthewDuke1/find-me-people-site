@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sula - Find people quickly. The contact finder for any website.</title>
-  <meta name="description" content="Free extension that finds a company's real customer service email or phone number on any page and bypasses the chatbot. 100% local, no account." />
+  <title>Sula — Get refunds, cancel subscriptions & reach a real person</title>
+  <meta name="description" content="Free browser extension for consumer advocacy: reach a real support person, get refunds with ready-to-send letters, dispute charges, and cancel subscriptions. No fees — you always hit send." />
   <meta name="theme-color" content="#070d1a" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="96x96" href="favicon.png" />
@@ -21,8 +21,8 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()" />
 
-  <meta property="og:title" content="Sula - Find people quickly" />
-  <meta property="og:description" content="A free browser extension that surfaces hidden customer service emails and phone numbers on any website." />
+  <meta property="og:title" content="Sula — reach a real person & get your money back" />
+  <meta property="og:description" content="Free browser extension for consumer advocacy: real support contacts, refund letters, charge disputes, and subscription cancellations. No fees — you hit send." />
   <meta property="og:image" content="https://trysula.com/social-card.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -31,8 +31,8 @@
   <meta property="og:site_name" content="Sula" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sula - Find people quickly" />
-  <meta name="twitter:description" content="A free browser extension that surfaces hidden customer service emails and phone numbers on any website." />
+  <meta name="twitter:title" content="Sula — reach a real person & get your money back" />
+  <meta name="twitter:description" content="Free browser extension for consumer advocacy: real support contacts, refund letters, charge disputes, and subscription cancellations. No fees — you hit send." />
   <meta name="twitter:image" content="https://trysula.com/social-card.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -68,7 +68,7 @@
         "@id": "https://trysula.com/#website",
         "url": "https://trysula.com/",
         "name": "Sula",
-        "description": "A free browser extension that surfaces hidden customer service emails and phone numbers on any website.",
+        "description": "A free browser extension for consumer advocacy: it helps you reach a real support person, get refunds, dispute charges, and cancel subscriptions.",
         "publisher": { "@id": "https://trysula.com/#matt-duke" },
         "inLanguage": "en-US"
       },
@@ -76,8 +76,8 @@
         "@type": "WebPage",
         "@id": "https://trysula.com/#webpage",
         "url": "https://trysula.com/",
-        "name": "Sula — Find people quickly",
-        "description": "A free browser extension that bypasses chatbots and surfaces the real customer service emails and phone numbers companies hide behind support widgets. 100% local, no account, no data collection.",
+        "name": "Sula — reach a real person & get your money back",
+        "description": "A free browser extension for consumer advocacy. Sula reads the page you're on to surface real customer-service contacts, show your refund deadlines, draft refund and complaint letters, guide charge disputes, and track subscription cancellations. Core scanning is local; the only network calls are ones you trigger.",
         "inLanguage": "en-US",
         "isPartOf": { "@id": "https://trysula.com/#website" },
         "primaryImageOfPage": "https://trysula.com/social-card.png",
@@ -98,20 +98,23 @@
         "applicationCategory": "BrowserApplication",
         "applicationSubCategory": "Browser Extension",
         "operatingSystem": "Chrome, Firefox, Edge, Brave, Arc, Opera",
-        "description": "Browser extension that surfaces hidden customer service emails and phone numbers on any website. 100% local processing, no account, no data collection.",
+        "description": "Browser extension for consumer advocacy: reach a real support person, get refunds with ready-to-send letters, dispute charges, and cancel subscriptions. Core scanning runs locally; the only network calls are ones you trigger.",
         "url": "https://trysula.com/",
-        "softwareVersion": "2.0.0",
+        "softwareVersion": "2.1.0",
         "datePublished": "2026-04-27",
-        "dateModified": "2026-07-08",
+        "dateModified": "2026-08-06",
         "downloadUrl": "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
-        "featureList": "Local-first processing, no account required, auto-scan, ranked contact results, bypasses Intercom / Zendesk / Drift / Crisp / HubSpot / Tidio / LiveChat / Tawk / Freshchat / Olark chatbots, reads vendor help-center knowledge bases, email composer templates, one-click VOIP deep links, copy history, business-hours extraction, side panel on every page",
+        "featureList": "Ranked customer-service contacts on any page, bypasses Intercom / Zendesk / Drift / Crisp / HubSpot / Tidio / LiveChat / Tawk / Freshchat / Olark chatbots, refund deadline engine (FCBA / Reg E / chargeback windows), refund-policy reader, refund and complaint letter drafting, chargeback readiness and issuer steps, subscription tracking and cancellation, regulator escalation (CFPB / FTC / DOT), form autofill from a saved profile, email composer templates, one-click VOIP deep links, copy history, business-hours extraction, side panel on every page",
         "image": "https://trysula.com/social-card.png",
         "license": "https://opensource.org/licenses/MIT",
         "offers": {
-          "@type": "Offer",
-          "price": "0",
+          "@type": "AggregateOffer",
           "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock"
+          "lowPrice": "0",
+          "highPrice": "80",
+          "offerCount": "4",
+          "availability": "https://schema.org/InStock",
+          "description": "Free to install and use. Sula Pro from $6/mo (or $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, and contact export."
         },
         "aggregateRating": {
           "@type": "AggregateRating",
@@ -127,7 +130,7 @@
         "sameAs": [
           "https://github.com/MatthewDuke1/find-me-people",
           "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
-          "https://addons.mozilla.org/addon/find-me-people/",
+          "https://addons.mozilla.org/addon/sula/",
           "https://www.producthunt.com/products/find-me-people",
           "https://betalist.com/startups/find-me-people"
         ]
@@ -143,7 +146,39 @@
             "name": "Is Sula free?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Finding and copying contacts is free, and stays free. The code is open source under the MIT license at github.com/MatthewDuke1/find-me-people. A paid Pro tier is in the works for heavier outbound work (exporting a whole page, saving leads to a CRM, drafted first emails); the free core keeps working without it, and there are no ads."
+              "text": "Yes for the core. Finding customer-service contacts, seeing your refund deadline, and reading a merchant's own refund policy are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, and contact export. The code is open source under the MIT license, and there are no ads either way."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I get a refund with Sula?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open the order or receipt page. Sula shows how long you have under each remedy -- the Fair Credit Billing Act (60 days for credit cards), a card chargeback (commonly around 120 days), and the merchant's own return window -- reads the merchant's stated policy, and drafts a firm refund letter citing the right leverage. You review it and hit send. Sula takes no cut of your refund."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I dispute a charge or file a chargeback?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sula checks whether a chargeback is the right move yet -- often it tells you to try the merchant in writing first -- then gives the exact dispute steps for your card issuer (Chase, Amex, Bank of America, Citi, Capital One, or Wells Fargo). If the bank won't help, it points you to the CFPB. This chargeback guidance is part of Sula Pro."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I cancel a subscription and stop getting charged?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sula's Subscription Guardian tracks your renewal dates and warns you before a free trial converts, and drafts a cancellation letter you can send. If a company keeps charging you after you cancelled, that is strong grounds for a card dispute, and Sula helps you file one."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Sula like Rocket Money or DoNotPay?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sula drafts, finds, and tracks, but you always hit send yourself, and it never takes a percentage of your refund or acts as your legal agent. It is a flat $6/mo, not a cut of what you recover. You stay in control of every message that goes out in your name."
             }
           },
           {
@@ -151,7 +186,7 @@
             "name": "Does Sula collect any of my data?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. The extension runs entirely on your device. It does not create an account, send page contents to any server, include any analytics SDK, write to cookies, or load any remote code. The only network requests are same-origin fetches of common contact pages on the site you are already visiting, and only when the in-page scan finds zero contacts. The full privacy policy is at trysula.com/privacy.html."
+              "text": "There is no analytics, no tracking, and no server we operate. Core scanning runs on your device. The only network calls are ones you trigger: an optional email MX check that sends a domain (not your full address) to Cloudflare's public DNS, and -- only if you buy Pro -- a license check and checkout handled by LemonSqueezy. Autofill details stay on your device and are never transmitted. The full privacy policy is at trysula.com/privacy.html."
             }
           },
           {
@@ -714,15 +749,16 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow"><span class="pulse"></span> Now reads the chatbot&rsquo;s own knowledge base</div>
-          <h1>Find people,<br /><span class="accent">quickly.</span></h1>
-          <p class="sub">Chatbots are built to outlast you. Sula reads the page instead: it pulls the real customer service emails and phone numbers out of the code and ranks them by how likely they are to reach a person. One click. No account. Nothing leaves your browser.</p>
+          <div class="eyebrow"><span class="pulse"></span> New &mdash; refund letters, chargeback help &amp; subscription cancellations</div>
+          <h1>Reach a human.<br /><span class="accent">Get your money back.</span></h1>
+          <p class="sub">Companies bury the contact, run out the refund clock, and make you cancel through a maze. Sula reads the page you&rsquo;re on: it surfaces the real support contact, shows your refund deadline, drafts the letter that gets your money back, and tracks the subscriptions draining your account. You always hit send &mdash; and Sula takes no cut of your refund.</p>
           <div class="cta-row">
             <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" class="btn btn-primary" target="_blank" rel="noopener">Install free &rarr;</a>
             <a href="https://github.com/MatthewDuke1/find-me-people" class="btn btn-secondary" target="_blank" rel="noopener">View source on GitHub</a>
           </div>
           <div class="trust-row">
-            <span><span class="check">&#10003;</span> 100% local &mdash; no servers</span>
+            <span><span class="check">&#10003;</span> Local-first &mdash; you always hit send</span>
+            <span><span class="check">&#10003;</span> No fees on your refund</span>
             <span><span class="check">&#10003;</span> Chrome &amp; Firefox</span>
           </div>
         </div>
@@ -802,8 +838,8 @@
 
     <section class="stats">
       <div class="container">
-        <h2>Why is finding customer service so hard?</h2>
-        <p class="lead">Customer service is being rationed. Companies bury contact info behind chatbot walls, knowing most people give up before reaching a person. Sula breaks that bet.</p>
+        <h2>Why is it so hard to reach a company &mdash; and get your money back?</h2>
+        <p class="lead">Support is being rationed. Companies bury the contact behind chatbot walls, stall on refunds until the deadline passes, and route cancellations through a maze &mdash; all betting you give up first. Sula breaks that bet.</p>
         <p class="byline">&ldquo;I built this after spending 45 minutes hunting for a real support email on a SaaS site whose contact info was buried four pages deep. The chatbot kept looping. So I shipped a scanner that finds the human in one click.&rdquo; &mdash; <strong>Matt Duke</strong>, builder of Sula</p>
         <p class="author-bio">Matt is a University of Southern California graduate, recognized as a Deloitte MVP, and the founder of QuikSlip. He ships Sula publicly on <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">GitHub</a>.</p>
         <div class="stat-grid">
@@ -843,8 +879,8 @@
     <section id="features" class="features">
       <div class="container">
         <div class="section-title">
-          <h2>How does Sula work?</h2>
-          <p class="lead">A contact finder extension with no setup, no account, and no data leaving your browser. It scans every page silently and gives you the right human to contact. The <a href="how-it-works.html">full scan order is documented here</a>.</p>
+          <h2>Everything Sula does for you</h2>
+          <p class="lead">Two jobs, one extension: reach a real person, and get your money back. It reads the page you&rsquo;re on &mdash; no setup, no account for the free core. The <a href="how-it-works.html">full scan order is documented here</a>.</p>
         </div>
         <div class="feature-grid">
           <div class="feature-card">
@@ -877,6 +913,31 @@
             <h3>Deeper scanning</h3>
             <p>Reads hydration state (<code>__NEXT_DATA__</code>, JSON-LD, schema.org) for contacts hidden in JS, scans same-origin iframes, falls back to fetching common contact pages when the visible page is sparse, and requires real contact-context proximity before surfacing a phone (no random snippet numbers from Google search).</p>
           </div>
+          <div class="feature-card">
+            <div class="icon">&#9203;</div>
+            <h3>Shows your refund deadline</h3>
+            <p>Enter a charge date on an order or receipt page and Sula counts down every window that applies: the Fair Credit Billing Act (60 days for credit cards), a card chargeback (commonly ~120 days), and the merchant&rsquo;s own return policy. Missing the deadline is the top reason refunds fail. Free.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">&#128221;</div>
+            <h3>Drafts the letter that gets your money back <span class="new-badge">Pro</span></h3>
+            <p>Seven refund scenarios &mdash; unauthorized or duplicate charge, defective, not as described, free-trial auto-renewal, cancelled-but-charged, price drop &mdash; each drafted with the right leverage (FCBA, the merchant&rsquo;s own policy, chargeback, FTC negative-option, CFPB). Real facts fill in; anything Sula doesn&rsquo;t know stays a blank for you. You hit send.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">&#128179;</div>
+            <h3>Guides your chargeback <span class="new-badge">Pro</span></h3>
+            <p>Tells you whether a chargeback is the right move yet (often: try the merchant in writing first), then gives the exact dispute steps for your issuer &mdash; Chase, Amex, Bank of America, Citi, Capital One, or Wells Fargo &mdash; and routes you to the CFPB if the bank stalls.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">&#128260;</div>
+            <h3>Tracks &amp; cancels subscriptions <span class="new-badge">Pro</span></h3>
+            <p>The Subscription Guardian tracks renewal dates and warns you before a free trial converts, and drafts a cancellation letter. Kept getting charged after you cancelled? That&rsquo;s a strong dispute, and Sula helps you file it.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">&#128203;</div>
+            <h3>Fills forms from your profile</h3>
+            <p>Save your details once and fill any application or contact form in a click. Everything stays on your device, Sula highlights what it filled so you can check it, and it never auto-submits &mdash; you always review and send. Free.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -889,17 +950,37 @@
 
         <details class="faq-item">
           <summary class="faq-q">Is Sula free?</summary>
-          <p>Finding and copying contacts is free, and stays free. The code is open source under the MIT license at <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people</a>, so you can check every claim yourself. A paid Pro tier is in the works for heavier outbound work (exporting a whole page, saving leads to a CRM, drafted first emails), and none of it takes anything away from the free core. No ads either way.</p>
+          <p>Yes for the core. Finding customer-service contacts, seeing your refund deadline, and reading a merchant&rsquo;s own refund policy are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, and contact export. The code is open source under the MIT license at <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people</a>, and there are no ads either way.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">How do I get a refund with Sula?</summary>
+          <p>Open the order or receipt page. Sula shows how long you have under each remedy &mdash; the Fair Credit Billing Act (60 days for credit cards), a card chargeback (commonly around 120 days), and the merchant&rsquo;s own return window &mdash; reads the merchant&rsquo;s stated policy, and drafts a firm refund letter citing the right leverage. You review it and hit send. Sula takes no cut of your refund. <a href="how-to-get-a-refund.html">Full refund guide</a>.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">How do I dispute a charge or file a chargeback?</summary>
+          <p>Sula checks whether a chargeback is the right move yet &mdash; often it tells you to try the merchant in writing first &mdash; then gives the exact dispute steps for your card issuer (Chase, Amex, Bank of America, Citi, Capital One, or Wells Fargo). If the bank won&rsquo;t help, it points you to the CFPB. This guidance is part of Sula Pro. <a href="how-to-dispute-a-charge.html">Full dispute guide</a>.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">How do I cancel a subscription and stop getting charged?</summary>
+          <p>Sula&rsquo;s Subscription Guardian tracks your renewal dates and warns you before a free trial converts, and drafts a cancellation letter you can send. If a company keeps charging after you cancelled, that is strong grounds for a card dispute, and Sula helps you file one. <a href="how-to-cancel-a-subscription.html">Full cancellation guide</a>.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Is Sula like Rocket Money or DoNotPay?</summary>
+          <p>Sula drafts, finds, and tracks, but you always hit send yourself, and it never takes a percentage of your refund or acts as your legal agent. It is a flat $6/mo, not a cut of what you recover. You stay in control of every message that goes out in your name.</p>
         </details>
 
         <details class="faq-item">
           <summary class="faq-q">Does Sula collect any of my data?</summary>
-          <p>No. The extension runs entirely on your device. It does not create an account, send page contents to any server, include any analytics SDK, write to cookies, or load any remote code. The only network requests are same-origin fetches of common contact pages on the site you are already visiting, and only when the in-page scan finds zero contacts. The full <a href="privacy.html">privacy policy</a> walks through every byte the extension touches.</p>
+          <p>There is no analytics, no tracking, and no server we operate. Core scanning runs on your device. The only network calls are ones you trigger: an optional email MX check that sends a domain (not your full address) to Cloudflare&rsquo;s public DNS, and &mdash; only if you buy Pro &mdash; a license check and checkout handled by LemonSqueezy. Autofill details stay on your device and are never transmitted. The full <a href="privacy.html">privacy policy</a> walks through every byte the extension touches.</p>
         </details>
 
         <details class="faq-item">
           <summary class="faq-q">What browsers does Sula work on?</summary>
-          <p>Chrome, Edge, Brave, Arc, Opera, and Firefox 121 and later. Chrome-family browsers install from the <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" target="_blank" rel="noopener">Chrome Web Store</a>. Firefox installs from <a href="https://addons.mozilla.org/addon/find-me-people/" target="_blank" rel="noopener">Mozilla Add-ons</a>. All versions ship the same scanner, ranking heuristics, and side panel.</p>
+          <p>Chrome, Edge, Brave, Arc, Opera, and Firefox 121 and later. Chrome-family browsers install from the <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" target="_blank" rel="noopener">Chrome Web Store</a>. Firefox installs from <a href="https://addons.mozilla.org/addon/sula/" target="_blank" rel="noopener">Mozilla Add-ons</a>. All versions ship the same scanner, ranking heuristics, and side panel.</p>
         </details>
 
         <details class="faq-item">
@@ -930,7 +1011,7 @@
         <p class="sub">Free forever. Open source. Runs entirely in your browser &mdash; nothing ever leaves your machine.</p>
         <div class="install-row">
           <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" class="btn btn-primary" target="_blank" rel="noopener">Add to Chrome</a>
-          <a href="https://addons.mozilla.org/addon/find-me-people/" class="btn btn-primary" target="_blank" rel="noopener">Get for Firefox</a>
+          <a href="https://addons.mozilla.org/addon/sula/" class="btn btn-primary" target="_blank" rel="noopener">Get for Firefox</a>
         </div>
         <div class="store-rating">
           <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -945,11 +1026,14 @@
     <div class="container footer-row">
       <div class="footer-brand">
         <img src="sula-logo.png" alt="" style="width:22px;height:22px;border-radius:50%;" />
-        Sula &middot; v2.0.0 &middot; built solo by <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">Matt Duke</a>
+        Sula &middot; v2.1.0 &middot; built solo by <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">Matt Duke</a>
       </div>
       <nav class="footer-links">
         <a href="mailto:matthewduke0@gmail.com">Contact</a>
         <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
+        <a href="how-to-get-a-refund.html">Get a refund</a>
+        <a href="how-to-dispute-a-charge.html">Dispute a charge</a>
+        <a href="how-to-cancel-a-subscription.html">Cancel a subscription</a>
         <a href="how-it-works.html">How it works</a>
         <a href="find-customer-service-email.html">Find a support email</a>
         <a href="sula-vs-googling.html">Sula vs Googling</a>
