@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sula — Get refunds, cancel subscriptions & reach a real person</title>
   <meta name="description" content="Free browser extension for consumer advocacy: reach a real support person, get refunds with ready-to-send letters, dispute charges, and cancel subscriptions. No fees — you always hit send." />
-  <meta name="theme-color" content="#0B0F0E" />
+  <meta name="theme-color" content="#070d1a" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="96x96" href="favicon.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -236,120 +236,55 @@
   </script>
 
   <style>
-    /* ============================================================
-       Design tokens. One source of truth for color, type, and space.
-       Palette: money-green on ink -- the product is about recovering
-       money, so the accent carries that rather than default SaaS blue.
-       ============================================================ */
-    :root {
-      /* Ground + surfaces (warm-neutral ink, not navy) */
-      --bg:            #0B0F0E;
-      --bg-elevated:   #111716;
-      --surface:       #141A18;
-      --surface-hover: #1A2220;
-      --border:        #232D2A;
-      --border-strong: #33403C;
-
-      /* Text */
-      --text:          #F2F5F4;
-      --text-dim:      #93A29D;
-      --text-faint:    #6B7975;
-
-      /* Accent: money green */
-      --accent:        #34D399;
-      --accent-hover:  #6EE7B7;
-      --accent-dim:    #1F8A64;
-      --accent-ink:    #05221A;
-      --accent-wash:   rgba(52, 211, 153, 0.09);
-      --accent-edge:   rgba(52, 211, 153, 0.22);
-
-      /* Support hues, used sparingly */
-      --warn:          #FBBF24;
-      --danger:        #F87171;
-
-      /* Type scale (7 steps, real ratio) */
-      --t-xs:   12px;
-      --t-sm:   14px;
-      --t-base: 16px;
-      --t-md:   18px;
-      --t-lg:   22px;
-      --t-xl:   32px;
-      --t-2xl:  clamp(36px, 4.1vw, 52px);
-
-      /* Spacing scale (4px base) */
-      --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
-      --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
-      --s-9: 96px;
-
-      /* Radii + elevation */
-      --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-full: 999px;
-      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.7);
-
-      --mono: 'SFMono-Regular', ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace;
-    }
-
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: #070d1a;
+      color: #f8fafc;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
-      /* Nothing should scroll the page sideways. The featured marquee animates
-         a track wider than the screen; without this it creates a phantom
-         horizontal scrollbar on mobile (pre-existing bug). */
-      overflow-x: hidden;
     }
-    a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
-    a:hover { color: var(--accent-hover); }
+    a { color: #3b82f6; text-decoration: none; transition: color 0.15s; }
+    a:hover { color: #60a5fa; }
     img { max-width: 100%; display: block; }
 
-    /* Numerals in stats/deadlines get the monospace treatment -- the product
-       is about clocks and dollar figures, so they should read as data. */
-    .stat .num, .price-amount { font-family: var(--mono); font-feature-settings: "tnum" 1; }
-
     .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
-
-    /* Anchored sections must clear the sticky nav, or a jump-link lands with
-       the heading hidden behind the bar. */
-    section[id] { scroll-margin-top: 84px; }
 
     /* ---------- Nav ---------- */
     .nav {
       position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(10px); background: rgba(11,15,14,0.78);
-      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px); background: rgba(10,10,10,0.7);
+      border-bottom: 1px solid rgba(30,30,30,0.6);
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      padding: var(--s-4) 0;
+      padding: 18px 0;
     }
     .nav-brand {
       display: flex; align-items: center; gap: 10px;
-      font-weight: 800; font-size: var(--t-base); color: var(--text);
+      font-weight: 800; font-size: 16px; color: #f8fafc;
     }
     .nav-brand .logo {
       width: 30px; height: 30px; border-radius: 50%;
-      object-fit: cover; box-shadow: 0 0 0 2px var(--accent-edge);
+      object-fit: cover; box-shadow: 0 0 0 2px rgba(59,130,246,0.25);
     }
-    .nav-links { display: flex; gap: 28px; align-items: center; font-size: var(--t-sm); }
-    .nav-links a { color: var(--text-dim); }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links { display: flex; gap: 28px; align-items: center; font-size: 14px; }
+    .nav-links a { color: #94a3b8; }
+    .nav-links a:hover { color: #f8fafc; }
     .nav-cta {
       padding: 8px 14px; border-radius: 6px;
-      background: var(--accent); color: var(--accent-ink) !important; font-weight: 700;
+      background: #60a5fa; color: #071022 !important; font-weight: 700;
     }
-    .nav-cta:hover { background: var(--accent-hover); }
+    .nav-cta:hover { background: #93c5fd; }
 
     /* ---------- Hero ---------- */
-    /* One restrained wash, not two competing glows. Paired with a hairline
-       rule at the section break so the hero ends deliberately. */
     .hero {
-      padding: var(--s-8) 0 var(--s-9); position: relative; overflow: hidden;
-      background: radial-gradient(ellipse 1100px 520px at 22% -10%, rgba(52,211,153,0.07) 0%, transparent 62%);
-      border-bottom: 1px solid var(--border);
+      padding: 80px 0 100px; position: relative; overflow: hidden;
+      background:
+        radial-gradient(ellipse 900px 500px at 15% 10%, rgba(59,130,246,0.16) 0%, transparent 60%),
+        radial-gradient(ellipse 700px 500px at 90% 95%, rgba(59,130,246,0.08) 0%, transparent 60%);
     }
     .hero-grid {
       display: grid; grid-template-columns: 1.1fr 1fr;
@@ -357,177 +292,168 @@
     }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 5px 12px; border-radius: var(--r-full);
-      background: var(--accent-wash); border: 1px solid var(--accent-edge);
-      color: var(--accent); font-size: 11px; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      margin-bottom: var(--s-5);
+      padding: 6px 12px; border-radius: 999px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25);
+      color: #3b82f6; font-size: 12px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 24px;
     }
     .eyebrow .pulse {
       width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); box-shadow: 0 0 0 0 rgba(52,211,153,0.7);
+      background: #3b82f6; box-shadow: 0 0 0 0 rgba(59,130,246,0.7);
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.6); }
-      70% { box-shadow: 0 0 0 6px rgba(52,211,153,0); }
-      100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); }
+      0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.6); }
+      70% { box-shadow: 0 0 0 6px rgba(59,130,246,0); }
+      100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
     }
     .hero h1 {
-      font-size: var(--t-2xl); font-weight: 800; line-height: 1.04;
-      letter-spacing: -0.03em; margin-bottom: var(--s-5);
-      text-wrap: balance;
+      font-size: 66px; font-weight: 900; line-height: 1.02;
+      letter-spacing: -2px; margin-bottom: 22px;
     }
-    /* The payoff line carries the accent. No underline rule: at display size
-       it collides with the descender on "money back". */
-    .hero h1 .accent { color: var(--accent); }
+    .hero h1 .accent { color: #60a5fa; }
     .hero .sub {
-      font-size: var(--t-md); color: var(--text-dim); line-height: 1.55;
+      font-size: 19px; color: #94a3b8; line-height: 1.55;
       max-width: 540px; margin-bottom: 32px;
     }
     .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 14px 22px; border-radius: 8px;
-      font-weight: 700; font-size: var(--t-sm);
+      font-weight: 700; font-size: 15px;
       transition: transform 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
       cursor: pointer; border: 1px solid transparent;
       font-family: inherit; white-space: nowrap;
     }
-    .btn-primary { background: var(--accent); color: var(--accent-ink); }
-    .btn-primary:hover { background: var(--accent-hover); color: var(--accent-ink); }
-    .btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary { background: #60a5fa; color: #071022; }
+    .btn-primary:hover { background: #93c5fd; transform: translateY(-1px); color: #071022; }
+    .btn-secondary { background: transparent; color: #f8fafc; border-color: #1f2d47; }
+    .btn-secondary:hover { border-color: #60a5fa; color: #60a5fa; transform: translateY(-1px); }
     .trust-row {
-      margin-top: 24px; font-size: var(--t-sm); color: var(--text-faint);
+      margin-top: 24px; font-size: 13px; color: #64748b;
       display: flex; gap: 18px; flex-wrap: wrap;
     }
     .trust-row span { display: inline-flex; align-items: center; gap: 6px; }
-    .trust-row .check { color: var(--accent); font-weight: 700; }
+    .trust-row .check { color: #3b82f6; font-weight: 700; }
 
     /* Hero popup mockup */
     .preview {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+      background: #0c1322; border: 1px solid #1f2d47; border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 0 1px var(--accent-wash);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 0 1px rgba(59,130,246,0.06);
     }
     .preview-header {
-      padding: 14px 18px; border-bottom: 1px solid var(--border);
+      padding: 14px 18px; border-bottom: 1px solid #182339;
       display: flex; align-items: center; gap: 10px;
     }
     .preview-header .icon {
       width: 24px; height: 24px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-dim), var(--accent));
-      display: flex; align-items: center; justify-content: center; font-size: var(--t-sm);
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
     }
-    .preview-header .title { font-size: var(--t-sm); font-weight: 700; }
-    .preview-header .domain { margin-left: auto; font-size: var(--t-xs); color: var(--text-faint); }
+    .preview-header .title { font-size: 14px; font-weight: 700; }
+    .preview-header .domain { margin-left: auto; font-size: 11px; color: #64748b; }
     .preview .status {
-      padding: 10px 18px; font-size: var(--t-xs); color: var(--text-dim);
+      padding: 10px 18px; font-size: 12px; color: #94a3b8;
       display: flex; align-items: center; gap: 6px;
     }
-    .preview .status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .preview .status .dot { width: 8px; height: 8px; border-radius: 50%; background: #3b82f6; }
     .preview .section-label {
-      padding: 6px 18px 4px; font-size: var(--t-xs); font-weight: 700;
-      color: var(--text-faint); letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 18px 4px; font-size: 10px; font-weight: 700;
+      color: #526079; letter-spacing: 1.5px; text-transform: uppercase;
     }
     .preview .row {
       margin: 4px 12px; padding: 10px 14px;
-      background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+      background: #070d1a; border: 1px solid #182339; border-radius: 8px;
       border-left: 3px solid; display: flex; align-items: center; justify-content: space-between;
     }
-    .preview .row.good { border-left-color: var(--accent); }
-    .preview .row.ok { border-left-color: var(--warn); }
-    .preview .row .val { font-size: var(--t-sm); font-weight: 700; color: var(--text); }
-    .preview .row .hint { font-size: var(--t-xs); color: var(--text-faint); margin-top: 2px; }
+    .preview .row.good { border-left-color: #3b82f6; }
+    .preview .row.ok { border-left-color: #fbbf24; }
+    .preview .row .val { font-size: 13px; font-weight: 700; color: #f8fafc; }
+    .preview .row .hint { font-size: 11px; color: #526079; margin-top: 2px; }
     .preview .badge {
-      font-size: var(--t-xs); font-weight: 700; padding: 3px 9px; border-radius: 999px;
+      font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
     }
-    .preview .badge.green { background: var(--accent-wash); color: var(--accent); }
-    .preview .badge.yellow { background: rgba(251,191,36,0.15); color: var(--warn); }
+    .preview .badge.green { background: rgba(59,130,246,0.15); color: #3b82f6; }
+    .preview .badge.yellow { background: rgba(251,191,36,0.15); color: #fbbf24; }
     .preview .footer-pad { height: 14px; }
 
     /* ---------- Stats / Problem ---------- */
-    .stats { padding: var(--s-9) 0; border-top: 1px solid var(--border); }
+    .stats { padding: 90px 0; border-top: 1px solid #182339; }
     .stats h2 {
-      font-size: var(--t-xl); font-weight: 800; margin-bottom: 16px; letter-spacing: -1px;
+      font-size: 38px; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px;
     }
     .stats .lead {
-      color: var(--text-dim); max-width: 640px; margin-bottom: 24px; font-size: var(--t-base);
+      color: #94a3b8; max-width: 640px; margin-bottom: 24px; font-size: 17px;
     }
     .stats .byline {
-      color: var(--text); max-width: 720px; margin-bottom: 36px; font-size: 15.5px;
-      line-height: 1.65; padding-left: 16px; border-left: 2px solid rgba(52,211,153,0.4);
+      color: #cbd5e1; max-width: 720px; margin-bottom: 36px; font-size: 15.5px;
+      line-height: 1.65; padding-left: 16px; border-left: 2px solid rgba(59,130,246,0.4);
       font-style: italic;
     }
-    .stats .byline strong { color: var(--text); font-style: normal; font-weight: 700; }
+    .stats .byline strong { color: #f8fafc; font-style: normal; font-weight: 700; }
     .stats .sources {
-      margin-top: 28px; font-size: var(--t-xs); color: var(--text-faint); letter-spacing: 0.2px;
+      margin-top: 28px; font-size: 12px; color: #64748b; letter-spacing: 0.2px;
     }
-    .stats .sources a { color: var(--text-dim); }
-    .stats .sources a:hover { color: var(--text); }
+    .stats .sources a { color: #94a3b8; }
+    .stats .sources a:hover { color: #cbd5e1; }
     .stat-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
     }
     .stat {
       padding: 28px 24px;
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      background: #0c1322; border: 1px solid #182339; border-radius: 12px;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .stat:hover { border-color: var(--border-strong); }
+    .stat:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); }
     .stat .num {
-      font-size: var(--t-xl); font-weight: 700; color: var(--text);
-      line-height: 1; margin-bottom: 10px; letter-spacing: -0.02em;
+      font-size: 38px; font-weight: 900; color: #3b82f6;
+      line-height: 1; margin-bottom: 10px; letter-spacing: -1px;
     }
-    .stat .num small { font-size: var(--t-base); color: var(--accent); font-weight: 700; margin-left: 2px; }
-    .stat .label { font-size: var(--t-sm); color: var(--text-dim); line-height: 1.45; }
+    .stat .num small { font-size: 17px; color: #3b82f6; font-weight: 700; margin-left: 2px; }
+    .stat .label { font-size: 13px; color: #94a3b8; line-height: 1.45; }
     .stat .label .cite {
-      font-size: var(--t-xs); color: var(--text-dim); font-weight: 600;
+      font-size: 11px; color: #7c8aa3; font-weight: 600;
       text-decoration: none; padding-left: 3px; vertical-align: super;
     }
-    .stat .label .cite:hover { color: var(--accent); }
+    .stat .label .cite:hover { color: #3b82f6; }
     .stat .source {
-      font-size: var(--t-xs); color: var(--text-faint); margin-top: 10px;
-      padding-top: 10px; border-top: 1px solid var(--border);
+      font-size: 11px; color: #526079; margin-top: 10px;
+      padding-top: 10px; border-top: 1px solid #182339;
     }
-    .stat .source a { color: var(--text-faint); }
+    .stat .source a { color: #64748b; }
 
     /* ---------- Features ---------- */
-    .features { padding: var(--s-9) 0; border-top: 1px solid var(--border); }
+    .features { padding: 90px 0; border-top: 1px solid #182339; }
     .section-title { text-align: center; margin-bottom: 56px; }
-    .section-title h2 { font-size: var(--t-xl); font-weight: 800; margin-bottom: 14px; letter-spacing: -1px; }
-    .section-title .lead { color: var(--text-dim); font-size: var(--t-base); max-width: 580px; margin: 0 auto; }
+    .section-title h2 { font-size: 38px; font-weight: 800; margin-bottom: 14px; letter-spacing: -1px; }
+    .section-title .lead { color: #94a3b8; font-size: 17px; max-width: 580px; margin: 0 auto; }
     .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
     .feature-card {
-      padding: var(--s-5);
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--r-lg);
-      transition: border-color 0.18s ease, background 0.18s ease;
+      padding: 30px;
+      background: #0c1322; border: 1px solid #182339; border-radius: 14px;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    /* Hover shifts weight, not position -- the float-up-on-hover card is one of
-       the loudest generated-template tells. */
-    .feature-card:hover { border-color: var(--border-strong); background: var(--surface-hover); }
-    .feature-card:hover .icon { border-color: var(--accent); }
+    .feature-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); }
     .feature-card .icon {
-      width: 40px; height: 40px; border-radius: var(--r-md);
-      background: var(--accent-wash); color: var(--accent);
-      border: 1px solid var(--accent-edge);
+      width: 46px; height: 46px; border-radius: 12px;
+      background: rgba(59,130,246,0.12); color: #3b82f6;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: var(--s-4);
+      font-size: 22px; font-weight: 800; margin-bottom: 18px;
     }
-    .feature-card .icon svg { width: 20px; height: 20px; display: block; }
-    .feature-card h3 { font-size: var(--t-md); font-weight: 700; margin-bottom: 10px; }
-    .feature-card p { font-size: 14.5px; color: var(--text-dim); line-height: 1.6; }
+    .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .feature-card p { font-size: 14.5px; color: #94a3b8; line-height: 1.6; }
     .feature-card code, .privacy code {
       font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-      font-size: 0.88em; color: var(--text);
+      font-size: 0.88em; color: #cbd5e1;
       background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06);
       padding: 1px 6px; border-radius: 4px;
     }
     .feature-card .new-badge {
-      display: inline-block; font-size: var(--t-xs); font-weight: 700;
+      display: inline-block; font-size: 10px; font-weight: 700;
       padding: 2px 8px; border-radius: 999px; margin-left: 8px;
-      background: var(--accent-wash); color: var(--accent);
+      background: rgba(59,130,246,0.15); color: #3b82f6;
       text-transform: uppercase; letter-spacing: 1px;
       vertical-align: middle;
     }
@@ -535,40 +461,40 @@
 
     /* ---------- Install ---------- */
     .install {
-      padding: var(--s-9) 0; border-top: 1px solid var(--border);
+      padding: 110px 0; border-top: 1px solid #182339;
       text-align: center;
       background:
-        radial-gradient(ellipse 600px 300px at 50% 0%, var(--accent-wash) 0%, transparent 70%);
+        radial-gradient(ellipse 600px 300px at 50% 0%, rgba(59,130,246,0.10) 0%, transparent 70%);
     }
-    .install h2 { font-size: var(--t-xl); font-weight: 900; margin-bottom: 16px; letter-spacing: -1.5px; }
-    .install h2 .accent { color: var(--accent); }
+    .install h2 { font-size: 44px; font-weight: 900; margin-bottom: 16px; letter-spacing: -1.5px; }
+    .install h2 .accent { color: #60a5fa; }
     .install .sub {
-      color: var(--text-dim); font-size: var(--t-base); margin: 0 auto 36px;
+      color: #94a3b8; font-size: 17px; margin: 0 auto 36px;
       max-width: 540px;
     }
     .install-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .install .small { font-size: var(--t-sm); color: var(--text-faint); margin-top: 22px; }
+    .install .small { font-size: 13px; color: #526079; margin-top: 22px; }
 
     /* ---------- Support callout ---------- */
-    .support { padding: var(--s-8) 0; border-top: 1px solid var(--border); }
+    .support { padding: 70px 0; border-top: 1px solid #182339; }
     .support-card {
       display: flex; align-items: center; justify-content: space-between;
       gap: 28px; padding: 26px 30px;
-      background: linear-gradient(135deg, var(--accent-wash), var(--accent-wash));
-      border: 1px solid var(--accent-edge); border-radius: 14px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(59,130,246,0.04));
+      border: 1px solid rgba(59,130,246,0.25); border-radius: 14px;
       flex-wrap: wrap;
     }
     .support-text strong {
-      font-size: var(--t-lg); font-weight: 800; color: var(--text);
+      font-size: 22px; font-weight: 800; color: #f8fafc;
       display: block; margin-bottom: 6px; letter-spacing: -0.3px;
     }
-    .support-text p { font-size: 14.5px; color: var(--text-dim); max-width: 480px; line-height: 1.5; }
-    .support-card .btn { font-family: 'Inter', monospace; font-size: var(--t-sm); }
+    .support-text p { font-size: 14.5px; color: #94a3b8; max-width: 480px; line-height: 1.5; }
+    .support-card .btn { font-family: 'Inter', monospace; font-size: 14px; }
 
     /* ---------- Footer ---------- */
     .footer {
-      padding: var(--s-6) 0 50px; border-top: 1px solid var(--border);
-      color: var(--text-faint); font-size: var(--t-sm);
+      padding: 36px 0 50px; border-top: 1px solid #182339;
+      color: #526079; font-size: 13px;
     }
     .footer-row {
       display: flex; justify-content: space-between; align-items: center;
@@ -576,26 +502,26 @@
     }
     .footer .footer-brand {
       display: flex; align-items: center; gap: 10px;
-      color: var(--text-faint); font-weight: 600;
+      color: #64748b; font-weight: 600;
     }
     .footer-links { display: flex; gap: 24px; }
-    .footer-links a { color: var(--text-dim); }
-    .footer-links a:hover { color: var(--accent); }
+    .footer-links a { color: #7c8aa3; }
+    .footer-links a:hover { color: #3b82f6; }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 960px) {
-      .hero { padding: var(--s-6) 0 56px; }
+      .hero { padding: 40px 0 56px; }
       .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-      .hero h1 { font-size: var(--t-xl); letter-spacing: -1.2px; margin-bottom: 14px; }
+      .hero h1 { font-size: 38px; letter-spacing: -1.2px; margin-bottom: 14px; }
       .eyebrow { margin-bottom: 16px; padding: 5px 10px; }
-      .hero .sub { font-size: var(--t-base); margin-bottom: 22px; }
+      .hero .sub { font-size: 16px; margin-bottom: 22px; }
       .trust-row { margin-top: 14px; }
       .nav-cta { padding: 11px 16px; min-height: 44px; display: inline-flex; align-items: center; }
       .stat-grid { grid-template-columns: repeat(2, 1fr); }
       .feature-grid { grid-template-columns: 1fr; }
       .shot-grid { grid-template-columns: 1fr; }
       .nav-links a:not(.nav-cta) { display: none; }
-      .install h2 { font-size: var(--t-xl); }
+      .install h2 { font-size: 34px; }
       .support-card { flex-direction: column; align-items: flex-start; padding: 24px; }
       .support-card .btn { width: 100%; justify-content: center; }
     }
@@ -604,43 +530,43 @@
        credentials (USC / Deloitte MVP / QuikSlip) in the indexable
        HTML body, not just in llms-full.txt. */
     .stats .author-bio {
-      color: var(--text-dim);
-      font-size: var(--t-sm);
+      color: #94a3b8;
+      font-size: 14px;
       font-style: italic;
       max-width: 700px;
       margin: -8px 0 26px;
     }
-    .stats .author-bio a { color: var(--accent); }
-    .stats .author-bio a:hover { color: var(--accent); }
+    .stats .author-bio a { color: #60a5fa; }
+    .stats .author-bio a:hover { color: #3b82f6; }
 
     /* FAQ section -- native <details>/<summary> accordions, no JS.
        Matches the FAQPage JSON-LD verbatim so the rich-result schema
        reflects visible page content (Google's policy). */
     .faq {
-      padding: var(--s-8) 0 90px;
-      border-top: 1px solid var(--bg-elevated);
+      padding: 80px 0 90px;
+      border-top: 1px solid #101a2e;
     }
     .faq h2 {
-      font-size: var(--t-xl); font-weight: 800; letter-spacing: -1px;
+      font-size: 40px; font-weight: 800; letter-spacing: -1px;
       line-height: 1.05; margin-bottom: 10px;
     }
     .faq .sub {
-      color: var(--text-dim); font-size: var(--t-base); max-width: 620px;
+      color: #94a3b8; font-size: 16px; max-width: 620px;
       margin-bottom: 32px;
     }
     .faq-item {
-      border: 1px solid var(--border);
+      border: 1px solid #182339;
       border-radius: 12px;
-      background: var(--surface);
+      background: #131316;
       margin-bottom: 12px;
       overflow: hidden;
       transition: border-color 0.15s;
     }
-    .faq-item[open] { border-color: var(--accent-edge); }
+    .faq-item[open] { border-color: rgba(59,130,246,0.25); }
     .faq-q {
       padding: 20px 24px;
       font-weight: 700; font-size: 16.5px;
-      color: var(--text); cursor: pointer;
+      color: #f8fafc; cursor: pointer;
       list-style: none;
       display: flex; align-items: center; justify-content: space-between;
       gap: 18px;
@@ -648,22 +574,22 @@
     .faq-q::-webkit-details-marker { display: none; }
     .faq-q::after {
       content: "+";
-      color: var(--text-faint);
-      font-size: var(--t-lg);
+      color: #64748b;
+      font-size: 22px;
       font-weight: 400;
       line-height: 1;
       transition: transform 0.2s, color 0.15s;
       flex-shrink: 0;
     }
-    .faq-item[open] .faq-q::after { content: "\2212"; color: var(--accent); }
-    .faq-q:hover { color: var(--accent); }
+    .faq-item[open] .faq-q::after { content: "\2212"; color: #3b82f6; }
+    .faq-q:hover { color: #60a5fa; }
     .faq-item p {
       padding: 0 24px 22px;
       color: #c4c4c8;
-      font-size: var(--t-sm);
+      font-size: 15px;
       line-height: 1.7;
     }
-    .faq-item a { color: var(--accent); }
+    .faq-item a { color: #3b82f6; }
 
     /* Chrome Web Store rating callout under install buttons. Real
        data sourced from the live store listing -- 5.0 stars from 6
@@ -672,25 +598,25 @@
     .store-rating {
       margin: 22px 0 12px;
       font-size: 14.5px;
-      color: var(--text);
+      color: #cbd5e1;
       display: inline-flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
     .store-rating .stars {
-      color: var(--warn);
-      font-size: var(--t-base);
+      color: #facc15;
+      font-size: 16px;
       letter-spacing: 1.5px;
       line-height: 1;
     }
-    .store-rating strong { color: var(--text); font-weight: 700; }
-    .store-rating a { color: var(--accent); }
-    .store-rating a:hover { color: var(--accent); }
+    .store-rating strong { color: #f8fafc; font-weight: 700; }
+    .store-rating a { color: #60a5fa; }
+    .store-rating a:hover { color: #3b82f6; }
 
     @media (max-width: 720px) {
-      .faq { padding: var(--s-7) 0 64px; }
-      .faq h2 { font-size: var(--t-xl); letter-spacing: -0.8px; }
+      .faq { padding: 56px 0 64px; }
+      .faq h2 { font-size: 32px; letter-spacing: -0.8px; }
       .faq-q { font-size: 15.5px; padding: 18px 20px; }
       .faq-item p { padding: 0 20px 20px; font-size: 14.5px; }
     }
@@ -700,28 +626,23 @@
        seamlessly without a snap. Mask fades the edges into the background
        so badges enter and exit gracefully instead of clipping. */
     .featured {
-      padding: var(--s-6) 0 var(--s-6);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
-      /* clip (not just hidden) so the animated track can't contribute to the
-         document's scrollWidth and create a phantom horizontal scrollbar */
-      overflow-x: clip;
+      padding: 36px 0 40px;
+      border-top: 1px solid #101a2e;
+      border-bottom: 1px solid #101a2e;
+      background: #070d1a;
+      overflow: hidden;
     }
     .featured-label {
       text-align: center;
-      font-size: var(--t-xs);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 2.4px;
       text-transform: uppercase;
-      color: var(--text-dim);
+      color: #7c8aa3;
       margin-bottom: 22px;
     }
-    /* The track is deliberately wider than the screen (it loops). Pin this box
-       to the viewport and clip, so the animation can't add to scrollWidth. */
     .marquee {
       overflow: hidden;
-      width: 100%; max-width: 100vw; min-width: 0;
       -webkit-mask-image: linear-gradient(to right, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%);
       mask-image: linear-gradient(to right, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%);
     }
@@ -742,19 +663,19 @@
       gap: 10px;
       padding: 12px 22px;
       font-weight: 700;
-      font-size: var(--t-sm);
+      font-size: 15px;
       letter-spacing: -0.01em;
-      color: var(--text);
-      background: var(--surface);
-      border: 1px solid var(--border);
+      color: #f8fafc;
+      background: #131316;
+      border: 1px solid #1f2d47;
       border-radius: 10px;
       white-space: nowrap;
       transition: border-color 0.2s, transform 0.2s, background 0.2s;
     }
     .featured-badge:hover {
-      color: var(--text);
+      color: #f8fafc;
       transform: translateY(-2px);
-      background: var(--bg-elevated);
+      background: #101a2e;
     }
     .featured-badge::before {
       content: "";
@@ -764,18 +685,18 @@
       flex-shrink: 0;
     }
     .featured-badge .featured-tag {
-      font-size: var(--t-xs);
+      font-size: 10px;
       font-weight: 600;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: var(--text-faint);
+      color: #64748b;
       padding-left: 8px;
-      border-left: 1px solid var(--border);
+      border-left: 1px solid #1f2d47;
     }
     .badge-ph::before { background: #da552f; box-shadow: 0 0 12px rgba(218, 85, 47, 0.7); }
     .badge-ph:hover   { border-color: #da552f; }
-    .badge-bl::before { background: var(--danger); box-shadow: 0 0 12px rgba(239, 68, 68, 0.7); }
-    .badge-bl:hover   { border-color: var(--danger); }
+    .badge-bl::before { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.7); }
+    .badge-bl:hover   { border-color: #ef4444; }
 
     .baitf-badge { display: inline-flex; align-items: center; }
     .baitf-badge img { height: 48px; width: auto; border-radius: 8px; transition: transform .15s; }
@@ -793,27 +714,18 @@
       .marquee-track .marquee-dupe { display: none; }
     }
 
-    /* Surface polish. Restraint is the point: one glow (on .hero), no lift-on-
-       hover anywhere, elevation carried by border + shadow rather than motion. */
-    .nav {
-      background: rgba(11,15,14,0.78);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    }
+    /* Sula polish: nav blur, hero glow, card lift */
+    .nav { background: rgba(7,13,26,0.72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .hero { position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; top: -220px; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 520px; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(closest-side, rgba(96,165,250,0.16), rgba(96,165,250,0)); }
     .hero-grid { position: relative; }
-    .preview {
-      border-radius: var(--r-lg);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-    .stat { border-radius: var(--r-lg); }
-    .stat:hover { border-color: var(--border-strong); }
-    .baitf-badge:hover img { opacity: 0.85; }
-
-    /* Respect reduced-motion for the one animation that remains. */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
-      html { scroll-behavior: auto; }
-    }
+    .btn-primary { box-shadow: 0 6px 24px rgba(96,165,250,0.25); }
+    .feature-card { border-radius: 14px; transition: transform .18s, border-color .18s; }
+    .feature-card:hover { transform: translateY(-3px); border-color: #60a5fa; }
+    .preview { border-radius: 16px; box-shadow: 0 24px 60px rgba(3,8,20,0.55), 0 0 0 1px rgba(96,165,250,0.10); }
+    .stat { border-radius: 14px; }
   </style>
 </head>
 <body>
@@ -972,57 +884,57 @@
         </div>
         <div class="feature-grid">
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div>
+            <div class="icon">&#9889;</div>
             <h3>Auto-scans every page</h3>
             <p>The moment a page loads, the extension scans for emails, phone numbers, and contact pages &mdash; quietly, in the background. A badge on the icon tells you how many it found.</p>
           </div>
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg></div>
+            <div class="icon">&#9733;</div>
             <h3>Ranks by likely-support</h3>
             <p>support@, help@, care@ score green. Marketing, careers, and noreply addresses get filtered to the bottom. Phone numbers near &ldquo;customer service&rdquo; or &ldquo;contact us&rdquo; get a boost.</p>
           </div>
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></svg></div>
+            <div class="icon">&#9776;</div>
             <h3>Side panel on every page</h3>
             <p>A discreet pull-tab on the right edge of any page where contacts were found. Click to expand a panel with the same ranked emails and phones, a history of what you&rsquo;ve copied, business hours, and the support pages worth visiting next.</p>
           </div>
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></svg></div>
+            <div class="icon">&#10148;</div>
             <h3>Compose &amp; Call in one click</h3>
             <p>Pre-filled email templates for refunds, complaints, cancellations, billing, and support &mdash; opened in Gmail, Outlook, or your default client. Phone numbers deep-link into WhatsApp, Google Voice, FaceTime, Teams, or your dialer.</p>
           </div>
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.9-.9L3 21l1.9-5.1A8.4 8.4 0 0 1 4 11.5a8.5 8.5 0 0 1 17 0Z"/><path d="M9 9h6"/><path d="M9 13h4"/></svg></div>
+            <div class="icon">&#129302;</div>
             <h3>Sees what chatbots hide <span class="new-badge">New</span></h3>
             <p>Detects Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat, Tawk, Freshchat, and Olark widgets. Reads the chatbot&rsquo;s own help-center articles via its public search API to surface the real support email the bot was trained to deflect from. No chat-UI dance.</p>
           </div>
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M8 11h6"/></svg></div>
+            <div class="icon">&#128269;</div>
             <h3>Deeper scanning</h3>
             <p>Reads hydration state (<code>__NEXT_DATA__</code>, JSON-LD, schema.org) for contacts hidden in JS, scans same-origin iframes, falls back to fetching common contact pages when the visible page is sparse, and requires real contact-context proximity before surfacing a phone (no random snippet numbers from Google search).</p>
           </div>
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+            <div class="icon">&#9203;</div>
             <h3>Shows your refund deadline</h3>
             <p>Enter a charge date on an order or receipt page and Sula counts down every window that applies: the Fair Credit Billing Act (60 days for credit cards), a card chargeback (commonly ~120 days), and the merchant&rsquo;s own return policy. Missing the deadline is the top reason refunds fail. Free.</p>
           </div>
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7Z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></div>
+            <div class="icon">&#128221;</div>
             <h3>Drafts the letter that gets your money back <span class="new-badge">Pro</span></h3>
             <p>Seven refund scenarios &mdash; unauthorized or duplicate charge, defective, not as described, free-trial auto-renewal, cancelled-but-charged, price drop &mdash; each drafted with the right leverage (FCBA, the merchant&rsquo;s own policy, chargeback, FTC negative-option, CFPB). Real facts fill in; anything Sula doesn&rsquo;t know stays a blank for you. You hit send.</p>
           </div>
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M9 15h3"/></svg></div>
+            <div class="icon">&#128179;</div>
             <h3>Guides your chargeback <span class="new-badge">Pro</span></h3>
             <p>Tells you whether a chargeback is the right move yet (often: try the merchant in writing first), then gives the exact dispute steps for your issuer &mdash; Chase, Amex, Bank of America, Citi, Capital One, or Wells Fargo &mdash; and routes you to the CFPB if the bank stalls.</p>
           </div>
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M3 21v-5h5"/><path d="M21 3v5h-5"/></svg></div>
+            <div class="icon">&#128260;</div>
             <h3>Tracks &amp; cancels subscriptions <span class="new-badge">Pro</span></h3>
             <p>The Subscription Guardian tracks renewal dates and warns you before a free trial converts, and drafts a cancellation letter. Kept getting charged after you cancelled? That&rsquo;s a strong dispute, and Sula helps you file it.</p>
           </div>
           <div class="feature-card">
-            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="m9 16 1.5 1.5L14 14"/></svg></div>
+            <div class="icon">&#128203;</div>
             <h3>Fills forms from your profile</h3>
             <p>Save your details once and fill any application or contact form in a click. Everything stays on your device, Sula highlights what it filled so you can check it, and it never auto-submits &mdash; you always review and send. Free.</p>
           </div>
