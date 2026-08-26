@@ -104,7 +104,7 @@
         "datePublished": "2026-04-27",
         "dateModified": "2026-08-06",
         "downloadUrl": "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
-        "featureList": "Ranked customer-service contacts on any page, bypasses Intercom / Zendesk / Drift / Crisp / HubSpot / Tidio / LiveChat / Tawk / Freshchat / Olark chatbots, refund deadline engine (FCBA / Reg E / chargeback windows), refund-policy reader, refund and complaint letter drafting, chargeback readiness and issuer steps, subscription tracking and cancellation, regulator escalation (CFPB / FTC / DOT), form autofill from a saved profile, email composer templates, one-click VOIP deep links, copy history, business-hours extraction, side panel on every page",
+        "featureList": "Ranked customer-service contacts on any page, bypasses Intercom / Zendesk / Drift / Crisp / HubSpot / Tidio / LiveChat / Tawk / Freshchat / Olark chatbots, Global Privacy Control opt-out signal (Sec-GPC header + navigator.globalPrivacyControl), refund deadline engine (FCBA / Reg E / chargeback windows), refund-policy reader, refund and complaint letter drafting, chargeback readiness and issuer steps, subscription tracking and cancellation, Privacy Guard dashboard, regulator escalation (CFPB / FTC / DOT), form autofill from a saved profile, email composer templates, one-click VOIP deep links, copy history, business-hours extraction, side panel on every page",
         "image": "https://trysula.com/social-card.png",
         "license": "https://opensource.org/licenses/MIT",
         "offers": {
@@ -146,7 +146,15 @@
             "name": "Is Sula free?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes for the core. Finding customer-service contacts, seeing your refund deadline, and reading a merchant's own refund policy are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, and contact export. The code is open source under the MIT license, and there are no ads either way."
+              "text": "Yes for the core. Finding customer-service contacts, seeing your refund deadline, reading a merchant's own refund policy, and sending the Global Privacy Control opt-out signal are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, the Privacy Guard dashboard, and contact export. The code is open source under the MIT license, and there are no ads either way."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the Global Privacy Control signal actually do anything?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes -- it is legally binding, not a courtesy. GPC is the technical way to exercise the opt-out right that already exists under CCPA/CPRA and the privacy laws of roughly a dozen states, including Texas. When Sula sends it, a business covered by those laws is legally required to stop selling or sharing your personal information. California fined Sephora $1.2M in 2022 for ignoring GPC signals, and California, Colorado, and Connecticut have run a joint enforcement sweep. Sula sends it two ways -- the Sec-GPC request header and the navigator.globalPrivacyControl property -- on every page, entirely on your device."
             }
           },
           {
@@ -964,6 +972,16 @@
             <h3>Fills forms from your profile</h3>
             <p>Save your details once and fill any application or contact form in a click. Everything stays on your device, Sula highlights what it filled so you can check it, and it never auto-submits &mdash; you always review and send. Free.</p>
           </div>
+          <div class="feature-card">
+            <div class="icon">&#128737;</div>
+            <h3>Tells every site not to sell your data <span class="new-badge">New</span></h3>
+            <p>Sula sends Global Privacy Control on every page you visit &mdash; a <strong>legally-binding</strong> &ldquo;do not sell or share my personal information&rdquo; request under the privacy laws of Texas, California, Colorado, Connecticut, Oregon, and a dozen more states. California fined one retailer $1.2M for ignoring it. On by default, one toggle, and nothing leaves your device to make it work. Free.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">&#128272;</div>
+            <h3>Privacy Guard dashboard <span class="new-badge">Pro</span></h3>
+            <p>See which sites honored your opt-out and which ignored it &mdash; receipts, not promises. Track your removal from the data brokers that sell your number to spammers, with reminders when it&rsquo;s time to re-check (they re-list you every few months). One dashboard for your whole privacy footprint.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -976,7 +994,12 @@
 
         <details class="faq-item">
           <summary class="faq-q">Is Sula free?</summary>
-          <p>Yes for the core. Finding customer-service contacts, seeing your refund deadline, and reading a merchant&rsquo;s own refund policy are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, and contact export. The code is open source under the MIT license at <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people</a>, and there are no ads either way.</p>
+          <p>Yes for the core. Finding customer-service contacts, seeing your refund deadline, reading a merchant&rsquo;s own refund policy, and sending the Global Privacy Control opt-out signal are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, the Privacy Guard dashboard, and contact export. The code is open source under the MIT license at <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people</a>, and there are no ads either way.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Does the Global Privacy Control signal actually do anything?</summary>
+          <p>Yes &mdash; it&rsquo;s legally binding, not a courtesy. GPC is the technical way to exercise the opt-out right that already exists under CCPA/CPRA and the privacy laws of roughly a dozen states, including Texas. When Sula sends it, a business covered by those laws is legally required to stop selling or sharing your personal information. Enforcement is real: California fined Sephora $1.2M in 2022 for ignoring GPC signals, and California, Colorado, and Connecticut have run a joint sweep against businesses that don&rsquo;t honor it. Sula sends the signal two ways &mdash; the <code>Sec-GPC</code> request header and the <code>navigator.globalPrivacyControl</code> browser property &mdash; on every page, entirely on your device. It can&rsquo;t force a rogue site to comply, but for a covered business, ignoring it is now a liability.</p>
         </details>
 
         <details class="faq-item">
