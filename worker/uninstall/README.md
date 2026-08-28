@@ -1,7 +1,7 @@
 # Uninstall-survey collector (Cloudflare Worker + D1)
 
 Same-origin backend for the post-uninstall survey. Receives the anonymous POST
-from `uninstall.html` at `https://find-me-people.com/api/uninstall` and stores it
+from `uninstall.html` at `https://trysula.com/api/uninstall` and stores it
 in a D1 (SQLite) table. No PII — reason, comment, version, timestamp only.
 
 ```
@@ -17,13 +17,13 @@ worker/uninstall/
 
 ---
 
-## Part A — Put `find-me-people.com` on Cloudflare (one-time, ~30 min)
+## Part A — Put `trysula.com` on Cloudflare (one-time, ~30 min)
 
 The domain is currently on **Route 53 DNS → GitHub Pages**. The Worker can only
-answer `find-me-people.com/api/...` if Cloudflare fronts the zone. This is the
+answer `trysula.com/api/...` if Cloudflare fronts the zone. This is the
 same migration as `SECURITY-HEADERS.md` (it also gets you the A-grade headers).
 
-1. https://dash.cloudflare.com → **Add a site** → `find-me-people.com` → Free plan.
+1. https://dash.cloudflare.com → **Add a site** → `trysula.com` → Free plan.
 2. Cloudflare imports DNS. Confirm the GitHub Pages **A records** are present and
    set them **Proxied** (orange cloud):
    `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
@@ -36,7 +36,7 @@ same migration as `SECURITY-HEADERS.md` (it also gets you the A-grade headers).
 5. (Bonus, while you're here) add the response-header Transform Rules from
    `SECURITY-HEADERS.md` to take the security grade F → A.
 
-> Verify GitHub Pages still serves: `https://find-me-people.com/` should load
+> Verify GitHub Pages still serves: `https://trysula.com/` should load
 > normally through Cloudflare before continuing.
 
 ---
@@ -55,13 +55,13 @@ wrangler d1 create fmp-uninstalls
 # 2) Create the table (--remote = the real D1, not a local dev copy)
 wrangler d1 execute fmp-uninstalls --remote --file=./schema.sql
 
-# 3) Deploy (also binds the find-me-people.com/api/uninstall route)
+# 3) Deploy (also binds the trysula.com/api/uninstall route)
 wrangler deploy
 ```
 
 ### Smoke test
 ```sh
-curl -i -X POST https://find-me-people.com/api/uninstall \
+curl -i -X POST https://trysula.com/api/uninstall \
   -H "Content-Type: application/json" \
   -d '{"reason":"bug","reasonLabel":"Something was broken","comment":"smoke test","version":"test"}'
 # expect: HTTP/1.1 204
@@ -109,5 +109,5 @@ if it ever became a hit.
 - `database_id` in `wrangler.toml` is **not** a secret (access still requires
   your authenticated account), so committing it is fine.
 - Soft anti-spam: the Worker rejects POSTs whose `Origin` isn't
-  `find-me-people.com`. For a hard guarantee, add a Cloudflare WAF rate-limit
+  `trysula.com`. For a hard guarantee, add a Cloudflare WAF rate-limit
   rule on the `/api/uninstall` path.
