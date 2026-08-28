@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sula Support</title>
+  <meta name="description" content="Get help with Sula: send feedback, report a bug, read the FAQ, or reach a real person. 100% local, no account." />
+  <link rel="canonical" href="https://trysula.com/support.html" />
+
+  <!--
+    CSP: this page allows a form POST to Web3Forms (the form backend) so the
+    feedback form works on static hosting. That's the one exception; the form
+    endpoint is connect-src + form-action. No inline script.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self' https://api.web3forms.com; form-action https://api.web3forms.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <meta property="og:title" content="Sula Support" />
+  <meta property="og:description" content="Send feedback, report a bug, or read the FAQ. Reach a real person." />
+  <meta property="og:image" content="https://trysula.com/social-card.png" />
+  <meta property="og:url" content="https://trysula.com/support.html" />
+  <meta property="og:site_name" content="Sula" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0f1c; --bg-raised: #111827; --bg-inset: #0b1120;
+      --line: #1d2739; --line-soft: #161f30;
+      --ink: #f4f6fb; --ink-2: #aeb7c9; --ink-3: #6b7689;
+      --accent: #4d8bf0; --accent-bright: #6ba3f7; --accent-ink: #06101f;
+      --accent-glow: rgba(77,139,240,0.14); --accent-line: rgba(77,139,240,0.28);
+      --good: #2dd4bf; --good-soft: rgba(45,212,191,0.14);
+      --warn: #f0b429; --warn-soft: rgba(240,180,41,0.12);
+      --ease: cubic-bezier(0.22,0.68,0,1);
+      --font-display: 'Bricolage Grotesque', 'Public Sans', system-ui, sans-serif;
+      --font-body: 'Public Sans', -apple-system, 'Segoe UI', sans-serif;
+    }
+    body {
+      font-family: var(--font-body);
+      background: radial-gradient(ellipse at 20% 0%, rgba(77,139,240,0.10) 0%, transparent 55%), var(--bg);
+      color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased;
+      padding: 0 1.25rem 5rem;
+    }
+    h1, h2, h3 { font-family: var(--font-display); }
+    .wrap { max-width: 46rem; margin: 0 auto; }
+
+    header { padding: 3.5rem 0 2rem; text-align: center; }
+    header .logo { width: 60px; height: 60px; border-radius: 16px; margin-bottom: 1.2rem; }
+    h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; margin-bottom: 0.6rem; }
+    header p { color: var(--ink-2); font-size: 1.05rem; max-width: 42ch; margin: 0 auto; }
+
+    .quick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin: 2.5rem 0 3rem; }
+    .quick a {
+      display: flex; flex-direction: column; gap: 0.35rem; text-decoration: none;
+      background: var(--bg-raised); border: 1px solid var(--line); border-radius: 12px;
+      padding: 1.1rem 1.15rem; transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+    .quick a:hover { border-color: var(--accent-bright); transform: translateY(-2px); }
+    .quick .q-title { font-weight: 700; color: var(--ink); font-size: 0.98rem; }
+    .quick .q-sub { font-size: 0.82rem; color: var(--ink-3); }
+    @media (max-width: 640px) { .quick { grid-template-columns: 1fr; } }
+
+    section { margin-bottom: 3.5rem; }
+    h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 1.2rem; }
+
+    /* form */
+    .form-card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 16px; padding: 1.8rem; }
+    .field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+    label { font-size: 0.85rem; font-weight: 600; color: var(--ink-2); }
+    input, select, textarea {
+      font-family: inherit; font-size: 0.95rem; color: var(--ink);
+      background: var(--bg-inset); border: 1px solid var(--line); border-radius: 9px;
+      padding: 0.7rem 0.85rem; outline: none; transition: border-color 0.15s var(--ease); width: 100%;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent-bright); }
+    textarea { resize: vertical; min-height: 120px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    @media (max-width: 560px) { .row2 { grid-template-columns: 1fr; } }
+    .submit {
+      background: var(--accent); color: var(--accent-ink); border: none; border-radius: 9px;
+      font-family: inherit; font-weight: 700; font-size: 0.98rem; padding: 0.8rem 1.6rem;
+      cursor: pointer; transition: background 0.15s var(--ease), transform 0.15s var(--ease);
+    }
+    .submit:hover { background: var(--accent-bright); transform: translateY(-1px); }
+    .submit:disabled { opacity: 0.6; cursor: default; }
+    .form-note { font-size: 0.8rem; color: var(--ink-3); margin-top: 0.9rem; }
+    .form-status { margin-top: 1rem; font-size: 0.92rem; }
+    .form-status.ok { color: var(--good); }
+    .form-status.err { color: var(--warn); }
+    :focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 2px; }
+
+    /* config banner — shown only until the Web3Forms key is set */
+    .config-warn { background: var(--warn-soft); border: 1px solid var(--warn); border-radius: 10px; padding: 0.9rem 1.1rem; margin-bottom: 1.4rem; font-size: 0.86rem; color: var(--ink-2); }
+    .config-warn code { font-family: ui-monospace, monospace; background: var(--bg-inset); padding: 0.1rem 0.35rem; border-radius: 5px; color: var(--accent-bright); }
+
+    /* FAQ */
+    .faq-item { border: 1px solid var(--line); border-radius: 12px; margin-bottom: 0.7rem; background: var(--bg-raised); overflow: hidden; }
+    .faq-item summary { cursor: pointer; padding: 1rem 1.2rem; font-weight: 600; font-size: 0.98rem; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; color: var(--accent-bright); font-size: 1.3rem; font-weight: 400; transition: transform 0.2s var(--ease); }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item .faq-body { padding: 0 1.2rem 1.1rem; color: var(--ink-2); font-size: 0.93rem; line-height: 1.65; }
+    .faq-item .faq-body a { color: var(--accent-bright); }
+
+    footer { border-top: 1px solid var(--line); padding-top: 1.8rem; color: var(--ink-3); font-size: 0.85rem; text-align: center; }
+    footer a { color: var(--accent-bright); text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img class="logo" src="sula-logo-144.png" alt="Sula logo" />
+    <h1>How can we help?</h1>
+    <p>Send feedback, report a bug, or find an answer below. A real person reads every message.</p>
+  </header>
+
+  <div class="quick">
+    <a href="#feedback">
+      <span class="q-title">Send feedback</span>
+      <span class="q-sub">Ideas, questions, or a problem</span>
+    </a>
+    <a href="https://github.com/MatthewDuke1/find-me-people/issues" target="_blank" rel="noopener">
+      <span class="q-title">Report a bug ↗</span>
+      <span class="q-sub">Open an issue on GitHub</span>
+    </a>
+    <a href="#faq">
+      <span class="q-title">Read the FAQ</span>
+      <span class="q-sub">Common questions, answered</span>
+    </a>
+  </div>
+
+  <section id="feedback">
+    <h2>Send feedback</h2>
+    <div class="form-card">
+      <div class="config-warn" id="configWarn">
+        <strong>Setup needed:</strong> replace <code>YOUR_WEB3FORMS_ACCESS_KEY</code> in this page with the free key from
+        <a href="https://web3forms.com" target="_blank" rel="noopener" style="color:var(--accent-bright)">web3forms.com</a>
+        (enter your email, they email you a key). Until then, submissions won't deliver — use the email link at the bottom.
+      </div>
+      <form id="supportForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+        <input type="hidden" name="subject" value="Sula support / feedback" />
+        <input type="hidden" name="from_name" value="Sula Support Form" />
+        <!-- honeypot: bots fill this, humans don't -->
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div class="row2">
+          <div class="field">
+            <label for="name">Name <span style="color:var(--ink-3);font-weight:400">(optional)</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="email">Email <span style="color:var(--ink-3);font-weight:400">(so we can reply)</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="topic">What's this about?</label>
+          <select id="topic" name="topic">
+            <option>General feedback</option>
+            <option>Something's broken / a bug</option>
+            <option>Billing or Pro question</option>
+            <option>Privacy question</option>
+            <option>Feature request</option>
+            <option>Something else</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" required placeholder="Tell us what's on your mind — the more detail, the better we can help."></textarea>
+        </div>
+
+        <button type="submit" class="submit" id="submitBtn">Send</button>
+        <p class="form-status" id="formStatus" hidden></p>
+        <p class="form-note">We only use your email to reply. Nothing is added to a mailing list, and Sula has no tracking or account system.</p>
+      </form>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>Frequently asked</h2>
+
+    <details class="faq-item">
+      <summary>Is Sula really free?</summary>
+      <div class="faq-body">Yes, for the core. Finding customer-service contacts, seeing your refund deadline, reading a merchant's refund policy, and sending the Global Privacy Control opt-out signal are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, the Privacy Guard dashboard, statement import, and contact export.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What does Sula do with my data?</summary>
+      <div class="faq-body">Nothing leaves your device unless you trigger it. There's no account, no analytics, and no server we operate for the core features. Scanning runs locally in your browser. The only network calls are ones you start — an optional email-domain check, and (only if you buy Pro) a license check handled by LemonSqueezy. See the <a href="privacy.html">full privacy policy</a>.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>How does Pro / billing work?</summary>
+      <div class="faq-body">Pro is a one-time license key from LemonSqueezy (our payment processor and merchant of record). You buy on their secure checkout, get a key, and activate it in the extension. Manage or cancel a subscription from the receipt email LemonSqueezy sends. Billing questions? Use the form above and pick "Billing or Pro question."</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Does Sula ever contact companies for me?</summary>
+      <div class="faq-body">No. Sula finds the contact, drafts the letter, and shows you the steps — but you always hit send yourself. It never acts as your agent, and it never takes a percentage of any refund you recover.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>How do I cancel or get a refund on Pro?</summary>
+      <div class="faq-body">Your LemonSqueezy receipt email has a link to manage your subscription and request a refund. If you can't find it, send us a message above with the email you purchased with and we'll sort it out.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>How do I uninstall Sula?</summary>
+      <div class="faq-body">Right-click the Sula icon in your toolbar and choose "Remove from Chrome" (or manage extensions in Firefox). Nothing is stored off your device, so removing it deletes everything. We'd love to know why on the way out — the <a href="uninstall.html">uninstall page</a> takes ten seconds.</div>
+    </details>
+  </section>
+
+  <footer>
+    <p>Prefer email? <a href="mailto:matthewduke0@gmail.com?subject=Sula%20support">matthewduke0@gmail.com</a> &middot; <a href="https://trysula.com/">trysula.com</a> &middot; <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">Open source on GitHub</a></p>
+  </footer>
+
+</div>
+<script src="support.js" defer></script>
+</body>
+</html>
