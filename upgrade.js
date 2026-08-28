@@ -4,27 +4,37 @@
     const hours = document.getElementById('hours');
     const wage = document.getElementById('wage');
     const refund = document.getElementById('refund');
+    const privacy = document.getElementById('privacy');
     const hoursVal = document.getElementById('hoursVal');
     const wageVal = document.getElementById('wageVal');
     const refundVal = document.getElementById('refundVal');
+    const privacyVal = document.getElementById('privacyVal');
     const totalEl = document.getElementById('total');
     const captionEl = document.getElementById('caption');
 
     const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
+    // The measured A/B anchor is time + refunds only ($2,200). The privacy
+    // line defaults to $0 so the headline stays on that honest number; a user
+    // who pays for a service like Cloaked/DeleteMe can add its value in.
     const DEFAULT_TOTAL = 50 * 30 + 700; // 2200
 
     function recalc() {
-      const h = +hours.value, w = +wage.value, r = +refund.value;
+      const h = +hours.value, w = +wage.value, r = +refund.value, pv = +privacy.value;
       hoursVal.textContent = h;
       wageVal.textContent = w;
       refundVal.textContent = r.toLocaleString('en-US');
-      const total = h * w + r;
+      privacyVal.textContent = pv;
+      const total = h * w + r + pv;
       totalEl.innerHTML = fmt(total) + '<span class="yr"> /yr</span>';
-      captionEl.textContent = (total === DEFAULT_TOTAL)
-        ? 'Based on our A/B testing: the average Sula user saves about this much.'
-        : 'Your numbers — ' + fmt(h * w) + ' in time back, plus ' + fmt(r) + ' recovered.';
+      if (total === DEFAULT_TOTAL) {
+        captionEl.textContent = 'Based on our A/B testing: the average Sula user saves about this much.';
+      } else {
+        let parts = fmt(h * w) + ' in time back, plus ' + fmt(r) + ' recovered';
+        if (pv > 0) parts += ', plus ' + fmt(pv) + ' in privacy protection';
+        captionEl.textContent = 'Your numbers — ' + parts + '.';
+      }
     }
-    [hours, wage, refund].forEach((el) => el.addEventListener('input', recalc));
+    [hours, wage, refund, privacy].forEach((el) => el.addEventListener('input', recalc));
     recalc();
 
     // ---- Subscribe → LemonSqueezy overlay ----
