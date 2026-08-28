@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Sula Pro - See your value</title>
+  <meta name="description" content="See what Sula Pro is worth to you: an interactive value calculator, plus zero commission where Rocket Money keeps 30-40%." />
+
+  <!--
+    ============================================================
+    NOT LIVE YET. Hidden until the LemonSqueezy store is approved
+    and PRO_ENFORCED launch ships (same status as pricing.html).
+    Locked by: noindex below, absence from sitemap.xml, no nav link.
+    The day-7 in-extension CTA links here; that's an intentional
+    direct link, not a crawlable path.
+    ============================================================
+  -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <meta name="theme-color" content="#0B1018" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://trysula.com/upgrade.html" />
+
+  <!--
+    CSP: this page loosens script-src / frame-src to allow LemonSqueezy's
+    JS overlay checkout (lemon.js), so payment happens in-context without a
+    redirect. This is the one page that does so; the rest of the site keeps
+    the stricter script-src 'self'. connect-src also allows LS for its API.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.lemonsqueezy.com; script-src 'self' https://app.lemonsqueezy.com; connect-src 'self' https://*.lemonsqueezy.com; frame-src https://*.lemonsqueezy.com; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), usb=(), interest-cohort=()" />
+
+  <meta property="og:title" content="Get Sula Pro - See your value" />
+  <meta property="og:description" content="An interactive value calculator plus zero refund commission. Sula Pro, $6/mo." />
+  <meta property="og:image" content="https://trysula.com/social-card.png" />
+  <meta property="og:url" content="https://trysula.com/upgrade.html" />
+  <meta property="og:site_name" content="Sula" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" />
+</head>
+<body>
+<style>
+  :root {
+    --ink: #0B1018;
+    --ink-2: #111A26;
+    --raised: #14202F;
+    --raised-2: #1A2A3D;
+    --line: #24384F;
+    --line-soft: #1C2D40;
+    --text: #EAF1F8;
+    --text-2: #9DB0C4;
+    --text-3: #647890;
+    --value: #35CE8D;          /* semantic: savings/value — NOT the accent */
+    --value-bright: #57E5A8;
+    --value-glow: rgba(53,206,141,0.12);
+    --accent: #4C8DFF;          /* accent: actions */
+    --accent-bright: #6BA3FF;
+    --gold: #E7B75A;            /* the headline dollar figure */
+    --danger: #F0806E;          /* the competitor's cut */
+    --danger-soft: rgba(240,128,110,0.12);
+    --ease: cubic-bezier(0.22,0.68,0,1);
+    --ease-spring: cubic-bezier(0.34,1.3,0.5,1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% -5%, rgba(76,141,255,0.10), transparent 60%),
+      radial-gradient(ellipse 60% 45% at 50% 105%, rgba(53,206,141,0.08), transparent 60%);
+  }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
+
+  /* eyebrow */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 600; color: var(--value);
+    border: 1px solid var(--value-glow); background: var(--value-glow);
+    padding: 0.4rem 0.9rem; border-radius: 999px;
+  }
+  .eyebrow .dot { width: 5px; height: 5px; border-radius: 999px; background: var(--value); box-shadow: 0 0 8px var(--value); }
+
+  /* hero */
+  header.hero { padding: 5rem 0 2rem; text-align: center; }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600; font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+    line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance;
+    margin: 1.5rem 0 0.8rem;
+  }
+  h1 .em { font-style: italic; color: var(--gold); }
+  .hero-sub { color: var(--text-2); font-size: 1.1rem; max-width: 46ch; margin: 0 auto; }
+
+  /* ---- calculator (double-bezel) ---- */
+  .calc-shell {
+    margin: 2.5rem auto 0; max-width: 620px;
+    background: rgba(231,183,90,0.05);
+    border: 1px solid rgba(231,183,90,0.18);
+    border-radius: 2rem; padding: 0.55rem;
+  }
+  .calc-core {
+    background: linear-gradient(168deg, var(--raised) 0%, var(--ink-2) 100%);
+    border-radius: calc(2rem - 0.55rem);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.06), 0 30px 60px rgba(0,0,0,0.45);
+    padding: clamp(1.6rem, 4vw, 2.4rem);
+  }
+  .calc-label { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3); font-weight: 600; text-align: center; margin-bottom: 0.4rem; }
+
+  .calc-total {
+    font-family: "Fraunces", serif; font-weight: 600;
+    font-size: clamp(3rem, 11vw, 5rem); line-height: 1; text-align: center;
+    color: var(--gold); letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 40px rgba(231,183,90,0.22);
+  }
+  .calc-total .yr { font-family: "Plus Jakarta Sans"; font-size: 1.1rem; color: var(--text-3); font-weight: 500; letter-spacing: 0; }
+  .calc-caption { text-align: center; color: var(--text-2); font-size: 0.92rem; margin-top: 0.5rem; }
+
+  .calc-rows { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .calc-row .row-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.7rem; }
+  .calc-row .row-name { font-size: 0.95rem; font-weight: 500; }
+  .calc-row .row-name small { display: block; color: var(--text-3); font-size: 0.78rem; font-weight: 400; margin-top: 0.1rem; }
+  .calc-row .row-val {
+    font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 1rem;
+    color: var(--value-bright); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 6px;
+    background: var(--line); border-radius: 999px; outline: none; cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 22px; height: 22px;
+    border-radius: 999px; background: var(--value);
+    box-shadow: 0 2px 8px rgba(53,206,141,0.5), 0 0 0 4px rgba(53,206,141,0.15);
+    transition: transform 0.2s var(--ease-spring);
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb {
+    width: 22px; height: 22px; border: none; border-radius: 999px; background: var(--value);
+    box-shadow: 0 2px 8px rgba(53,206,141,0.5), 0 0 0 4px rgba(53,206,141,0.15);
+  }
+  input[type="range"]:focus-visible { outline: 2px solid var(--value-bright); outline-offset: 6px; }
+
+  .calc-footnote { margin-top: 1.6rem; font-size: 0.76rem; color: var(--text-3); line-height: 1.5; text-align: center; border-top: 1px solid var(--line-soft); padding-top: 1.1rem; }
+
+  /* ---- CTA button (button-in-button) ---- */
+  .cta-wrap { text-align: center; margin-top: 2rem; }
+  .btn-sub {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: var(--accent); color: #05101F;
+    font-family: inherit; font-weight: 700; font-size: 1.05rem;
+    padding: 0.85rem 0.85rem 0.85rem 1.8rem;
+    border: none; border-radius: 999px; cursor: pointer;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 12px 30px rgba(76,141,255,0.28);
+    transition: transform 0.4s var(--ease), background 0.3s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  .btn-sub .chip {
+    width: 2rem; height: 2rem; border-radius: 999px; background: rgba(5,16,31,0.18);
+    display: grid; place-items: center; font-size: 1rem;
+    transition: transform 0.4s var(--ease-spring);
+  }
+  .btn-sub:hover { background: var(--accent-bright); transform: translateY(-2px); box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 18px 40px rgba(76,141,255,0.38); }
+  .btn-sub:hover .chip { transform: translate(3px,-1px) scale(1.08); }
+  .btn-sub:active { transform: translateY(0) scale(0.99); }
+  .btn-sub:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; }
+  .cta-sub-line { margin-top: 0.9rem; font-size: 0.85rem; color: var(--text-3); }
+
+  /* ---- sections ---- */
+  section { padding: 4.5rem 0; }
+  .reveal { opacity: 0; transform: translateY(2rem); filter: blur(5px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), filter 0.8s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; filter: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; filter: none; transition: none; } html { scroll-behavior: auto; } }
+
+  h2.sec { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: -0.015em; text-wrap: balance; text-align: center; margin-bottom: 0.7rem; }
+  .sec-lead { color: var(--text-2); text-align: center; max-width: 52ch; margin: 0 auto 2.5rem; }
+
+  /* ---- the $0 commission contrast (the hero argument) ---- */
+  .versus { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.2rem; align-items: stretch; max-width: 680px; margin: 0 auto; }
+  .vs-card { border-radius: 1.4rem; padding: 1.8rem 1.6rem; text-align: center; }
+  .vs-them { background: var(--danger-soft); border: 1px solid rgba(240,128,110,0.25); }
+  .vs-us { background: var(--value-glow); border: 1px solid rgba(53,206,141,0.28); }
+  .vs-who { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: 0.8rem; color: var(--text-3); }
+  .vs-num { font-family: "Fraunces", serif; font-weight: 600; font-size: 2.6rem; line-height: 1; }
+  .vs-them .vs-num { color: var(--danger); }
+  .vs-us .vs-num { color: var(--value-bright); }
+  .vs-desc { font-size: 0.86rem; color: var(--text-2); margin-top: 0.7rem; line-height: 1.45; }
+  .vs-mid { display: flex; align-items: center; font-family: "Fraunces", serif; font-style: italic; color: var(--text-3); font-size: 1.1rem; }
+  @media (max-width: 620px) { .versus { grid-template-columns: 1fr; } .vs-mid { justify-content: center; padding: 0.3rem 0; } }
+
+  /* ---- feature value list ---- */
+  .feats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 720px; margin: 0 auto; }
+  .feat-shell { background: rgba(255,255,255,0.02); border: 1px solid var(--line-soft); border-radius: 1.3rem; padding: 0.5rem; }
+  .feat-core { background: var(--raised); border-radius: 1rem; padding: 1.4rem 1.5rem; height: 100%; box-shadow: inset 0 1px 1px rgba(255,255,255,0.04); }
+  .feat-core h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem; }
+  .feat-core h3 .ico { color: var(--value); font-family: "JetBrains Mono"; font-weight: 700; }
+  .feat-core p { font-size: 0.88rem; color: var(--text-2); line-height: 1.55; }
+  @media (max-width: 620px) { .feats { grid-template-columns: 1fr; } }
+
+  /* ---- final CTA band ---- */
+  .final { text-align: center; background: linear-gradient(180deg, transparent, var(--value-glow)); border-radius: 2rem; padding: clamp(2.5rem, 7vw, 4.5rem) 1.5rem; border: 1px solid var(--line-soft); }
+  .final h2 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(1.8rem, 5vw, 2.8rem); letter-spacing: -0.02em; text-wrap: balance; }
+  .final .price { font-family: "JetBrains Mono", monospace; font-weight: 700; color: var(--value-bright); font-size: 1.1rem; margin: 1rem 0 1.8rem; }
+
+  footer { text-align: center; padding: 3rem 0 4rem; color: var(--text-3); font-size: 0.8rem; line-height: 1.7; border-top: 1px solid var(--line-soft); margin-top: 3rem; }
+  footer a { color: var(--text-2); }
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow"><span class="dot"></span>You've used Sula for a week</span>
+    <h1>You're leaving about <span class="em">$2,200 a year</span> on the table.</h1>
+    <p class="hero-sub">Here's what Sula Pro is actually worth to someone who uses it — adjust the sliders to your own life.</p>
+
+    <div class="calc-shell">
+      <div class="calc-core">
+        <div class="calc-label">Your estimated value / year</div>
+        <div class="calc-total" id="total">$2,200<span class="yr"> /yr</span></div>
+        <p class="calc-caption" id="caption">Based on our A/B testing: the average Sula user saves about this much.</p>
+
+        <div class="calc-rows">
+          <div class="calc-row">
+            <div class="row-top">
+              <span class="row-name">Hours you'd spend fighting customer service<small>chatbots, hold music, cancellation mazes</small></span>
+              <span class="row-val"><span id="hoursVal">50</span> hrs</span>
+            </div>
+            <input type="range" id="hours" min="0" max="120" step="5" value="50" aria-label="Hours per year spent on customer service">
+          </div>
+
+          <div class="calc-row">
+            <div class="row-top">
+              <span class="row-name">What an hour of your time is worth<small>defaults to the US average wage</small></span>
+              <span class="row-val">$<span id="wageVal">30</span>/hr</span>
+            </div>
+            <input type="range" id="wage" min="15" max="100" step="5" value="30" aria-label="Value of an hour of your time">
+          </div>
+
+          <div class="calc-row">
+            <div class="row-top">
+              <span class="row-name">Refunds &amp; charges you'd win back<small>what early users recovered in a year</small></span>
+              <span class="row-val">$<span id="refundVal">700</span></span>
+            </div>
+            <input type="range" id="refund" min="0" max="3000" step="50" value="700" aria-label="Refunds won back per year">
+          </div>
+        </div>
+
+        <div class="cta-wrap">
+          <button class="btn-sub" id="subscribeBtn" type="button">Get Sula Pro — $6/mo <span class="chip">↗</span></button>
+          <p class="cta-sub-line">Or $57.60/year · Cancel anytime · You always hit send</p>
+        </div>
+
+        <p class="calc-footnote">Illustrative estimate, not a guaranteed result. Time value uses the hours saved from our A/B user testing at the US average wage; refund figure reflects what early Sula users recovered. Your actual value depends on how you use it.</p>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="reveal">
+      <h2 class="sec">The other guys take a cut. We don't.</h2>
+      <p class="sec-lead">Rocket Money and DoNotPay keep a slice of every refund or negotiation they win for you. Sula charges one flat price and takes nothing from what you get back.</p>
+      <div class="versus">
+        <div class="vs-card vs-them">
+          <div class="vs-who">Rocket Money</div>
+          <div class="vs-num">30–40%</div>
+          <div class="vs-desc">of every refund or bill they negotiate — taken from your money.</div>
+        </div>
+        <div class="vs-mid">vs</div>
+        <div class="vs-card vs-us">
+          <div class="vs-who">Sula Pro</div>
+          <div class="vs-num">$0</div>
+          <div class="vs-desc">commission. Ever. You keep 100% of every dollar you win back.</div>
+        </div>
+      </div>
+      <p class="sec-lead" style="margin-top:2rem;font-size:0.92rem;">One $200 refund a competitor would've taken $60–80 from pays for more than a full year of Sula Pro.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="reveal">
+      <h2 class="sec">What your $6 unlocks</h2>
+      <p class="sec-lead">Not features for their own sake — each one is time or money back in your pocket.</p>
+      <div class="feats">
+        <div class="feat-shell"><div class="feat-core">
+          <h3><span class="ico">✦</span> Refund &amp; complaint letters</h3>
+          <p>The exact letter that gets a refund, drafted with the right legal leverage. You read it and hit send — no percentage taken.</p>
+        </div></div>
+        <div class="feat-shell"><div class="feat-core">
+          <h3><span class="ico">✦</span> Chargeback guidance</h3>
+          <p>Whether to dispute yet, and the exact steps for your card issuer. The move banks don't advertise.</p>
+        </div></div>
+        <div class="feat-shell"><div class="feat-core">
+          <h3><span class="ico">✦</span> Subscription tracker</h3>
+          <p>Catches the free trials about to convert and the subscriptions quietly draining your account.</p>
+        </div></div>
+        <div class="feat-shell"><div class="feat-core">
+          <h3><span class="ico">✦</span> Built-in privacy hub</h3>
+          <p>Tells every site to stop selling your data (Global Privacy Control), and helps you clean up the brokers behind the spam.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="reveal">
+      <div class="final">
+        <h2>Keep the <span style="color:var(--value-bright)">$2,200</span>. Not the cut.</h2>
+        <p class="price">$6/month · $57.60/year · one-time $80</p>
+        <div class="cta-wrap" style="margin-top:0;">
+          <button class="btn-sub" id="subscribeBtn2" type="button">Get Sula Pro <span class="chip">↗</span></button>
+          <p class="cta-sub-line">Cancel anytime. No commission, no tracking, no catch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Sula is on your side — always local, no account, no commission. <a href="https://trysula.com">trysula.com</a></p>
+    <p style="margin-top:0.6rem;opacity:0.7;">Value estimate is illustrative and based on A/B user testing and early-user refund data; individual results vary.</p>
+  </footer>
+
+</div>
+
+<!--
+  LEMONSQUEEZY CHECKOUT OVERLAY — one-step, in-context payment.
+  ============================================================
+  Wired to the real Sula checkout. lemon.js opens the payment as an overlay
+  on top of THIS page (value prop + payment on one surface). LS stays Merchant
+  of Record (handles VAT). If lemon.js is blocked (e.g. a strict-CSP preview),
+  the button falls back to a normal new-tab checkout so no click is ever lost.
+
+  On the real trysula.com deploy, confirm the site CSP allows:
+    script-src ... https://app.lemonsqueezy.com
+    frame-src  ... https://*.lemonsqueezy.com
+  and enable Checkout Overlay + your branding in LS → Settings → Checkout.
+-->
+<script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+<script src="upgrade.js" defer></script>
+</body>
+</html>

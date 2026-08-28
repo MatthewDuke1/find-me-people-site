@@ -285,7 +285,7 @@
           <!-- TODO(launch): replace with the real LemonSqueezy checkout URL.
                Same placeholder names as CHECKOUT in the extension's license.js,
                so one find/replace covers both files. -->
-          <a class="btn btn-secondary" href="https://REPLACE_STORE.lemonsqueezy.com/buy/REPLACE_MONTHLY_ID">Get Pro monthly</a>
+          <a class="btn btn-secondary" href="https://sula.lemonsqueezy.com/checkout/buy/47598c36-6163-4f4e-93de-9266450ebfaa">Get Pro monthly</a>
         </div>
 
         <!-- LIFETIME (featured) -->
@@ -304,7 +304,7 @@
             <li><span class="check">&#10003;</span> All future updates</li>
             <li><span class="check">&#10003;</span> 3 devices</li>
           </ul>
-          <a class="btn btn-primary" href="https://REPLACE_STORE.lemonsqueezy.com/buy/REPLACE_LIFETIME_ID">Buy Sula Pro</a>
+          <a class="btn btn-primary" href="https://sula.lemonsqueezy.com/checkout/buy/1f26fe80-e487-4305-9593-5301dd0279cb">Buy Sula Pro</a>
         </div>
 
         <!-- ANNUAL -->
@@ -323,7 +323,7 @@
             <li><span class="check">&#10003;</span> Renews yearly</li>
             <li><span class="check">&#10003;</span> 3 devices</li>
           </ul>
-          <a class="btn btn-secondary" href="https://REPLACE_STORE.lemonsqueezy.com/buy/REPLACE_ANNUAL_ID">Get Pro yearly</a>
+          <a class="btn btn-secondary" href="https://sula.lemonsqueezy.com/checkout/buy/ac76da47-0b68-4431-8728-a2b8d6ad5ecf">Get Pro yearly</a>
         </div>
 
       </div>
@@ -465,7 +465,9 @@
   and the PRO_ENFORCED=true / v2.1.0 build ships. Doing them piecemeal
   leaves the site and the extension contradicting each other.
 
-  [ ] 1. Replace the 3 REPLACE_STORE/REPLACE_*_ID checkout URLs above.
+  [x] 1. Replace the 3 checkout URLs above. (Done — real Sula LemonSqueezy
+         monthly/annual/lifetime variant links, matching the extension's
+         license.js CHECKOUT map.)
          Same placeholders live in the extension's license.js CHECKOUT map.
   [ ] 2. DELETE the <meta name="robots" content="noindex, nofollow"> tag.
          This is the real lock. Removing the nav link alone never hid it.
