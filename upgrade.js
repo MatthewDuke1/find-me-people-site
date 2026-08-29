@@ -70,7 +70,8 @@
     // is validated server-side by LemonSqueezy, so a wrong/expired code is
     // simply ignored — checkout can never break because of this.
     const PPP = {
-      // countryCode : { code: 'YOUR_LS_CODE', off: 60, label: 'Türkiye' }
+      // --- Purchasing-power markets: $6 USD is disproportionately expensive
+      //     here, so the discount corrects for that. countryCode : { code, off, label }
       TR: { code: 'GLOBAL60', off: 60, label: 'Türkiye' },
       IN: { code: 'GLOBAL60', off: 60, label: 'India' },
       BR: { code: 'GLOBAL50', off: 50, label: 'Brazil' },
@@ -83,6 +84,11 @@
       AR: { code: 'GLOBAL50', off: 50, label: 'Argentina' },
       VN: { code: 'GLOBAL60', off: 60, label: 'Vietnam' },
       UA: { code: 'GLOBAL60', off: 60, label: 'Ukraine' },
+
+      // --- Launch-promo markets (NOT purchasing-power): a high-income market
+      //     given a deliberate, smaller adoption discount to seed early users.
+      //     Spain can afford full price — this trades a little margin for reach.
+      ES: { code: 'SPAIN25', off: 25, label: 'Spain' },
     };
 
     function applyRegional(deal) {
