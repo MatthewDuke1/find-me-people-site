@@ -39,7 +39,9 @@
 
     // ---- Subscribe → LemonSqueezy overlay ----
     // ?embed=1 tells lemon.js to open this as an on-page overlay, not a redirect.
-    const CHECKOUT_URL = 'https://sula.lemonsqueezy.com/checkout/buy/47598c36-6163-4f4e-93de-9266450ebfaa?embed=1';
+    const CHECKOUT_BASE = 'https://sula.lemonsqueezy.com/checkout/buy/47598c36-6163-4f4e-93de-9266450ebfaa';
+    // Mutable: regional pricing (below) may pre-apply a discount code.
+    let CHECKOUT_URL = CHECKOUT_BASE + '?embed=1';
     function openCheckout() {
       if (window.LemonSqueezy && window.LemonSqueezy.Url) {
         window.LemonSqueezy.Url.Open(CHECKOUT_URL);
@@ -53,6 +55,63 @@
       const b = document.getElementById(id);
       if (b) b.addEventListener('click', openCheckout);
     });
+
+    // ---- Regional / purchasing-power pricing (DIY, no paid tool) ----
+    // For visitors in lower-income markets, $6 USD is a much bigger ask. We
+    // detect the country by IP and, if it's on the list below, show a friendly
+    // banner and pre-apply a LemonSqueezy discount code to checkout.
+    //
+    // SETUP (yours): create each discount code in your LemonSqueezy dashboard
+    //   (Store → Discounts), then map country code → { code, off } here.
+    //   The percentages below are just placeholders; set them to codes you made.
+    //
+    // Fails safe on every path: if the geo lookup errors, times out, or the
+    // country isn't listed, nothing shows and full price stands. The discount
+    // is validated server-side by LemonSqueezy, so a wrong/expired code is
+    // simply ignored — checkout can never break because of this.
+    const PPP = {
+      // countryCode : { code: 'YOUR_LS_CODE', off: 60, label: 'Türkiye' }
+      TR: { code: 'GLOBAL60', off: 60, label: 'Türkiye' },
+      IN: { code: 'GLOBAL60', off: 60, label: 'India' },
+      BR: { code: 'GLOBAL50', off: 50, label: 'Brazil' },
+      ID: { code: 'GLOBAL60', off: 60, label: 'Indonesia' },
+      PH: { code: 'GLOBAL60', off: 60, label: 'the Philippines' },
+      NG: { code: 'GLOBAL60', off: 60, label: 'Nigeria' },
+      PK: { code: 'GLOBAL60', off: 60, label: 'Pakistan' },
+      EG: { code: 'GLOBAL60', off: 60, label: 'Egypt' },
+      MX: { code: 'GLOBAL40', off: 40, label: 'Mexico' },
+      AR: { code: 'GLOBAL50', off: 50, label: 'Argentina' },
+      VN: { code: 'GLOBAL60', off: 60, label: 'Vietnam' },
+      UA: { code: 'GLOBAL60', off: 60, label: 'Ukraine' },
+    };
+
+    function applyRegional(deal) {
+      // Add the discount code to the checkout URL (both overlay + fallback).
+      const sep = CHECKOUT_BASE.indexOf('?') === -1 ? '?' : '&';
+      CHECKOUT_URL = CHECKOUT_BASE + '?embed=1&checkout[discount_code]=' + encodeURIComponent(deal.code);
+      // Show the banner if the page has a slot for it.
+      const banner = document.getElementById('pppBanner');
+      if (banner) {
+        banner.innerHTML = 'We noticed you’re in <b>' + deal.label + '</b> — ' +
+          '<b>' + deal.off + '% off</b> is applied automatically at checkout.';
+        banner.hidden = false;
+      }
+    }
+
+    (function detectRegion() {
+      // Guard everything: no fetch, no page. Timeout so a slow API can't hang.
+      if (!('fetch' in window)) return;
+      const ctrl = ('AbortController' in window) ? new AbortController() : null;
+      const t = ctrl ? setTimeout(function () { ctrl.abort(); }, 3500) : null;
+      fetch('https://freeipapi.com/api/json', ctrl ? { signal: ctrl.signal } : undefined)
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {
+          if (t) clearTimeout(t);
+          const cc = j && (j.countryCode || j.country_code);
+          if (cc && PPP[cc]) applyRegional(PPP[cc]);
+        })
+        .catch(function () { if (t) clearTimeout(t); /* fail safe: full price */ });
+    })();
 
     // ---- Scroll reveals ----
     if ('IntersectionObserver' in window) {
