@@ -69,23 +69,29 @@
     // country isn't listed, nothing shows and full price stands. The discount
     // is validated server-side by LemonSqueezy, so a wrong/expired code is
     // simply ignored — checkout can never break because of this.
+    // Percentages tuned to World Bank PPP conversion factors blended with SaaS
+    // industry norms (10-60%). Codes are grouped by tier so you create only 6
+    // codes in LemonSqueezy (PPP60/55/50/45/40 + SPAIN25) — see the build sheet
+    // sula-lemonsqueezy-discount-codes.xlsx. These MUST match the codes created
+    // in LS exactly, or the banner shows but the discount won't apply.
+    // NOTE: Türkiye (PPP55) is volatile (lira/inflation) — revisit quarterly.
     const PPP = {
-      // --- Purchasing-power markets: $6 USD is disproportionately expensive
-      //     here, so the discount corrects for that. countryCode : { code, off, label }
-      TR: { code: 'GLOBAL60', off: 60, label: 'Türkiye' },
-      IN: { code: 'GLOBAL60', off: 60, label: 'India' },
-      BR: { code: 'GLOBAL50', off: 50, label: 'Brazil' },
-      ID: { code: 'GLOBAL60', off: 60, label: 'Indonesia' },
-      PH: { code: 'GLOBAL60', off: 60, label: 'the Philippines' },
-      NG: { code: 'GLOBAL60', off: 60, label: 'Nigeria' },
-      PK: { code: 'GLOBAL60', off: 60, label: 'Pakistan' },
-      EG: { code: 'GLOBAL60', off: 60, label: 'Egypt' },
-      MX: { code: 'GLOBAL40', off: 40, label: 'Mexico' },
-      AR: { code: 'GLOBAL50', off: 50, label: 'Argentina' },
-      VN: { code: 'GLOBAL60', off: 60, label: 'Vietnam' },
-      UA: { code: 'GLOBAL60', off: 60, label: 'Ukraine' },
+      // --- Purchasing-power markets: the discount corrects for lower local
+      //     purchasing power. countryCode : { code, off, label }
+      IN: { code: 'PPP60', off: 60, label: 'India' },
+      PK: { code: 'PPP60', off: 60, label: 'Pakistan' },
+      NG: { code: 'PPP60', off: 60, label: 'Nigeria' },
+      EG: { code: 'PPP60', off: 60, label: 'Egypt' },
+      TR: { code: 'PPP55', off: 55, label: 'Türkiye' },
+      VN: { code: 'PPP55', off: 55, label: 'Vietnam' },
+      AR: { code: 'PPP55', off: 55, label: 'Argentina' },
+      UA: { code: 'PPP55', off: 55, label: 'Ukraine' },
+      ID: { code: 'PPP50', off: 50, label: 'Indonesia' },
+      PH: { code: 'PPP50', off: 50, label: 'the Philippines' },
+      BR: { code: 'PPP45', off: 45, label: 'Brazil' },
+      MX: { code: 'PPP40', off: 40, label: 'Mexico' },
 
-      // --- Launch-promo markets (NOT purchasing-power): a high-income market
+      // --- Launch-promo market (NOT purchasing-power): a high-income market
       //     given a deliberate, smaller adoption discount to seed early users.
       //     Spain can afford full price — this trades a little margin for reach.
       ES: { code: 'SPAIN25', off: 25, label: 'Spain' },
