@@ -683,13 +683,21 @@
     .marquee-track {
       display: flex;
       gap: 32px;
+      /* Trailing gap so the seam between the duplicate set and the wrap-around
+         has the same spacing as between badges — without it, -50% lands the
+         first badge flush against the last, causing a visible jump. */
+      padding-right: 32px;
       width: max-content;
       animation: featured-scroll 28s linear infinite;
     }
     .marquee:hover .marquee-track { animation-play-state: paused; }
+    /* Translate by exactly one full set width. Because the two sets are
+       identical and the trailing gap matches the inter-badge gap, the loop is
+       seamless: the moment it snaps back to 0, the badge now at the start sits
+       exactly where the duplicate was, so there's no jump. */
     @keyframes featured-scroll {
       from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      to   { transform: translateX(calc(-50% - 16px)); }
     }
     .featured-badge {
       display: inline-flex;
@@ -731,6 +739,8 @@
     .badge-ph:hover   { border-color: #da552f; }
     .badge-bl::before { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.7); }
     .badge-bl:hover   { border-color: #ef4444; }
+    .badge-at::before { background: #7c4dff; box-shadow: 0 0 12px rgba(124, 77, 255, 0.7); }
+    .badge-at:hover   { border-color: #7c4dff; }
 
     .baitf-badge { display: inline-flex; align-items: center; }
     .baitf-badge img { height: 48px; width: auto; border-radius: 8px; transition: transform .15s; }
@@ -854,6 +864,9 @@
                  alt="Launched on Best AI Tools Finder"
                  width="240" height="64" loading="lazy" />
           </a>
+          <a class="featured-badge badge-at" href="https://alternativeto.net/software/sula/" target="_blank" rel="noopener" aria-label="Featured on AlternativeTo">
+            AlternativeTo <span class="featured-tag">Featured</span>
+          </a>
           <!-- Duplicate set so the -50% translate loops seamlessly. Hidden under prefers-reduced-motion. -->
           <a class="featured-badge badge-ph marquee-dupe" href="https://www.producthunt.com/products/find-me-people" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
             Product Hunt <span class="featured-tag">Featured</span>
@@ -865,6 +878,9 @@
             <img src="badge-baitf.webp"
                  alt=""
                  width="240" height="64" loading="lazy" />
+          </a>
+          <a class="featured-badge badge-at marquee-dupe" href="https://alternativeto.net/software/sula/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+            AlternativeTo <span class="featured-tag">Featured</span>
           </a>
         </div>
       </div>
