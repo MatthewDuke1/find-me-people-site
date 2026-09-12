@@ -180,7 +180,7 @@
 
     <div class="step">
       <h3><span class="n">3</span>The JavaScript layer, including the chatbot itself</h3>
-      <p>Modern sites ship their content as JavaScript state before rendering it — objects like <code>__NEXT_DATA__</code> on Next.js sites. Contact details often sit in there even when no page ever displays them. This step also reads the configuration of chat widgets (Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat, Tawk, Freshchat, Olark). The widget's own account ID reveals the company's public help center, and for Zendesk, Sula queries that help center's public search API for its contact articles — the same data the chatbot was trained to paraphrase at you.</p>
+      <p>Modern sites ship their content as JavaScript state before rendering it — objects like <code>__NEXT_DATA__</code> on Next.js sites. Contact details often sit in there even when no page ever displays them. This step also reads the configuration of chat widgets (Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat, Tawk, Freshchat, Olark). Some carry a published support address in their own config. Most don't — and that absence is itself the finding: a company routing every enquiry through a chat widget with no inbox behind it is a company that has decided not to be emailed, which is exactly when the escalation path matters.</p>
     </div>
 
     <div class="step">
@@ -202,7 +202,7 @@
     </ul>
 
     <h2>What never happens</h2>
-    <p>No page content leaves your machine. There's no account, no analytics, and no server on our side to send anything to. The two narrow network requests the extension can make (the same-site contact-page fetch and the Zendesk help-center query) are anonymous and documented line by line in the <a href="privacy.html">privacy policy</a>. The code is open source, so you can check rather than trust.</p>
+    <p>No page content leaves your machine. There's no account, no analytics, and no server on our side to send anything to. The one narrow network request the extension can make during a scan (a same-site fetch of the site's own contact pages, only when the current page has nothing) is anonymous and documented line by line in the <a href="privacy.html">privacy policy</a>. The code is open source, so you can check rather than trust.</p>
 
     <div class="cta-box">
       <strong>See it on a site that's been hiding its support email.</strong><br />

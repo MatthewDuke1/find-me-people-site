@@ -253,7 +253,7 @@
 
         <div class="callout">
           <strong>The short version.</strong>
-          <p style="margin: 8px 0 0;">The extension scans pages locally to find customer service contacts. It never creates an account, never identifies you, never sends your browsing data anywhere. It makes two kinds of network request, both anonymous and bounded: (1) same-origin fetches of common contact pages on the site you&rsquo;re already visiting, and (2) when we detect a Zendesk chatbot on the page, one unauthenticated query to that vendor&rsquo;s public help-center search API to find the real support contact the bot was trained to deflect from. No cookies are sent with either.</p>
+          <p style="margin: 8px 0 0;">The extension scans pages locally to find customer service contacts. It never creates an account, never identifies you, never sends your browsing data anywhere. During a scan it makes one kind of network request, anonymous and bounded: same-origin fetches of common contact pages on the site you&rsquo;re already visiting, and only when the current page has nothing on it. No cookies are sent.</p>
         </div>
 
         <h2>What the extension reads</h2>
@@ -277,7 +277,7 @@
         <p>You can clear the entire history at any time from the History tab&rsquo;s &ldquo;Clear all&rdquo; button. Nothing is written to cookies, IndexedDB, or any other browser storage.</p>
 
         <h2>What the extension transmits</h2>
-        <p>The extension makes <strong>two kinds of network request</strong>, both anonymous and tightly bounded.</p>
+        <p>During a scan the extension makes <strong>one kind of network request</strong>, anonymous and tightly bounded.</p>
 
         <h3>1. Same-origin contact-page fallback</h3>
         <p>When the in-page scan finds zero contacts, the extension fires up to three <em>same-origin</em> GET requests to common contact-page URLs on the site you&rsquo;re already on &mdash; <code>/contact</code>, <code>/contact-us</code>, <code>/about</code>, <code>/about-us</code>, <code>/support</code>, <code>/help</code>, <code>/customer-service</code> &mdash; and parses the responses for emails and phones. Constraints:</p>
@@ -289,16 +289,10 @@
           <li><strong>Stops at the first hit.</strong> As soon as one of the candidate URLs returns useful results, the rest are skipped.</li>
         </ul>
 
-        <h3>2. Zendesk help-center search (when a Zendesk chatbot is detected)</h3>
-        <p>When the page carries a Zendesk Web Widget or is itself a Zendesk help center, the extension makes <strong>one anonymous query</strong> to that vendor&rsquo;s public help-center search API (<code>https://{subdomain}.zendesk.com/api/v2/help_center/articles/search.json?query=contact</code>) to find the real support contact the chatbot was trained to deflect from. This is the same public endpoint anyone with a browser can hit. Constraints:</p>
-        <ul>
-          <li><strong><code>credentials: 'omit'</code>.</strong> No cookies. Zendesk sees an unauthenticated visitor &mdash; identical to clicking &ldquo;search&rdquo; in the help center yourself.</li>
-          <li><strong>Public endpoint only.</strong> No private data, no auth tokens, no account information.</li>
-          <li><strong>Once per Zendesk subdomain per browsing session.</strong> Same <code>sessionStorage</code> gate.</li>
-          <li><strong>Bounded.</strong> Up to 10 article results, body capped at 1 MB.</li>
-          <li><strong>Only fires when a Zendesk chatbot is detected on the page.</strong> No detection &rarr; no request.</li>
-        </ul>
-        <p>That is the complete list. No telemetry, no analytics, no error reporting, no usage statistics, no third-party services beyond the single public-API query above. The extension does not contact any server we operate, because we do not operate any server.</p>
+        <h3>Removed in 2.6.6: the Zendesk help-center query</h3>
+        <p>Earlier versions made one anonymous query to a detected Zendesk help-center search API, looking for the support contact the chatbot was deflecting from. <strong>That request no longer exists.</strong> It was measured across 48 sites and removed: of ten reachable help centres it produced two usable support addresses out of twenty-one extracted, and the Zendesk subdomain it depended on was wrong every time it was found &mdash; modern widgets carry a GUID rather than a subdomain, so the request 404&rsquo;d after being made. It is documented here rather than quietly deleted because it appeared in previous versions of this policy.</p>
+
+        <p>That is the complete list. No telemetry, no analytics, no error reporting, no usage statistics, no third-party services beyond the same-site contact-page fetch above. The extension does not contact any server we operate, because we do not operate any server.</p>
 
         <h2>What the extension shares</h2>
         <p><strong>Nothing.</strong> No data is shared with any third party, for any purpose, ever. The extension has no business model, no advertisers, and no analytics partners.</p>
