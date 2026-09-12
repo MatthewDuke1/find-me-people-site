@@ -120,8 +120,9 @@ Every network request is user-triggered and narrow:
 1. Same-origin fetches of common contact-page URLs on the site the user is
    already visiting, only when the in-page scan returns zero contacts.
    `credentials: 'omit'`; a cross-origin redirect is discarded.
-2. When a Zendesk chatbot is detected, one query to that vendor's public
-   help-center search API. `credentials: 'omit'`, public endpoint only.
+   (The Zendesk help-center query documented in earlier versions was removed
+   in 2.6.6: measured across 48 sites it yielded 2 usable addresses out of 21
+   extracted, and the subdomain it depended on was wrong every time.)
 3. An optional email MX check that sends a domain (for example `example.com`,
    never the full address) to Cloudflare's public DNS-over-HTTPS resolver. Runs
    only for checks the user starts, and only while the opt-in is on.
@@ -163,7 +164,7 @@ pages, airline booking flows, banking sites, and government services. It
 works particularly well on sites that bury their contact info behind a
 chatbot widget (Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat,
 Tawk, Freshchat, Olark) because it reads the chatbot vendor's config to
-surface the real support email and the company's standard help-center URL.
+surface the real support email where the vendor config carries one -- and where it does not, report that the company routes support through chat.
 
 The extension cannot scan: content behind authentication walls, cross-origin
 iframes (browser security boundary), or sites whose entire contact path is
@@ -177,7 +178,7 @@ implementations route users through a decision tree before optionally
 exposing a human contact path — and many companies use this deliberately to
 reduce support load. Sula reads the underlying contact data that
 the chatbot is gating: schema.org markup, JSON-LD, hydration state, and the
-public help-center articles the chatbot itself uses for retrieval. The user
+the configuration of the chat widget itself. The user
 sees the real contact email or phone number in seconds, without typing into
 the chatbot, without creating a ticket, and without being routed through an
 escalation funnel.

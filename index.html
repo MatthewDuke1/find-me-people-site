@@ -104,7 +104,7 @@
         "datePublished": "2026-04-27",
         "dateModified": "2026-08-06",
         "downloadUrl": "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
-        "featureList": "Ranked customer-service contacts on any page, bypasses Intercom / Zendesk / Drift / Crisp / HubSpot / Tidio / LiveChat / Tawk / Freshchat / Olark chatbots, Global Privacy Control opt-out signal (Sec-GPC header + navigator.globalPrivacyControl), refund deadline engine (FCBA / Reg E / chargeback windows), refund-policy reader, refund and complaint letter drafting, chargeback readiness and issuer steps, subscription tracking and cancellation, Privacy Guard dashboard, regulator escalation (CFPB / FTC / DOT), form autofill from a saved profile, email composer templates, one-click VOIP deep links, copy history, business-hours extraction, side panel on every page",
+        "featureList": "Ranked customer-service contacts on any page, detects Intercom / Zendesk / Drift / Crisp / HubSpot / Tidio / LiveChat / Tawk / Freshchat / Olark chat widgets and reads how a company routes support, Global Privacy Control opt-out signal (Sec-GPC header + navigator.globalPrivacyControl), refund deadline engine (FCBA / Reg E / chargeback windows), refund-policy reader, refund and complaint letter drafting, chargeback readiness and issuer steps, subscription tracking and cancellation, Privacy Guard dashboard, regulator escalation (CFPB / FTC / DOT), form autofill from a saved profile, email composer templates, one-click VOIP deep links, copy history, business-hours extraction, side panel on every page",
         "image": "https://trysula.com/social-card.png",
         "license": "https://opensource.org/licenses/MIT",
         "offers": {
@@ -218,7 +218,7 @@
             "name": "How is Sula different from just Googling for a phone number?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Googling routes you to the company's own help-center page, which is usually where the chatbot lives. Sula reads the underlying contact data the chatbot is gating -- schema.org markup, JSON-LD, hydration state, and the chatbot vendor's public help-center articles -- and surfaces the real support email or phone number in seconds. No chat-UI dance."
+              "text": "Googling routes you to the company's own help-center page, which is usually where the chatbot lives. Sula reads the underlying contact data the chatbot is gating -- schema.org markup, JSON-LD, hydration state and the chat widget's own configuration -- and surfaces the real support email or phone number in seconds. No chat-UI dance."
             }
           },
           {
@@ -226,7 +226,7 @@
             "name": "How do I find a company's real customer service email instead of a chatbot?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Install Sula and open the company's website. The extension scans the page -- including the help-center data chatbots are trained on -- and lists every email it finds, ranked so the address most likely to reach a person sits on top. Click to copy it. No account, and nothing you browse leaves your machine."
+              "text": "Install Sula and open the company's website. The extension scans the page -- including structured data and JavaScript state no page ever displays -- and lists every email it finds, ranked so the address most likely to reach a person sits on top. Click to copy it. No account, and nothing you browse leaves your machine."
             }
           },
           {
@@ -626,7 +626,7 @@
     .faq-item a { color: var(--accent); }
 
     /* Chrome Web Store rating callout under install buttons. Real
-       data sourced from the live store listing -- 5.0 stars from 6
+       data sourced from the live store listing -- 5.0 stars from 9
        reviews. Install count intentionally not shown until it would
        reinforce rather than dilute the social-proof signal. */
     .store-rating {
@@ -983,7 +983,7 @@
           <div class="feature-card">
             <div class="icon">&#129302;</div>
             <h3>Sees what chatbots hide <span class="new-badge">New</span></h3>
-            <p>Detects Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat, Tawk, Freshchat, and Olark widgets. Reads the chatbot&rsquo;s own help-center articles via its public search API to surface the real support email the bot was trained to deflect from. No chat-UI dance.</p>
+            <p>Detects Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat, Tawk, Freshchat and Olark widgets, and reads the vendor&rsquo;s own configuration for a published support address. When there isn&rsquo;t one, the widget itself is the answer: a company routing everything through chat is a company hiding its inbox, and Sula says so and points you at the escalation path.</p>
           </div>
           <div class="feature-card">
             <div class="icon">&#128269;</div>
@@ -1082,12 +1082,12 @@
 
         <details class="faq-item">
           <summary class="faq-q">How is Sula different from just Googling for a phone number?</summary>
-          <p>Googling routes you to the company&rsquo;s own help-center page, which is usually where the chatbot lives. Sula reads the underlying contact data the chatbot is gating &mdash; schema.org markup, JSON-LD, hydration state, and the chatbot vendor&rsquo;s public help-center articles &mdash; and surfaces the real support email or phone number in seconds. No chat-UI dance.</p>
+          <p>Googling routes you to the company&rsquo;s own help-center page, which is usually where the chatbot lives. Sula reads the underlying contact data the chatbot is gating &mdash; schema.org markup, JSON-LD, hydration state and the chat widget&rsquo;s own configuration &mdash; and surfaces the real support email or phone number in seconds. No chat-UI dance.</p>
         </details>
 
         <details class="faq-item">
           <summary class="faq-q">How do I find a company&rsquo;s real customer service email instead of a chatbot?</summary>
-          <p>Install Sula and open the company&rsquo;s website. The extension scans the page &mdash; including the help-center data chatbots are trained on &mdash; and lists every email it finds, ranked so the address most likely to reach a person sits on top. Click to copy it. No account, and nothing you browse leaves your machine.</p>
+          <p>Install Sula and open the company&rsquo;s website. The extension scans the page &mdash; including structured data and JavaScript state no page ever displays &mdash; and lists every email it finds, ranked so the address most likely to reach a person sits on top. Click to copy it. No account, and nothing you browse leaves your machine.</p>
         </details>
 
         <details class="faq-item">
@@ -1107,7 +1107,7 @@
         </div>
         <div class="store-rating">
           <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span><strong>5.0</strong> from 6 reviews on the <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" target="_blank" rel="noopener">Chrome Web Store</a></span>
+          <span><strong>5.0</strong> from 9 reviews on the <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" target="_blank" rel="noopener">Chrome Web Store</a></span>
         </div>
         <p class="small">Works in Chrome, Edge, Brave, Arc, Opera, and Firefox 121+.</p>
       </div>
