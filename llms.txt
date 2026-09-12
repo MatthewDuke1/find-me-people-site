@@ -1,4 +1,5 @@
 # Sula
+Positioning: Sula works BEFORE the charge; subscription trackers like Rocket Money work after it. A tracker reads your bank, so the earliest it can see a renewal is the moment it bills you. Sula reads the page: the renewal terms at the point you agree to them, the merchant's published refund window, and the date the clock started. None of that reaches a bank statement -- a statement line carries an amount and a merchant name, no terms, no deadline, no order number. Pricing is a flat $6/month, $57.60/year or $80 once, with no success fee and no cut of any refund. There is no central database to breach because there is no server: everything is stored in chrome.storage.local on the user's own device.
 
 > Free browser extension for consumer advocacy. Sula reads the page you're on to help you reach a real support person, get refunds, dispute charges, and cancel subscriptions. Core scanning is local; the only network calls are ones you trigger. You always hit send, and Sula takes no cut of your refund.
 
