@@ -194,6 +194,20 @@
 
     <p>There is a second moment worth naming, and it is the one people actually notice. At <strong>checkout</strong>, Sula reads the fine print the merchant buried &mdash; auto-renewal terms, restocking fees, final-sale flags &mdash; and shows it before you pay. That is the same moment coupon extensions occupy, doing the opposite job: they are paid by the merchant to help the sale close, and Sula is paid by you to tell you what closing it means. A free trial that converts at $19 a month is the charge most worth stopping, and it is stopped at signup, not at the bank.</p>
 
+    <h2>Why an AI assistant is the wrong tool for this moment</h2>
+
+    <p>Rocket Money launched an AI agent in August 2026 that watches your accounts and acts on them by text. It is a good product decision for them and it changes nothing about the blind spot: an agent reading your account is still reading settled transactions. It sees <code>$14.99</code> and a merchant name. It does not see the restocking fee, because that was never on a statement.</p>
+
+    <p>The deeper reason is not technical. A language model would read fine print perfectly well &mdash; better than a pattern matcher, in fairness. The problem is whose job it is doing.</p>
+
+    <div class="callout">
+      <p><strong>An agent hired to complete a purchase is the wrong party to warn you against completing it.</strong> Its objective is to finish the task. Interrupting to say &ldquo;this is final sale and it auto-renews at $19&rdquo; is a failure by its own measure. That is the same conflict as a coupon extension paid by the merchant, arriving by a different route.</p>
+    </div>
+
+    <p>There is a practical version too. A checkout decision happens in seconds. Sula&rsquo;s reader runs locally, 1.4 seconds after the page settles, at no cost per use. Getting a model to do the same job means either breaking that moment waiting on a round trip, or sending the contents of your checkout page &mdash; cart, address, totals &mdash; to somebody&rsquo;s server. The second is exactly what this extension exists not to do.</p>
+
+    <p>None of which means an AI could not eventually read a checkout page well. It means the incentive and the latency both point away from it, and that the thing worth paying for at that moment is not intelligence. It is a second pair of eyes that works for you and nobody else.</p>
+
     <p>So Sula is present at checkout, immediately after the purchase, when something goes wrong, and when a renewal approaches. Rocket Money is present when the money moves. Coupon extensions are present at checkout only. <strong>It is the only one of the three at more than one moment.</strong></p>
 
     <p>Neither is a replacement for the other. If your question is &ldquo;what is charging me every month,&rdquo; Rocket Money answers it better. If your question is &ldquo;what did I agree to, and how do I get out of it,&rdquo; a bank feed structurally cannot help.</p>
