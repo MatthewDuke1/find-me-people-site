@@ -371,47 +371,242 @@
     .trust-row span { display: inline-flex; align-items: center; gap: 6px; }
     .trust-row .check { color: var(--accent); font-weight: 700; }
 
-    /* Hero popup mockup */
-    .preview {
-      background: var(--bg-raised); border: 1px solid var(--line); border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 0 1px var(--accent-glow);
+    /* ---------- How-Sula-works animation ----------------------------------
+       One orchestrated loop, and the only non-user-triggered motion on the
+       page besides the marquee. Four scenes, 5s each, 20s total, all driven
+       by CSS so it runs under the page's script-src 'self' CSP with no JS.
+
+       Timing model: every scene and everything inside it shares one 20s
+       duration. A scene's start is --d (0/5/10/15s). Pieces that appear
+       inside a scene add their own offset --o, and must be >= 0.8s so they
+       are gone before the scene fades back in on the next loop. */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
-    .preview-header {
-      padding: 14px 18px; border-bottom: 1px solid var(--line);
-      display: flex; align-items: center; gap: 10px;
+    .demo { margin: 0; }
+    .demo .s1 { --d: 0s; }  .demo .s2 { --d: 5s; }
+    .demo .s3 { --d: 10s; } .demo .s4 { --d: 15s; }
+
+    .demo-window {
+      background: var(--bg-raised); border: 1px solid var(--line);
+      border-radius: var(--r-lg); overflow: hidden;
+      box-shadow: 0 30px 80px -30px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.02) inset;
     }
-    .preview-header .icon {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent));
-      display: flex; align-items: center; justify-content: center; font-size: 13px;
+    .demo-chrome {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px; border-bottom: 1px solid var(--line); background: var(--bg-inset);
     }
-    .preview-header .title { font-size: 14px; font-weight: 700; }
-    .preview-header .domain { margin-left: auto; font-size: 11px; color: var(--ink-3); }
-    .preview .status {
-      padding: 10px 18px; font-size: 12px; color: var(--ink-2);
-      display: flex; align-items: center; gap: 6px;
+    .demo-dots { display: inline-flex; gap: 6px; }
+    .demo-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+    .demo-url {
+      position: relative; flex: 1; height: 26px; border-radius: var(--r-pill);
+      background: var(--bg); border: 1px solid var(--line-soft);
     }
-    .preview .status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-    .preview .section-label {
-      padding: 6px 18px 4px; font-size: 10px; font-weight: 700;
-      color: var(--ink-3); letter-spacing: 1.5px; text-transform: uppercase;
+    .demo-url-item {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      font-size: 12px; color: var(--ink-3); white-space: nowrap; opacity: 0;
+      animation: demo-fade 20s linear infinite both; animation-delay: var(--d);
     }
-    .preview .row {
-      margin: 4px 12px; padding: 10px 14px;
-      background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
-      border-left: 3px solid; display: flex; align-items: center; justify-content: space-between;
+    .demo-ext { position: relative; display: inline-flex; }
+    .demo-ext img { width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 0 0 2px var(--accent-line); }
+    .demo-badge {
+      position: absolute; top: -6px; right: -8px; min-width: 16px; height: 16px; padding: 0 4px;
+      border-radius: var(--r-pill); background: var(--warn); color: #1a1204;
+      font-size: 10px; font-weight: 800; line-height: 16px; text-align: center;
+      opacity: 0; animation: demo-pop 20s var(--ease) infinite both;
+      animation-delay: calc(10s + 0.8s);
     }
-    .preview .row.good { border-left-color: var(--accent); }
-    .preview .row.ok { border-left-color: var(--warn); }
-    .preview .row .val { font-size: 13px; font-weight: 700; color: var(--ink); }
-    .preview .row .hint { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
-    .preview .badge {
-      font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
+
+    .demo-stage { position: relative; height: 270px; }
+    .demo-scene {
+      position: absolute; inset: 0; opacity: 0;
+      animation: demo-scene 20s var(--ease) infinite both; animation-delay: var(--d);
     }
-    .preview .badge.green { background: var(--accent-glow); color: var(--accent); }
-    .preview .badge.yellow { background: var(--warn-soft); color: var(--warn); }
-    .preview .footer-pad { height: 14px; }
+    .demo-pop {
+      opacity: 0; animation: demo-pop 20s var(--ease) infinite both;
+      animation-delay: calc(var(--d) + var(--o, 1s));
+    }
+
+    /* The merchant's page, drawn as a quiet wireframe so Sula's panel reads
+       as the thing that matters. */
+    .demo-page { position: absolute; top: 28px; left: 24px; width: 40%; }
+    .demo-kicker { font-size: 13px; color: var(--ink-3); margin-bottom: 6px; }
+    .demo-title { font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+    .demo-fakebtn {
+      display: inline-block; padding: 8px 14px; border-radius: 7px; margin-bottom: 18px;
+      background: var(--line); color: var(--ink-2); font-size: 12px; font-weight: 700;
+    }
+    .demo-lines { position: relative; display: grid; gap: 7px; }
+    .demo-lines i { display: block; height: 6px; border-radius: 3px; background: var(--line-soft); }
+    .demo-lines i:nth-child(2) { width: 88%; } .demo-lines i:nth-child(3) { width: 94%; }
+    .demo-lines i:nth-child(4) { width: 70%; }
+    .demo-scan {
+      position: absolute; left: -6px; right: -6px; top: 0; height: 2px; border-radius: 2px;
+      background: var(--accent-bright); box-shadow: 0 0 14px 2px var(--accent-glow);
+      opacity: 0; animation: demo-scan 20s linear infinite both; animation-delay: calc(var(--d) + 0.3s);
+    }
+    .demo-check {
+      width: 34px; height: 34px; border-radius: 50%; margin-bottom: 12px;
+      display: grid; place-items: center; background: var(--good-soft); color: var(--good);
+      font-size: 18px; font-weight: 800;
+    }
+    .demo-meta { font-size: 13px; color: var(--ink-3); margin-bottom: 5px; }
+    .demo-bot {
+      margin-top: 16px; padding: 10px 12px; border-radius: 12px 12px 12px 3px;
+      background: var(--line-soft); color: var(--ink-3); font-size: 12px; line-height: 1.4;
+    }
+
+    /* Sula's panel. The one element in each scene with real contrast. */
+    .demo-panel {
+      position: absolute; top: 22px; right: 20px; width: 48%;
+      background: var(--bg); border: 1px solid var(--accent-line); border-radius: 14px;
+      padding: 14px; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.8);
+    }
+    .demo-panel.demo-pop { transform-origin: top right; }
+    .demo-panel-h {
+      display: flex; align-items: center; gap: 7px; margin-bottom: 10px;
+      font-size: 14px; font-weight: 700; color: var(--ink);
+    }
+    .demo-panel-h img { width: 16px; height: 16px; border-radius: 50%; }
+    .demo-row {
+      padding: 9px 11px; border-radius: 8px; margin-top: 7px;
+      background: var(--bg-raised); border-left: 3px solid var(--accent);
+      font-size: 13px; line-height: 1.35; color: var(--ink);
+    }
+    .demo-row.warn { border-left-color: var(--warn); }
+    .demo-row.good { border-left-color: var(--good); }
+    .demo-row small { display: block; color: var(--ink-3); font-size: 11.5px; margin-top: 2px; }
+    .demo-row b { font-weight: 700; }
+    .demo-pro {
+      margin-left: auto; font-size: 10px; font-weight: 700; color: var(--warn);
+      background: var(--warn-soft); padding: 1px 6px; border-radius: var(--r-pill);
+    }
+
+    /* Scene 3: the renewal alert drops from the toolbar icon, the way the
+       real popup opens. */
+    .demo-inbox { position: absolute; inset: 22px; display: grid; gap: 14px; align-content: start; }
+    .demo-inbox div { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: center; }
+    .demo-inbox b { width: 26px; height: 26px; border-radius: 50%; background: var(--line-soft); }
+    .demo-inbox span { display: grid; gap: 6px; }
+    .demo-inbox span i { display: block; height: 6px; border-radius: 3px; background: var(--line-soft); }
+    .demo-inbox span i:last-child { width: 62%; }
+    .demo-alert { top: 10px; right: 12px; width: 62%; border-color: rgba(240,180,41,0.45); }
+    .demo-alert .demo-row { border-left-color: var(--warn); }
+    .demo-actions { display: flex; gap: 6px; margin-top: 8px; }
+    .demo-actions span {
+      flex: 1; text-align: center; padding: 6px 0; border-radius: 7px;
+      font-size: 11px; font-weight: 700; background: var(--bg-raised); color: var(--ink-2);
+      border: 1px solid var(--line);
+    }
+    .demo-actions span:first-child { background: var(--warn); color: #1a1204; border-color: var(--warn); }
+
+    /* The sequence, as a real ordered list: it is a sequence. */
+    .demo-steps {
+      list-style: none; counter-reset: step; margin: 16px 2px 0; padding: 0;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    }
+    .demo-steps li {
+      counter-increment: step; font-size: 12.5px; line-height: 1.3; color: var(--ink-3);
+      /* No fill-mode: `both` would apply the first (active) keyframe during
+         the delay and light up every step before its turn. */
+      animation: demo-step-on 20s linear infinite; animation-delay: var(--d);
+    }
+    .demo-steps li::before {
+      content: counter(step); display: block; margin-bottom: 4px;
+      font-family: var(--font-display); font-weight: 700; font-size: 13px;
+    }
+    .demo-bar { display: block; height: 2px; border-radius: 2px; background: var(--line); margin-bottom: 8px; overflow: hidden; }
+    .demo-bar::after {
+      content: ""; display: block; height: 100%; background: var(--accent-bright);
+      transform: scaleX(0); transform-origin: left;
+      animation: demo-fill 20s linear infinite both; animation-delay: var(--d);
+    }
+
+    @keyframes demo-scene {
+      0%    { opacity: 0; transform: translateY(8px); }
+      2.5%  { opacity: 1; transform: none; }
+      22.5% { opacity: 1; transform: none; }
+      25%   { opacity: 0; transform: translateY(-6px); }
+      100%  { opacity: 0; transform: translateY(8px); }
+    }
+    @keyframes demo-fade {
+      0% { opacity: 0; } 2.5% { opacity: 1; } 22.5% { opacity: 1; } 25% { opacity: 0; } 100% { opacity: 0; }
+    }
+    @keyframes demo-pop {
+      0%    { opacity: 0; transform: translateY(6px) scale(0.97); }
+      2%    { opacity: 1; transform: none; }
+      21%   { opacity: 1; transform: none; }
+      21.5% { opacity: 0; }
+      100%  { opacity: 0; }
+    }
+    @keyframes demo-scan {
+      0%  { opacity: 0; top: 0; }
+      1%  { opacity: 1; }
+      8%  { opacity: 1; top: 100%; }
+      9%  { opacity: 0; top: 100%; }
+      100%{ opacity: 0; top: 100%; }
+    }
+    @keyframes demo-fill {
+      0% { transform: scaleX(0); } 25% { transform: scaleX(1); } 25.01% { transform: scaleX(0); } 100% { transform: scaleX(0); }
+    }
+    @keyframes demo-step-on {
+      0% { color: var(--ink); } 24.9% { color: var(--ink); } 25% { color: var(--ink-3); } 100% { color: var(--ink-3); }
+    }
+
+    /* Hover to read at your own pace. */
+    .demo:hover .demo-window *, .demo:hover .demo-steps * ,
+    .demo:hover .demo-steps li { animation-play-state: paused; }
+
+    /* Reduced motion: no loop. Show the renewal alert -- the moment the
+       ledger exists for -- as a still, with its step marked. */
+    @media (prefers-reduced-motion: reduce) {
+      .demo *, .demo *::before, .demo *::after { animation: none !important; }
+      .demo .s3.demo-scene, .demo .s3 .demo-pop, .demo .demo-badge { opacity: 1; transform: none; }
+      /* Opacity only: the URL label's transform is what centres it in the bar. */
+      .demo .s3.demo-url-item { opacity: 1; }
+      .demo .demo-steps li.s3 { color: var(--ink); }
+      .demo .demo-steps li.s3 .demo-bar::after { transform: scaleX(1); }
+    }
+
+    /* ---------- Proof points ---------- */
+    .proof {
+      list-style: none; margin: 72px 0 0; padding: 28px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .proof li { padding: 0 28px; border-left: 1px solid var(--line); }
+    .proof li:first-child { padding-left: 0; border-left: 0; }
+    .proof-num {
+      display: block; font-family: var(--font-display); font-weight: 700;
+      font-size: 60px; line-height: 1; letter-spacing: -2px; color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+    .proof-label { display: block; margin-top: 10px; font-size: 16px; color: var(--ink-2); max-width: 26ch; }
+
+    /* The positioning note that used to sit inside the hero copy column. */
+    .hero-note {
+      margin: 40px 0 0; max-width: 760px; padding: 16px 18px;
+      border-left: 3px solid var(--accent); background: rgba(77,139,240,0.06);
+      border-radius: 0 8px 8px 0; font-size: 15px; line-height: 1.6; color: var(--ink-2);
+    }
+    .hero-note strong { color: var(--ink); }
+
+    @media (max-width: 960px) {
+      .demo-stage { height: 280px; }
+      .proof { margin-top: 48px; }
+      .proof-num { font-size: 46px; letter-spacing: -1.4px; }
+    }
+    @media (max-width: 620px) {
+      .demo-page { width: auto; right: 22px; }
+      .demo-panel { left: 14px; right: 14px; top: auto; bottom: 14px; width: auto; }
+      .demo-alert { left: 14px; right: 10px; width: auto; }
+      .demo-stage { height: 380px; }
+      .demo-steps { grid-template-columns: repeat(2, 1fr); row-gap: 14px; }
+      .proof { grid-template-columns: 1fr; padding-top: 8px; }
+      .proof li, .proof li:first-child { padding: 18px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+      .proof li:last-child { border-bottom: 0; }
+    }
 
     /* ---------- Stats / Problem ---------- */
     .stats { padding: 90px 0; border-top: 1px solid var(--line); }
@@ -538,7 +733,7 @@
       display: flex; align-items: center; gap: 10px;
       color: var(--ink-3); font-weight: 600;
     }
-    .footer-links { display: flex; gap: 24px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
     .footer-links a { color: var(--ink-3); }
     .footer-links a:hover { color: var(--accent); }
 
@@ -768,7 +963,6 @@
     .btn-primary { box-shadow: 0 6px 24px var(--accent-line); }
     .feature-card { border-radius: 14px; transition: transform .18s, border-color .18s; }
     .feature-card:hover { transform: translateY(-3px); border-color: var(--accent-bright); }
-    .preview { border-radius: 16px; box-shadow: 0 24px 60px rgba(3,8,20,0.55), 0 0 0 1px var(--accent-glow); }
     .stat { border-radius: 14px; }
   </style>
 </head>
@@ -795,14 +989,11 @@
         <div>
           <div class="eyebrow"><span class="pulse"></span> New &mdash; refund letters, chargeback help &amp; subscription cancellations</div>
           <h1>Reach a human.<br /><span class="accent">Get your money back.</span></h1>
-          <p class="sub">Companies bury the contact, run out the refund clock, and make you cancel through a maze. Sula reads the page you&rsquo;re on &mdash; the renewal terms, the refund window, the real support address &mdash; and tells you <strong>while you still have a choice</strong>. Not after the charge lands. You always hit send yourself, and Sula takes no cut of your refund.
+          <p class="sub">Companies bury the contact, run out the refund clock, and make you cancel through a maze. Sula reads the page you&rsquo;re on &mdash; the renewal terms, the refund window, the real support address &mdash; and tells you <strong>while you still have a choice</strong>. Not after the charge lands. You always hit send yourself, and Sula takes no cut of your refund.</p>
           <div class="cta-row">
             <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" class="btn btn-primary" target="_blank" rel="noopener">Install free &rarr;</a>
             <a href="https://github.com/MatthewDuke1/find-me-people" class="btn btn-secondary" target="_blank" rel="noopener">View source on GitHub</a>
           </div>
-          <p class="sub" style="margin-top:18px;padding:14px 16px;border-left:3px solid var(--accent);background:rgba(77,139,240,0.06);border-radius:0 8px 8px 0;font-size:15px;">
-            <strong>Before the charge, not after it.</strong> Subscription trackers read your bank, which means the earliest they can see a renewal is the moment it bills you. Sula reads the terms at the point you agree to them &mdash; so the refund window, the renewal date and the cancellation contact are known while they are still useful. And it never asks for your bank at all: there is no central database here to breach, because there is no server.
-          </p>
           <div class="trust-row">
             <span><span class="check">&#10003;</span> Local-first &mdash; you always hit send</span>
             <span><span class="check">&#10003;</span> No fees on your refund</span>
@@ -810,45 +1001,94 @@
           </div>
         </div>
 
-        <div class="preview" aria-hidden="true">
-          <div class="preview-header">
-            <div class="icon"><img src="sula-logo-144.png" alt="" width="24" height="24" style="width:100%;height:100%;border-radius:inherit;object-fit:cover;" /></div>
-            <div class="title">Sula</div>
-            <div class="domain">company.com</div>
-          </div>
-          <div class="status"><span class="dot"></span> Found 4 contacts on this page</div>
-          <div class="section-label">Email</div>
-          <div class="row good">
-            <div>
-              <div class="val">support@company.com</div>
-              <div class="hint">Click to copy</div>
+        <figure class="demo" aria-labelledby="demo-caption">
+          <figcaption id="demo-caption" class="sr-only">How Sula works: at checkout it reads the renewal and refund terms; when the order is confirmed it remembers the purchase; days before a subscription renews it warns you; and when you want your money back it finds the real support contact and drafts the request.</figcaption>
+          <div class="demo-window" aria-hidden="true">
+            <div class="demo-chrome">
+              <span class="demo-dots"><i></i><i></i><i></i></span>
+              <div class="demo-url">
+                <span class="demo-url-item s1">acme.com/checkout</span>
+                <span class="demo-url-item s2">acme.com/order/confirmed</span>
+                <span class="demo-url-item s3">mail.example.com/inbox</span>
+                <span class="demo-url-item s4">acme.com/help</span>
+              </div>
+              <span class="demo-ext"><img src="sula-logo-144.png" alt="" width="22" height="22" /><b class="demo-badge">1</b></span>
             </div>
-            <span class="badge green">Likely support</span>
-          </div>
-          <div class="row good">
-            <div>
-              <div class="val">help@company.com</div>
-              <div class="hint">Click to copy</div>
+            <div class="demo-stage">
+
+              <div class="demo-scene s1">
+                <div class="demo-page">
+                  <p class="demo-kicker">Acme Plus</p>
+                  <p class="demo-title">Start your free trial</p>
+                  <span class="demo-fakebtn">Start trial</span>
+                  <div class="demo-lines"><i></i><i></i><i></i><i></i><span class="demo-scan"></span></div>
+                </div>
+                <div class="demo-panel demo-pop" style="--o:0.9s">
+                  <p class="demo-panel-h"><img src="sula-logo-144.png" alt="" width="16" height="16" /> Before you pay</p>
+                  <p class="demo-row warn demo-pop" style="--o:1.5s">Renews at <b>$9.99 a month</b> after the trial</p>
+                  <p class="demo-row demo-pop" style="--o:2.1s">Refunds within 30 days</p>
+                  <p class="demo-row demo-pop" style="--o:2.7s">Cancel from account settings</p>
+                </div>
+              </div>
+
+              <div class="demo-scene s2">
+                <div class="demo-page">
+                  <div class="demo-check">&#10003;</div>
+                  <p class="demo-title">You&rsquo;re subscribed</p>
+                  <p class="demo-meta">Order #SUB-12345</p>
+                  <p class="demo-meta">Acme Plus, $9.99 a month</p>
+                </div>
+                <div class="demo-panel demo-pop" style="--o:1.1s">
+                  <p class="demo-panel-h"><img src="sula-logo-144.png" alt="" width="16" height="16" /> Added to your ledger</p>
+                  <p class="demo-row good demo-pop" style="--o:1.7s"><b>Acme Plus</b> $9.99<small>Subscription, renews October 12</small></p>
+                  <p class="demo-row demo-pop" style="--o:2.4s">Refund window closes<small>October 9</small></p>
+                </div>
+              </div>
+
+              <div class="demo-scene s3">
+                <div class="demo-inbox">
+                  <div><b></b><span><i></i><i></i></span></div>
+                  <div><b></b><span><i></i><i></i></span></div>
+                  <div><b></b><span><i></i><i></i></span></div>
+                  <div><b></b><span><i></i><i></i></span></div>
+                </div>
+                <div class="demo-panel demo-alert demo-pop" style="--o:1.2s">
+                  <p class="demo-panel-h"><img src="sula-logo-144.png" alt="" width="16" height="16" /> Renewing soon <span class="demo-pro">Pro</span></p>
+                  <p class="demo-row">Acme Plus renews in <b>5 days</b><small>$9.99 on October 12</small></p>
+                  <div class="demo-actions"><span>Cancel it</span><span>Keep it</span></div>
+                </div>
+              </div>
+
+              <div class="demo-scene s4">
+                <div class="demo-page">
+                  <p class="demo-kicker">Acme help center</p>
+                  <p class="demo-title">How can we help?</p>
+                  <p class="demo-bot">Hi, I&rsquo;m AcmeBot! Try asking me about billing.</p>
+                </div>
+                <div class="demo-panel demo-pop" style="--o:1s">
+                  <p class="demo-panel-h"><img src="sula-logo-144.png" alt="" width="16" height="16" /> A real person</p>
+                  <p class="demo-row good demo-pop" style="--o:1.6s"><b>billing@acme.com</b><small>Likely support</small></p>
+                  <p class="demo-row demo-pop" style="--o:2.4s">Refund request drafted<small>Order #SUB-12345 filled in</small></p>
+                </div>
+              </div>
+
             </div>
-            <span class="badge green">Likely support</span>
           </div>
-          <div class="section-label">Phone</div>
-          <div class="row good">
-            <div>
-              <div class="val">1-800-555-HELP</div>
-              <div class="hint">Tap to call &middot; WhatsApp &middot; FaceTime</div>
-            </div>
-            <span class="badge green">Likely support</span>
-          </div>
-          <div class="row ok">
-            <div>
-              <div class="val">info@company.com</div>
-              <div class="hint">General inbox</div>
-            </div>
-            <span class="badge yellow">Possible</span>
-          </div>
-          <div class="footer-pad"></div>
-        </div>
+          <ol class="demo-steps">
+            <li class="s1"><span class="demo-bar"></span>Reads the terms at checkout</li>
+            <li class="s2"><span class="demo-bar"></span>Remembers the purchase</li>
+            <li class="s3"><span class="demo-bar"></span>Warns before it renews</li>
+            <li class="s4"><span class="demo-bar"></span>Finds the real contact</li>
+          </ol>
+        </figure>
+      </div>
+      <div class="container">
+        <ul class="proof">
+          <li><span class="proof-num">100k+</span><span class="proof-label">hours saved</span></li>
+          <li><span class="proof-num">100s</span><span class="proof-label">of refund requests sent</span></li>
+          <li><span class="proof-num">80%</span><span class="proof-label">less time to reach a real person</span></li>
+        </ul>
+        <p class="hero-note"><strong>Before the charge, not after it.</strong> Subscription trackers read your bank, which means the earliest they can see a renewal is the moment it bills you. Sula reads the terms at the point you agree to them &mdash; so the refund window, the renewal date and the cancellation contact are known while they are still useful. And it never asks for your bank at all: there is no central database here to breach, because there is no server.</p>
       </div>
     </section>
 
