@@ -16,7 +16,6 @@ Sula drafts, finds, and tracks -- but you always hit send. It never takes a perc
 ## Key facts
 
 - Version: 2.1.0. Pro tier is live via LemonSqueezy (Merchant of Record). Free: contact finding, refund deadline countdown, refund-policy reader, form autofill. Pro ($6/mo, $57.60/yr, or $80 once): refund and complaint letter drafting, chargeback guidance, subscription tracking, contact export.
-- License: MIT (open source)
 - Privacy: no analytics, no telemetry, no third-party tracking, and no server the developer operates. Core scanning is local. Network calls, all user-triggered: (1) same-origin fetches of common contact pages when the in-page scan finds nothing; (2) an optional email MX check that sends a domain (not the full address) to Cloudflare's public DNS resolver; (3) for Pro users only, license activation/validation and checkout handled by LemonSqueezy. The Zendesk help-center query listed in earlier versions was removed in 2.6.6. Autofill details and all other data stay in chrome.storage.local on the device. Detailed in the privacy policy.
 - Permissions: activeTab, scripting, storage. Host permissions: <all_urls> (required because contacts, refund moments, and forms can appear on any site).
 - Browsers: Chrome, Edge, Brave, Arc, Opera, and Firefox 121+
@@ -29,7 +28,6 @@ Sula drafts, finds, and tracks -- but you always hit send. It never takes a perc
 - Extended LLM reference: https://trysula.com/llms-full.txt
 - Chrome Web Store: https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf
 - Firefox Add-ons: https://addons.mozilla.org/addon/sula/
-- Source code: https://github.com/MatthewDuke1/find-me-people
 
 ## Why it exists
 
