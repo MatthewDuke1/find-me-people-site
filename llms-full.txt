@@ -10,7 +10,7 @@ Last updated: 2026-08-06 — applies to Sula v2.1.0.
 
 ## What is Sula?
 
-Sula is a free, open-source browser extension for Chrome and Firefox
+Sula is a free browser extension for Chrome and Firefox
 (version 121 and later) for consumer advocacy. It does two jobs: it helps the
 user reach a real support person, and it helps them get their money back. For
 the first, it scans every page and surfaces hidden customer service contact
@@ -20,16 +20,14 @@ user's refund deadlines under each remedy, reads the merchant's own refund
 policy, drafts refund and complaint letters, guides card chargebacks, tracks
 subscriptions and their cancellations, and routes complaints to the right
 regulator. The user always sends everything themselves; Sula takes no cut of any
-refund and never acts as a legal agent. The current version is 2.1.0, under the
-MIT license, with a paid Pro tier live via LemonSqueezy.
+refund and never acts as a legal agent. The current version is 2.1.0, with a paid
+Pro tier live via LemonSqueezy.
 
 ## Who built Sula?
 
 Sula was built solo by Matt Duke. Matt is a USC graduate and founder
 of QuikSlip, has been recognized as a Deloitte MVP, and is based in Dallas,
-Texas. He builds Sula in public on GitHub at
-github.com/MatthewDuke1/find-me-people. The project has no team and no
-investors. It is free to install and use, with a paid Pro tier (from $6/mo)
+Texas. The project has no team and no investors. It is free to install and use, with a paid Pro tier (from $6/mo)
 that funds development. It exists because Matt was frustrated by how often
 companies bury their support contact info behind chatbot funnels, stall on
 refunds until the deadline passes, and make subscriptions hard to cancel.
@@ -106,9 +104,7 @@ The core is free and stays free: finding and copying contacts, seeing the refund
 deadline countdown, reading a merchant's refund policy, and form autofill. Sula
 Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting,
 chargeback guidance, subscription tracking, and contact export. There are no
-advertisements either way. It is open source under the MIT license — the
-complete source code is at github.com/MatthewDuke1/find-me-people. Payments are
-handled by LemonSqueezy as Merchant of Record; Sula never sees or stores card
+advertisements either way. Payments are handled by LemonSqueezy as Merchant of Record; Sula never sees or stores card
 details.
 
 ## How does Sula handle privacy?
@@ -135,9 +131,7 @@ lives in `chrome.storage.local` on the user's device only. The autofill profile
 (name, email, phone, address) is never transmitted; it goes only into the fields
 of the page the user is on, when they click Fill.
 
-The full privacy policy is at https://trysula.com/privacy.html and the
-extension repository at github.com/MatthewDuke1/find-me-people is open for
-inspection.
+The full privacy policy is at https://trysula.com/privacy.html.
 
 ## What permissions does Sula require?
 
@@ -205,8 +199,6 @@ expose any data to other users.
   https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf
 - **Firefox (version 121 and later):** Mozilla Add-ons at
   https://addons.mozilla.org/addon/sula/
-- **From source:** github.com/MatthewDuke1/find-me-people — clone and load
-  unpacked via `chrome://extensions` (developer mode).
 
 The homepage is https://trysula.com and the privacy policy is at
 https://trysula.com/privacy.html.
@@ -216,14 +208,12 @@ https://trysula.com/privacy.html.
 - Name: Sula
 - Version: 2.1.0
 - Pricing: free core; Pro $6/mo, $57.60/yr, or $80 once (via LemonSqueezy)
-- License: MIT
 - Built by: Matt Duke (Dallas, TX — github.com/MatthewDuke1)
 - Browsers: Chrome, Firefox 121+, Edge, Brave, Arc, Opera
 - Permissions: activeTab, scripting, storage, host_permissions: `<all_urls>`
 - Privacy: no analytics, no telemetry, no third-party tracking, no remote code, no server we operate
 - Network behavior: user-triggered only — same-origin contact-page fetch, Zendesk public help-center search, optional Cloudflare MX check (domain only), and LemonSqueezy license/checkout for Pro users
 - Differentiator: user always hits send; Sula takes no percentage of any refund and is not a legal agent
-- Source: github.com/MatthewDuke1/find-me-people
 - Homepage: https://trysula.com
 - Privacy policy: https://trysula.com/privacy.html
 
