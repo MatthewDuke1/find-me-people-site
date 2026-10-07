@@ -85,7 +85,7 @@
         "about": { "@id": "https://trysula.com/#extension" },
         "author": { "@id": "https://trysula.com/#matt-duke" },
         "datePublished": "2026-04-27",
-        "dateModified": "2026-07-08",
+        "dateModified": "2026-10-07",
         "speakable": {
           "@type": "SpeakableSpecification",
           "cssSelector": [".hero h1", ".hero .sub", ".stats h2", ".stats .lead"]
@@ -100,13 +100,12 @@
         "operatingSystem": "Chrome, Firefox, Edge, Brave, Arc, Opera",
         "description": "Browser extension for consumer advocacy: reach a real support person, get refunds with ready-to-send letters, dispute charges, and cancel subscriptions. Core scanning runs locally; the only network calls are ones you trigger.",
         "url": "https://trysula.com/",
-        "softwareVersion": "2.1.0",
+        "softwareVersion": "2.7.1",
         "datePublished": "2026-04-27",
-        "dateModified": "2026-08-06",
+        "dateModified": "2026-10-07",
         "downloadUrl": "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
         "featureList": "Ranked customer-service contacts on any page, detects Intercom / Zendesk / Drift / Crisp / HubSpot / Tidio / LiveChat / Tawk / Freshchat / Olark chat widgets and reads how a company routes support, Global Privacy Control opt-out signal (Sec-GPC header + navigator.globalPrivacyControl), refund deadline engine (FCBA / Reg E / chargeback windows), refund-policy reader, refund and complaint letter drafting, chargeback readiness and issuer steps, subscription tracking and cancellation, Privacy Guard dashboard, regulator escalation (CFPB / FTC / DOT), form autofill from a saved profile, email composer templates, one-click VOIP deep links, copy history, business-hours extraction, side panel on every page",
         "image": "https://trysula.com/social-card.png",
-        "license": "https://opensource.org/licenses/MIT",
         "offers": {
           "@type": "AggregateOffer",
           "priceCurrency": "USD",
@@ -128,7 +127,6 @@
         "isPartOf": { "@id": "https://trysula.com/#website" },
         "mainEntityOfPage": { "@id": "https://trysula.com/#webpage" },
         "sameAs": [
-          "https://github.com/MatthewDuke1/find-me-people",
           "https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf",
           "https://addons.mozilla.org/addon/sula/",
           "https://www.producthunt.com/products/find-me-people",
@@ -146,7 +144,7 @@
             "name": "Is Sula free?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes for the core. Finding customer-service contacts, seeing your refund deadline, reading a merchant's own refund policy, and sending the Global Privacy Control opt-out signal are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, the Privacy Guard dashboard, and contact export. The code is open source under the MIT license, and there are no ads either way."
+              "text": "Yes for the core. Finding customer-service contacts, seeing your refund deadline, reading a merchant's own refund policy, and sending the Global Privacy Control opt-out signal are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, the Privacy Guard dashboard, and contact export. There are no ads either way."
             }
           },
           {
@@ -202,7 +200,7 @@
             "name": "What browsers does Sula work on?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Chrome, Edge, Brave, Arc, Opera, and Firefox 121 and later. Chrome-family browsers install from the Chrome Web Store. Firefox installs from Mozilla Add-ons. All versions ship the same scanner, ranking heuristics, and side panel."
+              "text": "Chrome, Edge, Brave, Arc, Opera, and Firefox 128 and later. Chrome-family browsers install from the Chrome Web Store. Firefox installs from Mozilla Add-ons. All versions ship the same scanner, ranking heuristics, and side panel."
             }
           },
           {
@@ -977,7 +975,7 @@
         <a href="#features">Features</a>
         <a href="#faq">FAQ</a>
         <a href="#support">Contact</a>
-        <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
+        <a href="how-it-works.html">How it works</a>
         <a href="#install" class="nav-cta">Install</a>
       </nav>
     </div>
@@ -987,12 +985,12 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow"><span class="pulse"></span> New &mdash; refund letters, chargeback help &amp; subscription cancellations</div>
+          <div class="eyebrow"><span class="pulse"></span> New in 2.7 &mdash; renewal reminders on the page &amp; a backup for your purchases</div>
           <h1>Reach a human.<br /><span class="accent">Get your money back.</span></h1>
           <p class="sub">Companies bury the contact, run out the refund clock, and make you cancel through a maze. Sula reads the page you&rsquo;re on &mdash; the renewal terms, the refund window, the real support address &mdash; and tells you <strong>while you still have a choice</strong>. Not after the charge lands. You always hit send yourself, and Sula takes no cut of your refund.</p>
           <div class="cta-row">
             <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" class="btn btn-primary" target="_blank" rel="noopener">Install free &rarr;</a>
-            <a href="https://github.com/MatthewDuke1/find-me-people" class="btn btn-secondary" target="_blank" rel="noopener">View source on GitHub</a>
+            <a href="how-it-works.html" class="btn btn-secondary">See how it works</a>
           </div>
           <div class="trust-row">
             <span><span class="check">&#10003;</span> Local-first &mdash; you always hit send</span>
@@ -1161,7 +1159,7 @@
         <h2>Why is it so hard to reach a company &mdash; and get your money back?</h2>
         <p class="lead">Support is being rationed. Companies bury the contact behind chatbot walls, stall on refunds until the deadline passes, and route cancellations through a maze &mdash; all betting you give up first. Sula breaks that bet.</p>
         <p class="byline">&ldquo;I built this after spending 45 minutes hunting for a real support email on a SaaS site whose contact info was buried four pages deep. The chatbot kept looping. So I shipped a scanner that finds the human in one click.&rdquo; &mdash; <strong>Matt Duke</strong>, builder of Sula</p>
-        <p class="author-bio">Matt is a University of Southern California graduate, recognized as a Deloitte MVP, and the founder of QuikSlip. He ships Sula publicly on <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">GitHub</a>.</p>
+        <p class="author-bio">Matt is a University of Southern California graduate, recognized as a Deloitte MVP, and the founder of QuikSlip. He builds Sula on his own time, and you can follow his work on <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">GitHub</a>.</p>
         <div class="stat-grid">
           <div class="stat">
             <div class="num">10&ndash;15<small>min</small></div>
@@ -1251,7 +1249,7 @@
           <div class="feature-card">
             <div class="icon">&#128260;</div>
             <h3>Tracks &amp; cancels subscriptions <span class="new-badge">Pro</span></h3>
-            <p>The Subscription Guardian tracks renewal dates and warns you before a free trial converts, and drafts a cancellation letter. Kept getting charged after you cancelled? That&rsquo;s a strong dispute, and Sula helps you file it.</p>
+            <p>Sula records the renewal terms when you sign up. Five days before a charge, a card appears on the page you&rsquo;re on with <strong>Cancel it</strong> (straight to the page where you signed up) and <strong>Keep it</strong>. Back up your purchase list to a file and restore it on a new computer. Kept getting charged after you cancelled? That&rsquo;s a strong dispute, and Sula helps you file it.</p>
           </div>
           <div class="feature-card">
             <div class="icon">&#128203;</div>
@@ -1280,7 +1278,7 @@
 
         <details class="faq-item">
           <summary class="faq-q">Is Sula free?</summary>
-          <p>Yes for the core. Finding customer-service contacts, seeing your refund deadline, reading a merchant&rsquo;s own refund policy, and sending the Global Privacy Control opt-out signal are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, the Privacy Guard dashboard, and contact export. The code is open source under the MIT license at <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people</a>, and there are no ads either way.</p>
+          <p>Yes for the core. Finding customer-service contacts, seeing your refund deadline, reading a merchant&rsquo;s own refund policy, and sending the Global Privacy Control opt-out signal are free and stay free. Sula Pro ($6/mo, $57.60/yr, or $80 once) adds refund and complaint letter drafting, chargeback guidance, subscription tracking, the Privacy Guard dashboard, and contact export. There are no ads either way.</p>
         </details>
 
         <details class="faq-item">
@@ -1315,7 +1313,7 @@
 
         <details class="faq-item">
           <summary class="faq-q">What browsers does Sula work on?</summary>
-          <p>Chrome, Edge, Brave, Arc, Opera, and Firefox 121 and later. Chrome-family browsers install from the <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" target="_blank" rel="noopener">Chrome Web Store</a>. Firefox installs from <a href="https://addons.mozilla.org/addon/sula/" target="_blank" rel="noopener">Mozilla Add-ons</a>. All versions ship the same scanner, ranking heuristics, and side panel.</p>
+          <p>Chrome, Edge, Brave, Arc, Opera, and Firefox 128 and later. Chrome-family browsers install from the <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" target="_blank" rel="noopener">Chrome Web Store</a>. Firefox installs from <a href="https://addons.mozilla.org/addon/sula/" target="_blank" rel="noopener">Mozilla Add-ons</a>. All versions ship the same scanner, ranking heuristics, and side panel.</p>
         </details>
 
         <details class="faq-item">
@@ -1343,7 +1341,7 @@
     <section id="install" class="install">
       <div class="container">
         <h2>Install in <span class="accent">two clicks.</span></h2>
-        <p class="sub">Free forever. Open source. Runs entirely in your browser &mdash; nothing ever leaves your machine.</p>
+        <p class="sub">The core is free, for good. Sula runs in your browser, and the pages you visit never leave your machine.</p>
         <div class="install-row">
           <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" class="btn btn-primary" target="_blank" rel="noopener">Add to Chrome</a>
           <a href="https://addons.mozilla.org/addon/sula/" class="btn btn-primary" target="_blank" rel="noopener">Get for Firefox</a>
@@ -1352,7 +1350,7 @@
           <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <span><strong>5.0</strong> from 9 reviews on the <a href="https://chromewebstore.google.com/detail/find-me-people/ngfklhkcicocfchdmepiajdmboialikf" target="_blank" rel="noopener">Chrome Web Store</a></span>
         </div>
-        <p class="small">Works in Chrome, Edge, Brave, Arc, Opera, and Firefox 121+.</p>
+        <p class="small">Works in Chrome, Edge, Brave, Arc, Opera, and Firefox 128+.</p>
       </div>
     </section>
   </main>
@@ -1361,11 +1359,10 @@
     <div class="container footer-row">
       <div class="footer-brand">
         <img src="sula-logo.png" alt="" style="width:22px;height:22px;border-radius:50%;" />
-        Sula &middot; v2.1.0 &middot; built solo by <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">Matt Duke</a>
+        Sula &middot; v2.7.1 &middot; Patent pending &middot; built solo by <a href="https://github.com/MatthewDuke1" target="_blank" rel="noopener">Matt Duke</a>
       </div>
       <nav class="footer-links">
         <a href="support.html">Support</a>
-        <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
         <a href="how-to-get-a-refund.html">Get a refund</a>
         <a href="how-to-dispute-a-charge.html">Dispute a charge</a>
         <a href="how-to-cancel-a-subscription.html">Cancel a subscription</a>
@@ -1375,8 +1372,7 @@
         <a href="find-customer-service-email.html">Find a support email</a>
         <a href="sula-vs-googling.html">Sula vs Googling</a>
         <a href="privacy.html">Privacy</a>
-        <a href="https://github.com/MatthewDuke1/find-me-people#readme" target="_blank" rel="noopener">Docs</a>
-        <a href="https://github.com/MatthewDuke1/find-me-people/issues" target="_blank" rel="noopener">Report an issue</a>
+        <a href="support.html#feedback">Report an issue</a>
       </nav>
     </div>
   </footer>

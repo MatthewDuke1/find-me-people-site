@@ -233,7 +233,6 @@
         <a href="/#features">Features</a>
         <a href="/#screenshots">Screenshots</a>
         <a href="/#support">Contact</a>
-        <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>
   </header>
@@ -243,8 +242,8 @@
       <div class="container">
         <div class="eyebrow">&#128274; Plain English. Short on purpose.</div>
         <h1>Privacy <span class="accent">policy.</span></h1>
-        <p class="lead">No accounts. No telemetry. No third-party tracking. Below is a short, honest list of every piece of data the extension touches &mdash; and every network request it makes.</p>
-        <div class="updated">Last updated: July 3, 2026 &middot; Applies to Sula v2.0.0</div>
+        <p class="lead">No accounts. No telemetry. No third-party tracking. Below is the full list of data the extension touches, and every network request it can make.</p>
+        <div class="updated">Last updated: October 7, 2026 &middot; Applies to Sula v2.7.1</div>
       </div>
     </section>
 
@@ -253,49 +252,70 @@
 
         <div class="callout">
           <strong>The short version.</strong>
-          <p style="margin: 8px 0 0;">The extension scans pages locally to find customer service contacts. It never creates an account, never identifies you, never sends your browsing data anywhere. During a scan it makes one kind of network request, anonymous and bounded: same-origin fetches of common contact pages on the site you&rsquo;re already visiting, and only when the current page has nothing on it. No cookies are sent.</p>
+          <p style="margin: 8px 0 0;">Sula reads the page you&rsquo;re on, in your browser, to find support contacts, refund terms and the renewal terms of things you buy. What it keeps stays in your browser&rsquo;s own storage on your device. It has no account, no analytics and no server of ours to send anything to. It makes a few narrow network requests, listed below: fetching a site&rsquo;s own contact pages, an optional email-domain check, license checks for Pro, and Save to CRM if you set it up.</p>
         </div>
 
         <h2>What the extension reads</h2>
         <p>When you visit a website, Sula reads the current page in your browser to extract:</p>
         <ul>
-          <li>Email addresses visible on the page</li>
-          <li>Phone numbers visible on the page</li>
-          <li>Links to contact, support, help, and similar pages</li>
+          <li>Email addresses, phone numbers and links to contact, support and help pages</li>
           <li>Business hours, when available (from schema.org / JSON-LD / microdata)</li>
           <li>Hydration state on JavaScript-rendered pages (e.g. <code>__NEXT_DATA__</code>, JSON-LD blocks) so contacts hidden in JS still surface</li>
           <li>The content of any <em>same-origin</em> iframes the page embeds (e.g. an embedded support widget on the same domain)</li>
+          <li>Refund, return and auto-renewal wording, so Sula can show your deadline and warn you at checkout</li>
+          <li>On checkout, order-confirmation and billing pages: the merchant, the total, an order number, and renewal terms such as a next charge date or billing cycle. Sula refuses to record anything from a page that shows a card number.</li>
+          <li>Form fields, when you click Fill, so it can put your saved details in them</li>
         </ul>
-        <p>All of this is content that is already loaded into your browser. The extension does not access any data that is not already visible to you on the page.</p>
+        <p>All of this is content already loaded in your browser.</p>
 
         <h2>What the extension stores</h2>
-        <p>The extension uses <code>chrome.storage.local</code> for two things, both kept on your device:</p>
+        <p>Everything below is kept in <code>chrome.storage.local</code>, on your device only:</p>
         <ul>
-          <li><strong>Preferences.</strong> Whether the side panel is enabled, which mail client you prefer for Compose, which sites you&rsquo;ve hidden the panel on, and where you&rsquo;ve dragged the side panel tab vertically.</li>
-          <li><strong>Copy history.</strong> When you click to copy an email or phone, a record of what was copied (value, hostname, score, timestamp) is added so the History tab can show it later. Capped at 50 entries; older ones are dropped.</li>
+          <li><strong>Preferences.</strong> Side panel on or off, your mail client for Compose, sites where you&rsquo;ve hidden the panel, the panel tab&rsquo;s position, and whether Global Privacy Control and the purchase ledger are on.</li>
+          <li><strong>Copy history.</strong> What you copied (value, hostname, score, time), capped at 50 entries. Clear it any time from the History tab.</li>
+          <li><strong>Purchase ledger.</strong> For purchases and subscriptions Sula records: merchant, amount, order number, renewal terms, the date it was recorded, and the address of the page it was recorded on (so <strong>Cancel it</strong> can take you back there). You can turn the ledger off and delete entries in the Subs tab.</li>
+          <li><strong>Renewal reminders.</strong> Which subscriptions are due soon and which ones you chose to keep, so a reminder isn&rsquo;t shown twice.</li>
+          <li><strong>Your details, if you enter them.</strong> The autofill profile and the sender details used in letters.</li>
+          <li><strong>Privacy Guard.</strong> Which data-broker opt-outs you&rsquo;ve started and when to re-check them.</li>
+          <li><strong>Pro license.</strong> Your license key and its activation ID.</li>
+          <li><strong>Save to CRM.</strong> The webhook address, if you add one.</li>
+          <li><strong>Small flags.</strong> Install date, whether you&rsquo;ve seen the welcome tour and the &ldquo;what&rsquo;s new&rdquo; note, and a short-lived scan cache.</li>
         </ul>
-        <p>You can clear the entire history at any time from the History tab&rsquo;s &ldquo;Clear all&rdquo; button. Nothing is written to cookies, IndexedDB, or any other browser storage.</p>
+        <p><strong>Backup and restore.</strong> &ldquo;Back up&rdquo; saves the purchase ledger as a file in your downloads. &ldquo;Restore&rdquo; reads a file you choose. Neither sends anything over the network.</p>
+        <p>Removing the extension deletes all of it. Sula also uses <code>sessionStorage</code> on the site you&rsquo;re visiting for a few &ldquo;already fetched this session&rdquo; flags, which the browser clears when you close the tab.</p>
 
         <h2>What the extension transmits</h2>
-        <p>During a scan the extension makes <strong>one kind of network request</strong>, anonymous and tightly bounded.</p>
+        <p>These are all the network requests the extension can make. None of them goes to a server we run.</p>
 
-        <h3>1. Same-origin contact-page fallback</h3>
-        <p>When the in-page scan finds zero contacts, the extension fires up to three <em>same-origin</em> GET requests to common contact-page URLs on the site you&rsquo;re already on &mdash; <code>/contact</code>, <code>/contact-us</code>, <code>/about</code>, <code>/about-us</code>, <code>/support</code>, <code>/help</code>, <code>/customer-service</code> &mdash; and parses the responses for emails and phones. Constraints:</p>
+        <h3>1. The site&rsquo;s own contact pages</h3>
+        <p>When the page you&rsquo;re on links to contact pages, or has no contact a customer can use, Sula fetches those pages from the same site and reads them for emails and phone numbers. If that finds nothing, it reads the site&rsquo;s <code>sitemap.xml</code> to find its contact pages.</p>
         <ul>
-          <li><strong><code>credentials: 'omit'</code>.</strong> No cookies are attached. The server cannot identify you.</li>
-          <li><strong>Same-origin only.</strong> If a URL redirects to a different domain, the response is discarded.</li>
-          <li><strong>Once per origin per browsing session.</strong> A flag in <code>sessionStorage</code> prevents the same site from being re-probed.</li>
-          <li><strong>Bounded size.</strong> Responses larger than 1 MB are discarded without parsing.</li>
-          <li><strong>Stops at the first hit.</strong> As soon as one of the candidate URLs returns useful results, the rest are skipped.</li>
+          <li><strong>Same site only.</strong> A redirect to a different site is discarded.</li>
+          <li><strong>Your cookies for that site go with it,</strong> the same as if you clicked the link yourself. Some sites block requests without them. No other site&rsquo;s cookies are sent.</li>
+          <li><strong>Bounded.</strong> At most five contact pages per scan, the sitemap once per browsing session, each page once per session. Pages over 1 MB (2 MB for a sitemap) are discarded unread.</li>
         </ul>
+
+        <h3>2. The same company&rsquo;s support subdomain</h3>
+        <p>When a page links to the company&rsquo;s own help site (for example <code>help.</code> or <code>support.</code> on the same domain), Sula fetches at most two of those pages, <strong>without cookies</strong>, and reads them for contacts.</p>
+
+        <h3>3. Email domain check (optional)</h3>
+        <p>To check whether an email address can receive mail, Sula can ask Cloudflare&rsquo;s public DNS resolver (<code>cloudflare-dns.com</code>) for the domain&rsquo;s mail servers. Only the domain is sent, such as <code>example.com</code>, never the full address.</p>
+
+        <h3>4. Pro license (Pro only)</h3>
+        <p>Activating, checking or releasing a Pro license sends your license key and an activation name (&ldquo;Sula&rdquo; plus the first 40 characters of your browser&rsquo;s user-agent) to LemonSqueezy, which sells Sula Pro as Merchant of Record. Checkout happens on LemonSqueezy&rsquo;s site. Sula never sees your card.</p>
+
+        <h3>5. Save to CRM (only if you set it up)</h3>
+        <p>If you add a webhook address and click send, Sula posts the contacts you picked (email, phone, the site they came from, and when they were found) to that address. Nothing is sent until you add an address and click.</p>
+
+        <p><strong>Global Privacy Control.</strong> When it&rsquo;s on, Sula adds the <code>Sec-GPC: 1</code> header to the requests your browser already makes, telling sites not to sell or share your data. That is a header on your own traffic, not a request of Sula&rsquo;s.</p>
 
         <h3>Removed in 2.6.6: the Zendesk help-center query</h3>
         <p>Earlier versions made one anonymous query to a detected Zendesk help-center search API, looking for the support contact the chatbot was deflecting from. <strong>That request no longer exists.</strong> It was measured across 48 sites and removed: of ten reachable help centres it produced two usable support addresses out of twenty-one extracted, and the Zendesk subdomain it depended on was wrong every time it was found &mdash; modern widgets carry a GUID rather than a subdomain, so the request 404&rsquo;d after being made. It is documented here rather than quietly deleted because it appeared in previous versions of this policy.</p>
 
-        <p>That is the complete list. No telemetry, no analytics, no error reporting, no usage statistics, no third-party services beyond the same-site contact-page fetch above. The extension does not contact any server we operate, because we do not operate any server.</p>
+        <p>That is the complete list. No telemetry, no analytics, no error reporting and no usage statistics. The extension does not contact any server we operate, because we do not operate one.</p>
 
         <h2>What the extension shares</h2>
-        <p><strong>Nothing.</strong> No data is shared with any third party, for any purpose, ever. The extension has no business model, no advertisers, and no analytics partners.</p>
+        <p><strong>Nothing, beyond the requests listed above.</strong> No data is sold or shared for advertising, analytics or any other purpose. Sula makes its money from Pro subscriptions, not from data.</p>
 
         <h2>Permissions explained</h2>
         <table class="perm-table">
@@ -316,7 +336,17 @@
             <tr>
               <td>storage</td>
               <td>Lets the extension write to <code>chrome.storage.local</code>.</td>
-              <td>Required for the two preference items and the copy history described above.</td>
+              <td>Required for everything listed under &ldquo;What the extension stores&rdquo;.</td>
+            </tr>
+            <tr>
+              <td>declarativeNetRequest</td>
+              <td>Lets the extension add a header to requests your browser makes.</td>
+              <td>Required to send the Global Privacy Control signal (<code>Sec-GPC: 1</code>) when you have it on.</td>
+            </tr>
+            <tr>
+              <td>alarms</td>
+              <td>Lets the extension run a task on a schedule.</td>
+              <td>Used once a day to check which subscriptions renew soon, so the reminder can appear.</td>
             </tr>
             <tr>
               <td>host_permissions: <code>&lt;all_urls&gt;</code></td>
@@ -327,26 +357,19 @@
         </table>
 
         <h2>No remote code</h2>
-        <p>The extension does not load, execute, or reference any remote JavaScript. There are no CDN imports, no external <code>&lt;script&gt;</code> tags, no <code>eval()</code> calls, no dynamic code loading, and no WebAssembly modules. Every line of code that runs in the extension is bundled in the package you install &mdash; reviewable line-by-line in the open-source repository linked below.</p>
+        <p>The extension does not load, execute, or reference any remote JavaScript. There are no CDN imports, no external <code>&lt;script&gt;</code> tags, no <code>eval()</code> calls, no dynamic code loading, and no WebAssembly modules. Every line of code that runs in the extension is bundled in the package you install, which the Chrome Web Store and Mozilla Add-ons review before publishing.</p>
 
         <h2>No accounts, no cookies, no analytics</h2>
-        <p>The extension does not require or support user accounts, login, or registration. It does not create, read, modify, or delete cookies. It does not include any analytics SDK, crash reporter, A/B testing framework, or feature flag service.</p>
+        <p>The extension does not require or support user accounts, login, or registration. It does not create, read, modify, or delete cookies; the only cookies involved are the ones your browser already sends with the same-site contact-page fetches described above. It does not include any analytics SDK, crash reporter, A/B testing framework, or feature flag service.</p>
 
         <h2>Children&rsquo;s privacy</h2>
-        <p>The extension does not knowingly collect any information from anyone, including children under 13. Because the extension collects no information at all, this applies to every user equally.</p>
+        <p>The extension does not knowingly collect information from anyone, including children under 13. What it stores stays on the user&rsquo;s own device, and we never receive it.</p>
 
         <h2>Changes to this policy</h2>
         <p>If this policy changes, the updated version will be published at this URL and the &ldquo;Last updated&rdquo; date at the top will be revised. The full history of changes is visible in the website&rsquo;s <a href="https://github.com/MatthewDuke1/find-me-people-site" target="_blank" rel="noopener">git repository</a>.</p>
 
-        <h2>Open source</h2>
-        <p>The extension and this website are both open source under the MIT license. You can verify every claim on this page by reading the code:</p>
-        <ul>
-          <li>Extension source: <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people</a></li>
-          <li>Website source: <a href="https://github.com/MatthewDuke1/find-me-people-site" target="_blank" rel="noopener">github.com/MatthewDuke1/find-me-people-site</a></li>
-        </ul>
-
         <h2>Contact</h2>
-        <p>Questions about this policy? Email <a href="mailto:matthewduke0@gmail.com?subject=Find%20Me%20People%20privacy">matthewduke0@gmail.com</a> or open an issue on the <a href="https://github.com/MatthewDuke1/find-me-people/issues" target="_blank" rel="noopener">extension&rsquo;s GitHub</a>.</p>
+        <p>Questions about this policy? Email <a href="mailto:matthewduke0@gmail.com?subject=Sula%20privacy">matthewduke0@gmail.com</a>.</p>
 
       </div>
     </section>
@@ -356,13 +379,12 @@
     <div class="footer-row">
       <div>
         <img src="sula-logo-144.png" alt="" style="width:22px;height:22px;border-radius:50%;vertical-align:middle;margin-right:6px;" />
-        Sula &middot; v2.0.0
+        Sula &middot; v2.7.1
       </div>
       <nav class="footer-links">
         <a href="/">Home</a>
         <a href="mailto:matthewduke0@gmail.com">Contact</a>
-        <a href="https://github.com/MatthewDuke1/find-me-people" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://github.com/MatthewDuke1/find-me-people/issues" target="_blank" rel="noopener">Report an issue</a>
+        <a href="support.html#feedback">Report an issue</a>
       </nav>
     </div>
   </footer>
