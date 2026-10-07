@@ -252,7 +252,7 @@
       --line-soft: #161f30;
       --ink:       #f4f6fb;
       --ink-2:     #aeb7c9;
-      --ink-3:     #6b7689;
+      --ink-3:     #8590a5;
       --accent:      #4d8bf0;
       --accent-bright:#6ba3f7;
       --accent-ink:  #06101f;
@@ -279,6 +279,14 @@
     }
     h1, h2, h3, .nav-brand { font-family: var(--font-display); }
     a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+    ::selection { background: rgba(107,163,247,0.35); color: #fff; }
+    :focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; border-radius: 6px; }
+    html { scrollbar-color: #2a3650 var(--bg); }
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #2a3650; border-radius: 8px; border: 3px solid var(--bg); }
+    ::-webkit-scrollbar-thumb:hover { background: #3a4a6a; }
+    .stat .num, .proof-num { font-variant-numeric: tabular-nums; }
     a:hover { color: var(--accent-bright); }
     img { max-width: 100%; display: block; }
 
@@ -326,14 +334,13 @@
       display: inline-flex; align-items: center; gap: 8px;
       padding: 6px 12px; border-radius: 999px;
       background: var(--accent-glow); border: 1px solid var(--accent-line);
-      color: var(--accent); font-size: 12px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--accent-bright); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
       margin-bottom: 24px;
     }
     .eyebrow .pulse {
       width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); box-shadow: 0 0 0 0 rgba(59,130,246,0.7);
-      animation: pulse 2s infinite;
+      background: var(--accent-bright); flex: none;
     }
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.6); }
@@ -585,8 +592,8 @@
     /* The positioning note that used to sit inside the hero copy column. */
     .hero-note {
       margin: 40px 0 0; max-width: 760px; padding: 16px 18px;
-      border-left: 3px solid var(--accent); background: rgba(77,139,240,0.06);
-      border-radius: 0 8px 8px 0; font-size: 15px; line-height: 1.6; color: var(--ink-2);
+      border: 1px solid var(--accent-line); background: rgba(77,139,240,0.06);
+      border-radius: 12px; font-size: 15px; line-height: 1.6; color: var(--ink-2);
     }
     .hero-note strong { color: var(--ink); }
 
@@ -663,13 +670,18 @@
       transition: border-color 0.2s, transform 0.2s;
     }
     .feature-card:hover { border-color: var(--accent-line); transform: translateY(-2px); }
-    .feature-card .icon {
-      width: 46px; height: 46px; border-radius: 12px;
-      background: rgba(59,130,246,0.12); color: var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; font-weight: 800; margin-bottom: 18px;
+    .feature-group + .feature-group { margin-top: 56px; }
+    .feature-group-head {
+      display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+      margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
     }
-    .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .feature-group-head h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+    .feature-group-head p { color: var(--ink-3); font-size: 14.5px; }
+    .feature-grid.two { grid-template-columns: repeat(2, 1fr); }
+    .feature-card .card-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+    .feature-card .icon { flex: none; width: 22px; height: 22px; margin-top: 1px; color: var(--accent-bright); }
+    .feature-card .icon svg { display: block; width: 22px; height: 22px; }
+    .feature-card h4 { font-size: 18px; font-weight: 700; line-height: 1.3; text-wrap: balance; }
     .feature-card p { font-size: 14.5px; color: var(--ink-2); line-height: 1.6; }
     .feature-card code, .privacy code {
       font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -678,10 +690,10 @@
       padding: 1px 6px; border-radius: 4px;
     }
     .feature-card .new-badge {
-      display: inline-block; font-size: 10px; font-weight: 700;
+      display: inline-block; font-size: 11px; font-weight: 700;
       padding: 2px 8px; border-radius: 999px; margin-left: 8px;
-      background: var(--accent-glow); color: var(--accent);
-      text-transform: uppercase; letter-spacing: 1px;
+      background: var(--accent-glow); color: var(--accent-bright);
+      text-transform: uppercase; letter-spacing: 0.06em;
       vertical-align: middle;
     }
 
@@ -745,7 +757,7 @@
       .trust-row { margin-top: 14px; }
       .nav-cta { padding: 11px 16px; min-height: 44px; display: inline-flex; align-items: center; }
       .stat-grid { grid-template-columns: repeat(2, 1fr); }
-      .feature-grid { grid-template-columns: 1fr; }
+      .feature-grid, .feature-grid.two { grid-template-columns: 1fr; }
       .shot-grid { grid-template-columns: 1fr; }
       .nav-links a:not(.nav-cta) { display: none; }
       .install h2 { font-size: 34px; }
@@ -784,7 +796,7 @@
     .faq-item {
       border: 1px solid var(--line);
       border-radius: 12px;
-      background: #131316;
+      background: var(--bg-raised);
       margin-bottom: 12px;
       overflow: hidden;
       transition: border-color 0.15s;
@@ -958,7 +970,7 @@
       width: 900px; height: 520px; border-radius: 50%; pointer-events: none;
       background: radial-gradient(closest-side, var(--accent-glow), rgba(96,165,250,0)); }
     .hero-grid { position: relative; }
-    .btn-primary { box-shadow: 0 6px 24px var(--accent-line); }
+    .btn-primary { box-shadow: 0 8px 20px -8px rgba(77,139,240,0.55); }
     .feature-card { border-radius: 14px; transition: transform .18s, border-color .18s; }
     .feature-card:hover { transform: translateY(-3px); border-color: var(--accent-bright); }
     .stat { border-radius: 14px; }
@@ -1200,74 +1212,74 @@
           <h2>Everything Sula does for you</h2>
           <p class="lead">Two jobs, one extension: reach a real person, and get your money back. It reads the page you&rsquo;re on &mdash; no setup, no account for the free core. The <a href="how-it-works.html">full scan order is documented here</a>.</p>
         </div>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="icon">&#9889;</div>
-            <h3>Auto-scans every page</h3>
-            <p>The moment a page loads, the extension scans for emails, phone numbers, and contact pages &mdash; quietly, in the background. A badge on the icon tells you how many it found.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#9733;</div>
-            <h3>Ranks by likely-support</h3>
-            <p>support@, help@, care@ score green. Marketing, careers, and noreply addresses get filtered to the bottom. Phone numbers near &ldquo;customer service&rdquo; or &ldquo;contact us&rdquo; get a boost.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#9776;</div>
-            <h3>Side panel on every page</h3>
-            <p>A discreet pull-tab on the right edge of any page where contacts were found. Click to expand a panel with the same ranked emails and phones, a history of what you&rsquo;ve copied, business hours, and the support pages worth visiting next.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#10148;</div>
-            <h3>Compose &amp; Call in one click</h3>
-            <p>Pre-filled email templates for refunds, complaints, cancellations, billing, and support &mdash; opened in Gmail, Outlook, or your default client. Phone numbers deep-link into WhatsApp, Google Voice, FaceTime, Teams, or your dialer.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#129302;</div>
-            <h3>Sees what chatbots hide <span class="new-badge">New</span></h3>
-            <p>Detects Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat, Tawk, Freshchat and Olark widgets, and reads the vendor&rsquo;s own configuration for a published support address. When there isn&rsquo;t one, the widget itself is the answer: a company routing everything through chat is a company hiding its inbox, and Sula says so and points you at the escalation path.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#128269;</div>
-            <h3>Deeper scanning</h3>
-            <p>Reads hydration state (<code>__NEXT_DATA__</code>, JSON-LD, schema.org) for contacts hidden in JS, scans same-origin iframes, falls back to fetching common contact pages when the visible page is sparse, and requires real contact-context proximity before surfacing a phone (no random snippet numbers from Google search).</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#9203;</div>
-            <h3>Shows your refund deadline</h3>
-            <p>Enter a charge date on an order or receipt page and Sula counts down every window that applies: the Fair Credit Billing Act (60 days for credit cards), a card chargeback (commonly ~120 days), and the merchant&rsquo;s own return policy. Missing the deadline is the top reason refunds fail. Free.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#128221;</div>
-            <h3>Drafts the letter that gets your money back <span class="new-badge">Pro</span></h3>
-            <p>Seven refund scenarios &mdash; unauthorized or duplicate charge, defective, not as described, free-trial auto-renewal, cancelled-but-charged, price drop &mdash; each drafted with the right leverage (FCBA, the merchant&rsquo;s own policy, chargeback, FTC negative-option, CFPB). Real facts fill in; anything Sula doesn&rsquo;t know stays a blank for you. You hit send.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#128179;</div>
-            <h3>Guides your chargeback <span class="new-badge">Pro</span></h3>
-            <p>Tells you whether a chargeback is the right move yet (often: try the merchant in writing first), then gives the exact dispute steps for your issuer &mdash; Chase, Amex, Bank of America, Citi, Capital One, or Wells Fargo &mdash; and routes you to the CFPB if the bank stalls.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#128260;</div>
-            <h3>Tracks &amp; cancels subscriptions <span class="new-badge">Pro</span></h3>
-            <p>Sula records the renewal terms when you sign up. Five days before a charge, a card appears on the page you&rsquo;re on with <strong>Cancel it</strong> (straight to the page where you signed up) and <strong>Keep it</strong>. Back up your purchase list to a file and restore it on a new computer. Kept getting charged after you cancelled? That&rsquo;s a strong dispute, and Sula helps you file it.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#128203;</div>
-            <h3>Fills forms from your profile</h3>
-            <p>Save your details once and fill any application or contact form in a click. Everything stays on your device, Sula highlights what it filled so you can check it, and it never auto-submits &mdash; you always review and send. Free.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#128737;</div>
-            <h3>Tells every site not to sell your data <span class="new-badge">New</span></h3>
-            <p>Sula sends Global Privacy Control on every page you visit &mdash; a <strong>legally-binding</strong> &ldquo;do not sell or share my personal information&rdquo; request under the privacy laws of Texas, California, Colorado, Connecticut, Oregon, and a dozen more states. California fined one retailer $1.2M for ignoring it. On by default, one toggle, and nothing leaves your device to make it work. Free.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon">&#128272;</div>
-            <h3>Privacy Guard dashboard <span class="new-badge">Pro</span></h3>
-            <p>See which sites honored your opt-out and which ignored it &mdash; receipts, not promises. Track your removal from the data brokers that sell your number to spammers, with reminders when it&rsquo;s time to re-check (they re-list you every few months). One dashboard for your whole privacy footprint.</p>
+        <div class="feature-group">
+          <div class="feature-group-head"><h3>Reach a human</h3><p>Find the support address the company would rather you didn&rsquo;t.</p></div>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="11.5" cy="11.5" r="3.5"/><path d="m16 16-2-2"/></svg></span><h4>Auto-scans every page</h4></div>
+              <p>The moment a page loads, the extension scans for emails, phone numbers, and contact pages &mdash; quietly, in the background. A badge on the icon tells you how many it found.</p>
+            </div>
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h6"/></svg></span><h4>Ranks by likely-support</h4></div>
+              <p>support@, help@, care@ score green. Marketing, careers, and noreply addresses get filtered to the bottom. Phone numbers near &ldquo;customer service&rdquo; or &ldquo;contact us&rdquo; get a boost.</p>
+            </div>
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></svg></span><h4>Side panel on every page</h4></div>
+              <p>A discreet pull-tab on the right edge of any page where contacts were found. Click to expand a panel with the same ranked emails and phones, a history of what you&rsquo;ve copied, business hours, and the support pages worth visiting next.</p>
+            </div>
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></span><h4>Compose &amp; Call in one click</h4></div>
+              <p>Pre-filled email templates for refunds, complaints, cancellations, billing, and support &mdash; opened in Gmail, Outlook, or your default client. Phone numbers deep-link into WhatsApp, Google Voice, FaceTime, Teams, or your dialer.</p>
+            </div>
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M9 4h6M2 13v3M22 13v3"/><path d="M9 13v1.5M15 13v1.5"/></svg></span><h4>Sees what chatbots hide <span class="new-badge">New</span></h4></div>
+              <p>Detects Intercom, Zendesk, Drift, Crisp, HubSpot, Tidio, LiveChat, Tawk, Freshchat and Olark widgets, and reads the vendor&rsquo;s own configuration for a published support address. When there isn&rsquo;t one, the widget itself is the answer: a company routing everything through chat is a company hiding its inbox, and Sula says so and points you at the escalation path.</p>
+            </div>
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></span><h4>Deeper scanning</h4></div>
+              <p>Reads hydration state (<code>__NEXT_DATA__</code>, JSON-LD, schema.org) for contacts hidden in JS, scans same-origin iframes, falls back to fetching common contact pages when the visible page is sparse, and requires real contact-context proximity before surfacing a phone (no random snippet numbers from Google search).</p>
+            </div>
           </div>
         </div>
-      </div>
+        <div class="feature-group">
+          <div class="feature-group-head"><h3>Get your money back</h3><p>Before the charge, while you still have a choice.</p></div>
+          <div class="feature-grid two">
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span><h4>Shows your refund deadline</h4></div>
+              <p>Enter a charge date on an order or receipt page and Sula counts down every window that applies: the Fair Credit Billing Act (60 days for credit cards), a card chargeback (commonly ~120 days), and the merchant&rsquo;s own return policy. Missing the deadline is the top reason refunds fail. Free.</p>
+            </div>
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span><h4>Drafts the letter that gets your money back <span class="new-badge">Pro</span></h4></div>
+              <p>Seven refund scenarios &mdash; unauthorized or duplicate charge, defective, not as described, free-trial auto-renewal, cancelled-but-charged, price drop &mdash; each drafted with the right leverage (FCBA, the merchant&rsquo;s own policy, chargeback, FTC negative-option, CFPB). Real facts fill in; anything Sula doesn&rsquo;t know stays a blank for you. You hit send.</p>
+            </div>
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><h4>Guides your chargeback <span class="new-badge">Pro</span></h4></div>
+              <p>Tells you whether a chargeback is the right move yet (often: try the merchant in writing first), then gives the exact dispute steps for your issuer &mdash; Chase, Amex, Bank of America, Citi, Capital One, or Wells Fargo &mdash; and routes you to the CFPB if the bank stalls.</p>
+            </div>
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 15h3M13 15h3"/></svg></span><h4>Tracks &amp; cancels subscriptions <span class="new-badge">Pro</span></h4></div>
+              <p>Sula records the renewal terms when you sign up. Five days before a charge, a card appears on the page you&rsquo;re on with <strong>Cancel it</strong> (straight to the page where you signed up) and <strong>Keep it</strong>. Back up your purchase list to a file and restore it on a new computer. Kept getting charged after you cancelled? That&rsquo;s a strong dispute, and Sula helps you file it.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-group">
+          <div class="feature-group-head"><h3>Keep your data yours</h3><p>On by default, and it stays on your device.</p></div>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg></span><h4>Tells every site not to sell your data <span class="new-badge">New</span></h4></div>
+              <p>Sula sends Global Privacy Control on every page you visit &mdash; a <strong>legally-binding</strong> &ldquo;do not sell or share my personal information&rdquo; request under the privacy laws of Texas, California, Colorado, Connecticut, Oregon, and a dozen more states. California fined one retailer $1.2M for ignoring it. On by default, one toggle, and nothing leaves your device to make it work. Free.</p>
+            </div>
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><h4>Privacy Guard dashboard <span class="new-badge">Pro</span></h4></div>
+              <p>See which sites honored your opt-out and which ignored it &mdash; receipts, not promises. Track your removal from the data brokers that sell your number to spammers, with reminders when it&rsquo;s time to re-check (they re-list you every few months). One dashboard for your whole privacy footprint.</p>
+            </div>
+            <div class="feature-card">
+              <div class="card-head"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 12h6M16.5 9v6"/></svg></span><h4>Fills forms from your profile</h4></div>
+              <p>Save your details once and fill any application or contact form in a click. Everything stays on your device, Sula highlights what it filled so you can check it, and it never auto-submits &mdash; you always review and send. Free.</p>
+            </div>
+          </div>
+        </div>
+            </div>
     </section>
 
 
