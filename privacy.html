@@ -242,8 +242,8 @@
       <div class="container">
         <div class="eyebrow">&#128274; Plain English. Short on purpose.</div>
         <h1>Privacy <span class="accent">policy.</span></h1>
-        <p class="lead">No accounts. No telemetry. No third-party tracking. Below is the full list of data the extension touches, and every network request it can make.</p>
-        <div class="updated">Last updated: October 7, 2026 &middot; Applies to Sula v2.7.1</div>
+        <p class="lead">No accounts. No telemetry. No third-party tracking. Below is the full list of data the extension touches, and every network request it can make. Sula for iPhone has <a href="#iphone">its own section</a>.</p>
+        <div class="updated">Last updated: October 20, 2026 &middot; Applies to Sula v2.7.1 and Sula for iPhone 1.0</div>
       </div>
     </section>
 
@@ -312,7 +312,7 @@
         <h3>Removed in 2.6.6: the Zendesk help-center query</h3>
         <p>Earlier versions made one anonymous query to a detected Zendesk help-center search API, looking for the support contact the chatbot was deflecting from. <strong>That request no longer exists.</strong> It was measured across 48 sites and removed: of ten reachable help centres it produced two usable support addresses out of twenty-one extracted, and the Zendesk subdomain it depended on was wrong every time it was found &mdash; modern widgets carry a GUID rather than a subdomain, so the request 404&rsquo;d after being made. It is documented here rather than quietly deleted because it appeared in previous versions of this policy.</p>
 
-        <p>That is the complete list. No telemetry, no analytics, no error reporting and no usage statistics. The extension does not contact any server we operate, because we do not operate one.</p>
+        <p>That is the complete list. No telemetry, no analytics, no error reporting and no usage statistics. The extension does not contact any server we operate. (Sula for iPhone does, only when you scan a photo. See <a href="#iphone">below</a>.)</p>
 
         <h2>What the extension shares</h2>
         <p><strong>Nothing, beyond the requests listed above.</strong> No data is sold or shared for advertising, analytics or any other purpose. Sula makes its money from Pro subscriptions, not from data.</p>
@@ -364,6 +364,27 @@
 
         <h2>Children&rsquo;s privacy</h2>
         <p>The extension does not knowingly collect information from anyone, including children under 13. What it stores stays on the user&rsquo;s own device, and we never receive it.</p>
+
+        <h2 id="iphone">Sula for iPhone</h2>
+        <p>The iPhone app works differently from the extension in one way: reading a photo happens on Sula&rsquo;s server, not on your phone.</p>
+
+        <h3>Scanning</h3>
+        <p>When you scan a receipt, order email, screenshot or product photo, the app shrinks the image, removes its location and camera data, and sends it to Sula&rsquo;s server. There, Claude, an AI model made by Anthropic and run on Amazon Web Services, reads the store name, date, amount, order number and the kind of problem. The photo is held in memory only while it is read, is never written to disk or to logs, and is discarded once the result is returned. The app asks for your permission before your first scan, and nothing is uploaded until you agree.</p>
+
+        <h3>Support contacts</h3>
+        <p>To find a company&rsquo;s support email and phone number, Sula&rsquo;s server visits that company&rsquo;s public website. None of your information is sent to the company.</p>
+
+        <h3>Daily limit</h3>
+        <p>The app creates a random ID when it is installed. It is sent with each scan so the server can enforce a daily scan limit. The server keeps only a count of scans per ID per day, which is set to expire after 3 days and is then deleted automatically. The ID is not linked to your name, your email or any account.</p>
+
+        <h3>On your phone</h3>
+        <p>Your refunds, deadlines, drafted letters, name and email are stored only on your phone. Sula has no accounts and cannot see them. &ldquo;Delete all my data&rdquo; in Settings removes them.</p>
+
+        <h3>Email</h3>
+        <p>Sula never sends email for you. It opens your own email app with the request filled in, and you send it.</p>
+
+        <h3>No ads or tracking</h3>
+        <p>The app contains no advertising or analytics SDKs and does not track you across apps or websites.</p>
 
         <h2>Changes to this policy</h2>
         <p>If this policy changes, the updated version will be published at this URL and the &ldquo;Last updated&rdquo; date at the top will be revised. The full history of changes is visible in the website&rsquo;s <a href="https://github.com/MatthewDuke1/find-me-people-site" target="_blank" rel="noopener">git repository</a>.</p>
