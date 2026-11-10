@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Use &mdash; Sula</title>
+  <meta name="description" content="The terms for using Sula: the browser extension, the iPhone app, Write it for me and Call for me. Plain English." />
+  <meta name="theme-color" content="#070d1a" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="canonical" href="https://trysula.com/terms.html" />
+
+  <!--
+    Security headers (meta-tag tier). See SECURITY-HEADERS.md for the
+    Cloudflare migration plan that closes the HTTP-response-only gap.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()" />
+
+  <meta property="og:title" content="Terms of Use &mdash; Sula" />
+  <meta property="og:description" content="The terms for using Sula, in plain English." />
+  <meta property="og:image" content="https://trysula.com/sula-logo.png" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="800" />
+  <meta property="og:image:alt" content="Sula popup showing ranked customer service contacts on a real website" />
+  <meta property="og:url" content="https://trysula.com/terms.html" />
+  <meta property="og:site_name" content="Sula" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Privacy Policy &mdash; Sula" />
+  <meta name="twitter:description" content="No accounts, no telemetry, no third-party tracking. A short, honest list of every piece of data the extension touches." />
+  <meta name="twitter:image" content="https://trysula.com/sula-logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #0a0f1c;
+      --bg-raised: #111827;
+      --bg-inset:  #0b1120;
+      --line:      #1d2739;
+      --line-soft: #161f30;
+      --ink:       #f4f6fb;
+      --ink-2:     #aeb7c9;
+      --ink-3:     #6b7689;
+      --accent:      #4d8bf0;
+      --accent-bright:#6ba3f7;
+      --accent-ink:  #06101f;
+      --accent-glow: rgba(77,139,240,0.14);
+      --accent-line: rgba(77,139,240,0.28);
+      --good:      #2dd4bf;
+      --good-soft: rgba(45,212,191,0.14);
+      --warn:      #f0b429;
+      --warn-soft: rgba(240,180,41,0.14);
+      --r-sm: 8px; --r-md: 12px; --r-lg: 18px; --r-pill: 999px;
+      --ease: cubic-bezier(0.22,0.68,0,1);
+      --font-display: 'Bricolage Grotesque', 'Public Sans', system-ui, sans-serif;
+      --font-body: 'Public Sans', -apple-system, 'Segoe UI', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    h1, h2, h3, .nav-brand { font-family: var(--font-display); }
+    a { color: var(--accent-bright); text-decoration: none; transition: color 0.15s; }
+    a:hover { color: var(--accent-bright); }
+
+    .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px); background: rgba(10,10,10,0.7);
+      border-bottom: 1px solid rgba(30,30,30,0.6);
+    }
+    .nav-inner {
+      max-width: 1180px; margin: 0 auto; padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 16px; color: var(--ink);
+    }
+    .nav-brand .logo {
+      width: 30px; height: 30px; border-radius: 50%;
+      object-fit: cover; box-shadow: 0 0 0 2px var(--accent-line);
+    }
+    .nav-links { display: flex; gap: 26px; align-items: center; }
+    .nav-links a { color: var(--ink-2); font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: var(--ink); }
+
+    .hero-pp {
+      padding: 72px 0 32px;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 999px;
+      background: var(--accent-glow); border: 1px solid var(--accent-line);
+      color: var(--accent-bright); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.3px; margin-bottom: 22px;
+    }
+    .hero-pp h1 {
+      font-size: 48px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .hero-pp h1 .accent {
+      background: linear-gradient(135deg, var(--accent-bright), var(--accent-bright));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-pp .lead { font-size: 17px; color: var(--ink-2); max-width: 620px; }
+    .hero-pp .updated { margin-top: 22px; color: var(--ink-3); font-size: 13px; }
+
+    .privacy { padding: 56px 0 96px; }
+    .privacy h2 {
+      font-size: 22px; font-weight: 800; margin-top: 44px; margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+    .privacy h2:first-child { margin-top: 0; }
+    .privacy h3 {
+      font-size: 16px; font-weight: 700; margin-top: 24px; margin-bottom: 8px;
+      color: var(--ink-2);
+    }
+    .privacy p { color: #c4c4c8; margin-bottom: 14px; }
+    .privacy p strong { color: var(--ink); }
+    .privacy ul { margin: 8px 0 18px 22px; color: #c4c4c8; }
+    .privacy li { margin-bottom: 6px; }
+    .privacy code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.88em; color: var(--ink-2);
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06);
+      padding: 1px 6px; border-radius: 4px;
+    }
+    .callout {
+      margin: 18px 0; padding: 18px 22px; border-radius: 12px;
+      background: rgba(96,165,250,0.06); border: 1px solid rgba(96,165,250,0.18);
+    }
+    .callout strong { color: var(--accent-bright); }
+
+    .perm-table {
+      width: 100%; border-collapse: collapse; margin: 12px 0 22px;
+      font-size: 14.5px;
+    }
+    .perm-table th, .perm-table td {
+      text-align: left; padding: 12px 14px; vertical-align: top;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .perm-table th {
+      color: var(--ink-2); font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .perm-table td:first-child {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      color: var(--accent-bright); font-size: 13px; white-space: nowrap;
+    }
+    .perm-table td:nth-child(2) { color: var(--ink-2); }
+    .perm-table td:nth-child(3) { color: var(--ink-2); }
+
+    .footer {
+      border-top: 1px solid var(--line); padding: 32px 0;
+      color: var(--ink-3); font-size: 14px;
+    }
+    .footer-row {
+      max-width: 1180px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+
+    /* Tablet / narrow-laptop range. Closes the 720-960px gap on the
+       privacy page (index.html handles this range at 960px). The
+       permission table is the load-bearing element here -- without a
+       scroll wrapper or font-size reduction it overflows the container
+       in this viewport range. */
+    @media (max-width: 960px) {
+      .hero-pp h1 { font-size: 38px; letter-spacing: -1px; }
+      .perm-table { display: block; overflow-x: auto; }
+      .perm-table th, .perm-table td { white-space: nowrap; }
+    }
+    @media (max-width: 720px) {
+      .hero-pp { padding: 48px 0 28px; }
+      .hero-pp h1 { font-size: 36px; letter-spacing: -1px; }
+      .privacy { padding: 40px 0 64px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .perm-table th, .perm-table td { padding: 10px 8px; font-size: 13px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://trysula.com/privacy.html#webpage",
+        "url": "https://trysula.com/privacy.html",
+        "name": "Privacy Policy — Sula",
+        "description": "Sula's privacy policy: local-first processing, no accounts, no telemetry, and a short honest list of every piece of data the extension touches.",
+        "inLanguage": "en-US",
+        "isPartOf": { "@id": "https://trysula.com/#website" },
+        "about": { "@id": "https://trysula.com/#extension" },
+        "author": { "@id": "https://trysula.com/#matt-duke" },
+        "breadcrumb": { "@id": "https://trysula.com/privacy.html#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://trysula.com/privacy.html#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Sula", "item": "https://trysula.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://trysula.com/privacy.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <img class="logo" src="sula-logo-144.png" alt="Sula logo" /> Sula
+      </a>
+      <nav class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#screenshots">Screenshots</a>
+        <a href="/#support">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Draft terms written 2026-11-10. Have a lawyer review before relying on them. -->
+    <section class="hero-pp">
+      <div class="container">
+        <div class="eyebrow">&#128220; Plain English.</div>
+        <h1>Terms of <span class="accent">use.</span></h1>
+        <p class="lead">These terms cover the Sula browser extension, the Sula iPhone app, Sula Desk, and the features that use Sula&rsquo;s server: Write it for me and Call for me. How Sula handles your information is in the <a href="privacy.html">privacy policy</a>.</p>
+        <div class="updated">Last updated: November 10, 2026</div>
+      </div>
+    </section>
+
+    <section class="privacy">
+      <div class="container">
+
+        <h2>1. Agreeing to these terms</h2>
+        <p>By installing or using Sula, you agree to these terms. If you don&rsquo;t agree, don&rsquo;t use Sula. &ldquo;Sula&rdquo;, &ldquo;we&rdquo; and &ldquo;us&rdquo; mean the people who make Sula; &ldquo;you&rdquo; means the person using it.</p>
+
+        <h2>2. What Sula is, and isn&rsquo;t</h2>
+        <ul>
+          <li>Sula is a tool that helps you contact companies, keep track of purchases and deadlines, and ask for refunds, cancellations and fixes.</li>
+          <li><strong>Sula isn&rsquo;t a law firm and doesn&rsquo;t give legal advice.</strong> Deadlines, dispute steps and regulator suggestions are general information, not advice about your situation. For legal advice, talk to a lawyer.</li>
+          <li><strong>Sula doesn&rsquo;t guarantee any outcome.</strong> Whether a company refunds you, books you or answers you is up to that company.</li>
+          <li>You send every email yourself. Sula acts for you only in the calls you ask it to make with Call for me (section 5).</li>
+        </ul>
+
+        <h2>3. Using Sula properly</h2>
+        <p>Don&rsquo;t use Sula to break the law, harass or deceive anyone, or harm Sula or other people. Don&rsquo;t try to get around Sula&rsquo;s daily limits, overload its server, or use its server for anything other than Sula&rsquo;s own features. We may limit or stop access for anyone who does.</p>
+
+        <h2>4. AI features</h2>
+        <p>Write it for me, receipt scanning and Call for me use AI, which can make mistakes. Sula checks drafts before you see them, but <strong>you&rsquo;re responsible for reading each draft and for what you send</strong>. Fill in any blanks shown in [BRACKETS] and correct anything that&rsquo;s wrong before sending. Check facts Sula reads from photos before relying on them.</p>
+
+        <h2>5. Call for me</h2>
+        <p>When you ask Sula to call a business, you authorize Sula to place that call for you, to say it&rsquo;s an AI assistant calling on your behalf, and to have the call recorded and transcribed. By using Call for me, you agree that:</p>
+        <ul>
+          <li><strong>You&rsquo;re at least 18</strong>, and the request is your own.</li>
+          <li><strong>You&rsquo;ll only ask Sula to call businesses</strong>, for real requests such as a booking, a reschedule or a question. Not personal numbers, not to harass or prank anyone, and <strong>never in an emergency</strong>: for emergencies, call 911 yourself.</li>
+          <li><strong>What you tell Sula is accurate</strong>, including your name and any callback number, and the callback number is one you&rsquo;re allowed to share.</li>
+          <li><strong>You&rsquo;re responsible for what Sula agrees to within your instructions.</strong> For example, a reservation Sula books for you may carry the restaurant&rsquo;s own cancellation or no-show policy. Sula won&rsquo;t agree to payments, deposits or fees, and won&rsquo;t give out card numbers, PINs, passwords, ID numbers or dates of birth. If a business needs any of those, Sula tells you to follow up yourself.</li>
+          <li>Sula may refuse a request, or end a call, that falls outside these terms or its limits (currently 10 minutes per call and 3 calls a day).</li>
+          <li><strong>Callbacks:</strong> if you save a callback number, you agree that calls back to Sula&rsquo;s number from that business, for 14 days after Sula&rsquo;s call, can be forwarded to it, and that voicemails and texts from that business can be shown to you in Sula.</li>
+        </ul>
+        <p>Call summaries are made by AI from the call&rsquo;s transcript. Check important details, such as a booking&rsquo;s time, with the business if they matter to you.</p>
+
+        <h2>6. Sula Pro and payments</h2>
+        <p>Sula Pro is sold by LemonSqueezy, our Merchant of Record. Payments, taxes, renewals and refunds are handled by LemonSqueezy under the terms shown at checkout. Subscriptions renew until you cancel, and you can cancel any time; Pro stays on until the end of the period you paid for. We may change prices for new purchases. If we change the price of a subscription you already have, we&rsquo;ll tell you before it applies. Questions about a charge: email us.</p>
+
+        <h2>7. Other companies&rsquo; services</h2>
+        <p>Sula relies on services from other companies, such as Amazon Web Services, Anthropic&rsquo;s Claude (through Amazon Bedrock), Twilio, LemonSqueezy and Google (Gmail and Chrome). Links and buttons that open other companies&rsquo; sites take you to services we don&rsquo;t control, under their own terms.</p>
+
+        <h2>8. Changes and ending use</h2>
+        <p>We may change or stop features, and we may update these terms; the &ldquo;Last updated&rdquo; date above shows when. If a change matters to how you use Sula, we&rsquo;ll mention it in the release notes. You can stop using Sula any time by removing the extension or the app.</p>
+
+        <h2>9. No warranty</h2>
+        <p>Sula is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo;. To the extent the law allows, we make no warranties that Sula will be error-free, uninterrupted, or right about any company&rsquo;s contact details, policies, deadlines or answers.</p>
+
+        <h2>10. Limit on liability</h2>
+        <p>To the extent the law allows, we aren&rsquo;t liable for indirect, incidental, special or consequential losses, or for lost money or refunds, arising from your use of Sula. Our total liability for any claim is limited to the greater of what you paid for Sula in the 12 months before the claim, or $50. Some places don&rsquo;t allow these limits, so they may not apply to you.</p>
+
+        <h2>11. Law</h2>
+        <p>These terms are governed by the laws of the State of Texas, without regard to its conflict-of-law rules. Nothing in these terms takes away rights you have under consumer-protection laws that can&rsquo;t be waived.</p>
+
+        <h2>12. Contact</h2>
+        <p>Questions about these terms? Email <a href="mailto:sula.support@trysula.com?subject=Sula%20terms">sula.support@trysula.com</a>.</p>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-row">
+      <div>
+        <img src="sula-logo-144.png" alt="" style="width:22px;height:22px;border-radius:50%;vertical-align:middle;margin-right:6px;" />
+        Sula &middot; v2.7.1
+      </div>
+      <nav class="footer-links">
+        <a href="/">Home</a>
+        <a href="mailto:sula.support@trysula.com">Contact</a>
+        <a href="terms.html">Terms</a>
+        <a href="support.html#feedback">Report an issue</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
