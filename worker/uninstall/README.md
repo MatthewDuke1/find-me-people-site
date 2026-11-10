@@ -1,113 +1,74 @@
 # Uninstall-survey collector (Cloudflare Worker + D1)
 
-Same-origin backend for the post-uninstall survey. Receives the anonymous POST
-from `uninstall.html` at `https://trysula.com/api/uninstall` and stores it
-in a D1 (SQLite) table. No PII — reason, comment, version, timestamp only.
+Receives the anonymous POST from `uninstall.html` and stores it in a D1
+(SQLite) table. No personal data: reason, comment, version and timestamp only.
+
+It runs on its own `workers.dev` address, not on `trysula.com`. That keeps the
+domain's DNS on Route 53, where the Zoho mail records live, and the static site
+on GitHub Pages. The Worker only accepts POSTs whose `Origin` is `trysula.com`.
 
 ```
 worker/uninstall/
   src/index.js     the Worker
   schema.sql       D1 table
-  wrangler.toml    config (name, route, D1 binding)
+  wrangler.toml    config (name, D1 binding, workers_dev)
 ```
 
-## Prerequisites
-- Node.js (already installed).
-- A free Cloudflare account.
+## Deploy (about 10 minutes, free tier)
 
----
-
-## Part A — Put `trysula.com` on Cloudflare (one-time, ~30 min)
-
-The domain is currently on **Route 53 DNS → GitHub Pages**. The Worker can only
-answer `trysula.com/api/...` if Cloudflare fronts the zone. This is the
-same migration as `SECURITY-HEADERS.md` (it also gets you the A-grade headers).
-
-1. https://dash.cloudflare.com → **Add a site** → `trysula.com` → Free plan.
-2. Cloudflare imports DNS. Confirm the GitHub Pages **A records** are present and
-   set them **Proxied** (orange cloud):
-   `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   (plus the `www` CNAME → `matthewduke1.github.io`, proxied).
-3. Cloudflare shows two nameservers (e.g. `xxx.ns.cloudflare.com`). At your
-   **registrar** (where the domain is registered — currently using AWS NS),
-   replace the nameservers with the Cloudflare pair. Wait for propagation
-   (~15 min–2 hr).
-4. **SSL/TLS → Overview → Full**; **Edge Certificates → Always Use HTTPS → On**.
-5. (Bonus, while you're here) add the response-header Transform Rules from
-   `SECURITY-HEADERS.md` to take the security grade F → A.
-
-> Verify GitHub Pages still serves: `https://trysula.com/` should load
-> normally through Cloudflare before continuing.
-
----
-
-## Part B — Deploy the Worker
-
-Run from `worker/uninstall/`.
+Run from `worker/uninstall/` with a free Cloudflare account.
 
 ```sh
-npm install -g wrangler        # or use: npx wrangler@latest <cmd>
-wrangler login                 # opens a browser to authorize your account
-
-# 1) Create the D1 database, then paste the printed database_id into wrangler.toml
-wrangler d1 create fmp-uninstalls
-
-# 2) Create the table (--remote = the real D1, not a local dev copy)
-wrangler d1 execute fmp-uninstalls --remote --file=./schema.sql
-
-# 3) Deploy (also binds the trysula.com/api/uninstall route)
-wrangler deploy
+npx wrangler@latest login                       # authorize in the browser
+npx wrangler@latest d1 create fmp-uninstalls    # prints a database_id
+#   paste that database_id into wrangler.toml (replace REPLACE_WITH_D1_DATABASE_ID)
+npx wrangler@latest d1 execute fmp-uninstalls --remote --file=./schema.sql
+npx wrangler@latest deploy                      # prints https://fmp-uninstall-survey.<subdomain>.workers.dev
 ```
+
+The first deploy asks you to pick a `workers.dev` subdomain if you don't have one.
 
 ### Smoke test
+
 ```sh
-curl -i -X POST https://trysula.com/api/uninstall \
-  -H "Content-Type: application/json" \
+curl -i -X POST https://fmp-uninstall-survey.<subdomain>.workers.dev \
+  -H "Origin: https://trysula.com" -H "Content-Type: application/json" \
   -d '{"reason":"bug","reasonLabel":"Something was broken","comment":"smoke test","version":"test"}'
 # expect: HTTP/1.1 204
 
-wrangler d1 execute fmp-uninstalls --remote \
+npx wrangler@latest d1 execute fmp-uninstalls --remote \
   --command "SELECT * FROM uninstalls ORDER BY id DESC LIMIT 5"
 # expect: your test row
 ```
 
----
+## Turn collection on
 
-## Part C — Turn collection on in the site
-
-One line in `../../uninstall.js`:
+Set the endpoint in `../../uninstall.js` to the deployed URL:
 
 ```js
-const COLLECT_ENDPOINT = "/api/uninstall";
+var ENDPOINT = "https://fmp-uninstall-survey.<subdomain>.workers.dev";
 ```
 
-Commit + merge. No CSP change is needed — the endpoint is same-origin, so the
-existing `connect-src 'self'` already allows it.
+`uninstall.html` has no Content-Security-Policy, so no CSP change is needed.
 
----
-
-## Reading the data later
+## Reading the data
 
 ```sh
-# Reason breakdown
-wrangler d1 execute fmp-uninstalls --remote --command \
+npx wrangler@latest d1 execute fmp-uninstalls --remote --command \
   "SELECT reason, COUNT(*) c FROM uninstalls GROUP BY reason ORDER BY c DESC"
 
-# Recent comments (the actionable bit)
-wrangler d1 execute fmp-uninstalls --remote --command \
+npx wrangler@latest d1 execute fmp-uninstalls --remote --command \
   "SELECT submitted_at, reason, comment FROM uninstalls WHERE comment != '' ORDER BY id DESC LIMIT 50"
 ```
 
-## Cost / scale
-Free tier: Workers 100k req/day, **D1 100k writes/day**. One uninstall = one
-write. Comfortably covers any realistic FMP volume; Workers Paid ($5/mo) is 10M+
-if it ever became a hit.
+## Cost
+
+Free tier: 100k Worker requests and 100k D1 writes a day. One uninstall is one
+write.
 
 ## Notes
-- The page works with collection **off** (`COLLECT_ENDPOINT = ""`) — deploying
-  this is what turns storage on. The static site never depends on the Worker.
-- `database_id` in `wrangler.toml` is **not** a secret (access still requires
-  your authenticated account), so committing it is fine.
-- Soft anti-spam: the Worker rejects POSTs whose `Origin` isn't
-  `trysula.com`. For a hard guarantee, add a Cloudflare WAF rate-limit
-  rule on the `/api/uninstall` path.
+
+- `database_id` isn't a secret (D1 access still needs your Cloudflare login),
+  so committing it is fine.
+- The Origin check turns away casual cross-site noise but a script can forge
+  it. For a hard limit, add a Cloudflare rate-limit rule on the Worker.
