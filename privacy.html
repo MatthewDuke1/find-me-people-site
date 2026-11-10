@@ -243,7 +243,7 @@
         <div class="eyebrow">&#128274; Plain English. Short on purpose.</div>
         <h1>Privacy <span class="accent">policy.</span></h1>
         <p class="lead">No accounts. No telemetry. No third-party tracking. Below is the full list of data the extension touches, and every network request it can make. Sula for iPhone has <a href="#iphone">its own section</a>.</p>
-        <div class="updated">Last updated: October 20, 2026 &middot; Applies to Sula v2.7.1 and Sula for iPhone 1.0</div>
+        <div class="updated">Last updated: November 10, 2026 &middot; Applies to Sula v2.8.0, Sula for iPhone and Call for me</div>
       </div>
     </section>
 
@@ -252,7 +252,7 @@
 
         <div class="callout">
           <strong>The short version.</strong>
-          <p style="margin: 8px 0 0;">Sula reads the page you&rsquo;re on, in your browser, to find support contacts, refund terms and the renewal terms of things you buy. What it keeps stays in your browser&rsquo;s own storage on your device. It has no account, no analytics and no server of ours to send anything to. It makes a few narrow network requests, listed below: fetching a site&rsquo;s own contact pages, an optional email-domain check, license checks for Pro, and Save to CRM if you set it up.</p>
+          <p style="margin: 8px 0 0;">Sula reads the page you&rsquo;re on, in your browser, to find support contacts, refund terms and the renewal terms of things you buy. What it keeps stays in your browser&rsquo;s own storage on your device. It has no account and no analytics. It makes a few narrow network requests, listed below, and most happen only when you click something: fetching a site&rsquo;s own contact pages, the email check when you tap Verify, license checks for Pro, and <strong>Write it for me</strong>, which sends what you typed to Sula&rsquo;s server to draft an email and keeps none of it. Sula doesn&rsquo;t sell or share your information. The iPhone app and Call for me are covered <a href="#iphone">below</a>. Use of Sula is also covered by the <a href="terms.html">Terms of Use</a>.</p>
         </div>
 
         <h2>What the extension reads</h2>
@@ -271,21 +271,22 @@
         <h2>What the extension stores</h2>
         <p>Everything below is kept in <code>chrome.storage.local</code>, on your device only:</p>
         <ul>
-          <li><strong>Preferences.</strong> Side panel on or off, your mail client for Compose, sites where you&rsquo;ve hidden the panel, the panel tab&rsquo;s position, and whether Global Privacy Control and the purchase ledger are on.</li>
+          <li><strong>Preferences.</strong> Side panel on or off, sites where you&rsquo;ve hidden the panel, the panel tab&rsquo;s position, and whether Global Privacy Control and the purchase ledger are on.</li>
           <li><strong>Copy history.</strong> What you copied (value, hostname, score, time), capped at 50 entries. Clear it any time from the History tab.</li>
           <li><strong>Purchase ledger.</strong> For purchases and subscriptions Sula records: merchant, amount, order number, renewal terms, the date it was recorded, and the address of the page it was recorded on (so <strong>Cancel it</strong> can take you back there). You can turn the ledger off and delete entries in the Subs tab.</li>
           <li><strong>Renewal reminders.</strong> Which subscriptions are due soon and which ones you chose to keep, so a reminder isn&rsquo;t shown twice.</li>
-          <li><strong>Your details, if you enter them.</strong> The autofill profile and the sender details used in letters.</li>
+          <li><strong>Your details, if you enter them.</strong> The autofill profile. Its name is also used to sign drafts from Write it for me.</li>
           <li><strong>Privacy Guard.</strong> Which data-broker opt-outs you&rsquo;ve started and when to re-check them.</li>
           <li><strong>Pro license.</strong> Your license key and its activation ID.</li>
-          <li><strong>Save to CRM.</strong> The webhook address, if you add one.</li>
+          <li><strong>Install ID.</strong> A random identifier made on your device, sent only with Write it for me requests so Sula&rsquo;s server can apply a daily limit. It isn&rsquo;t linked to your name, email or license.</li>
+          <li><strong>Write it for me notice.</strong> Whether you&rsquo;ve accepted the notice about what Write it for me sends.</li>
           <li><strong>Small flags.</strong> Install date, whether you&rsquo;ve seen the welcome tour and the &ldquo;what&rsquo;s new&rdquo; note, and a short-lived scan cache.</li>
         </ul>
         <p><strong>Backup and restore.</strong> &ldquo;Back up&rdquo; saves the purchase ledger as a file in your downloads. &ldquo;Restore&rdquo; reads a file you choose. Neither sends anything over the network.</p>
         <p>Removing the extension deletes all of it. Sula also uses <code>sessionStorage</code> on the site you&rsquo;re visiting for a few &ldquo;already fetched this session&rdquo; flags, which the browser clears when you close the tab.</p>
 
         <h2>What the extension transmits</h2>
-        <p>These are all the network requests the extension can make. None of them goes to a server we run.</p>
+        <p>These are all the network requests the extension can make. Only one, Write it for me, goes to a server Sula runs, and only when you click it.</p>
 
         <h3>1. The site&rsquo;s own contact pages</h3>
         <p>When the page you&rsquo;re on links to contact pages, or has no contact a customer can use, Sula fetches those pages from the same site and reads them for emails and phone numbers. If that finds nothing, it reads the site&rsquo;s <code>sitemap.xml</code> to find its contact pages.</p>
@@ -298,24 +299,49 @@
         <h3>2. The same company&rsquo;s support subdomain</h3>
         <p>When a page links to the company&rsquo;s own help site (for example <code>help.</code> or <code>support.</code> on the same domain), Sula fetches at most two of those pages, <strong>without cookies</strong>, and reads them for contacts.</p>
 
-        <h3>3. Email domain check (optional)</h3>
+        <h3>3. Email domain check (only when you tap Verify)</h3>
         <p>To check whether an email address can receive mail, Sula can ask Cloudflare&rsquo;s public DNS resolver (<code>cloudflare-dns.com</code>) for the domain&rsquo;s mail servers. Only the domain is sent, such as <code>example.com</code>, never the full address.</p>
 
         <h3>4. Pro license (Pro only)</h3>
         <p>Activating, checking or releasing a Pro license sends your license key and an activation name (&ldquo;Sula&rdquo; plus the first 40 characters of your browser&rsquo;s user-agent) to LemonSqueezy, which sells Sula Pro as Merchant of Record. Checkout happens on LemonSqueezy&rsquo;s site. Sula never sees your card.</p>
 
-        <h3>5. Save to CRM (only if you set it up)</h3>
-        <p>If you add a webhook address and click send, Sula posts the contacts you picked (email, phone, the site they came from, and when they were found) to that address. Nothing is sent until you add an address and click.</p>
+        <h3 id="compose">5. Write it for me (only when you click Write it)</h3>
+        <p>Write it for me drafts an email to a company for you. When you click <strong>Write it</strong> (or <strong>Agree &amp; write it</strong> the first time), Sula sends one request to its own server on Amazon Web Services:</p>
+        <ul>
+          <li><strong>What&rsquo;s sent:</strong> what you picked (refund, cancel, wrong charge and so on), what you typed, the company&rsquo;s name, the install ID, and the name from your autofill profile to sign with. With Pro and the purchase ledger on, it also sends that site&rsquo;s purchase: order number, amount and date.</li>
+          <li><strong>What&rsquo;s never sent:</strong> the page you&rsquo;re on or its address, your browsing history, your email address, or anything else in the ledger.</li>
+          <li><strong>What happens to it:</strong> the server asks Claude, an AI model by Anthropic, to write the draft. The model runs inside Amazon Bedrock, so the request stays within Amazon Web Services; under AWS&rsquo;s terms for Bedrock, the model provider doesn&rsquo;t receive it and it isn&rsquo;t used to train models. The draft comes back to you and the request is discarded. <strong>Sula doesn&rsquo;t store or log what you sent or the draft.</strong> It logs only which kind of email it was and how much text the AI processed, to track cost.</li>
+          <li><strong>Limit:</strong> 15 drafts per install per day.</li>
+        </ul>
+        <p>You read and edit every draft and send it yourself, from your own email. Sula never sends email for you.</p>
+
+        <h3>Removed in 2.8.0: Save to CRM, contact export and the job-application finder</h3>
+        <p>Earlier versions could post a page&rsquo;s contacts to a webhook address you added (Save to CRM). That request no longer exists, and neither does contact export or the job-application contact finder.</p>
 
         <p><strong>Global Privacy Control.</strong> When it&rsquo;s on, Sula adds the <code>Sec-GPC: 1</code> header to the requests your browser already makes, telling sites not to sell or share your data. That is a header on your own traffic, not a request of Sula&rsquo;s.</p>
 
         <h3>Removed in 2.6.6: the Zendesk help-center query</h3>
         <p>Earlier versions made one anonymous query to a detected Zendesk help-center search API, looking for the support contact the chatbot was deflecting from. <strong>That request no longer exists.</strong> It was measured across 48 sites and removed: of ten reachable help centres it produced two usable support addresses out of twenty-one extracted, and the Zendesk subdomain it depended on was wrong every time it was found &mdash; modern widgets carry a GUID rather than a subdomain, so the request 404&rsquo;d after being made. It is documented here rather than quietly deleted because it appeared in previous versions of this policy.</p>
 
-        <p>That is the complete list. No telemetry, no analytics, no error reporting and no usage statistics. The extension does not contact any server we operate. (Sula for iPhone does, only when you scan a photo. See <a href="#iphone">below</a>.)</p>
+        <p>That is the complete list. No telemetry, no analytics, no error reporting and no usage statistics. Besides Write it for me, the extension doesn&rsquo;t contact any server Sula runs. (The iPhone app does, when you scan a photo or use Call for me. See <a href="#iphone">below</a>.)</p>
 
-        <h2>What the extension shares</h2>
-        <p><strong>Nothing, beyond the requests listed above.</strong> No data is sold or shared for advertising, analytics or any other purpose. Sula makes its money from Pro subscriptions, not from data.</p>
+        <h2>Who receives data</h2>
+        <p><strong>Sula doesn&rsquo;t sell or share your personal information</strong>, and nothing goes anywhere for advertising, profiling or analytics. Sula makes its money from Pro subscriptions, not from data. Data goes only to these service providers, each for the job described on this page:</p>
+        <ul>
+          <li><strong>Amazon Web Services</strong>, including Amazon Bedrock, which runs Claude: Write it for me, receipt scanning and Call for me.</li>
+          <li><strong>Twilio</strong>: places and connects calls for Call for me, and receives calls and texts to Sula&rsquo;s number.</li>
+          <li><strong>LemonSqueezy</strong>: Pro purchases and license checks.</li>
+          <li><strong>Cloudflare&rsquo;s public DNS resolver</strong>: an email&rsquo;s domain, when you tap Verify.</li>
+        </ul>
+        <p>Sula&rsquo;s use of information from the extension complies with the Chrome Web Store User Data Policy, including its Limited Use requirements.</p>
+
+        <h2>AI in Sula</h2>
+        <p>Write it for me, receipt scanning and Call for me use AI. AI can make mistakes, so Sula checks its own work and leaves the final say with you:</p>
+        <ul>
+          <li><strong>Drafts</strong> are checked before you see them. Sula rejects drafts that claim legal rights, threaten legal action or promise an outcome, and drafts with an amount or order number you didn&rsquo;t give. Anything you didn&rsquo;t provide is left as a blank in [BRACKETS]. Read every draft before you send it.</li>
+          <li><strong>Calls</strong> start by saying Sula is an AI assistant and that the call is recorded, and stay within what you asked for (see <a href="#calls">Call for me</a>).</li>
+          <li>Nothing Sula writes or says is legal advice, and Sula doesn&rsquo;t represent you.</li>
+        </ul>
 
         <h2>Permissions explained</h2>
         <table class="perm-table">
@@ -363,7 +389,7 @@
         <p>The extension does not require or support user accounts, login, or registration. It does not create, read, modify, or delete cookies; the only cookies involved are the ones your browser already sends with the same-site contact-page fetches described above. It does not include any analytics SDK, crash reporter, A/B testing framework, or feature flag service.</p>
 
         <h2>Children&rsquo;s privacy</h2>
-        <p>The extension does not knowingly collect information from anyone, including children under 13. What it stores stays on the user&rsquo;s own device, and we never receive it.</p>
+        <p>The extension does not knowingly collect information from anyone, including children under 13. What it stores stays on the user&rsquo;s own device. Sula isn&rsquo;t directed at children, and Call for me is only for people 18 and over.</p>
 
         <h2 id="iphone">Sula for iPhone</h2>
         <p>The iPhone app works differently from the extension in one way: reading a photo happens on Sula&rsquo;s server, not on your phone.</p>
@@ -383,14 +409,47 @@
         <h3>Email</h3>
         <p>Sula never sends email for you. It opens your own email app with the request filled in, and you send it.</p>
 
+        <h3>Reminders</h3>
+        <p>If you allow notifications, the app schedules reminders on your phone: a week after you send a request, before a deadline closes, the day before a booking, and when a company&rsquo;s promised date passes. They&rsquo;re set on your phone only and never go through Sula&rsquo;s server.</p>
+
         <h3>No ads or tracking</h3>
         <p>The app contains no advertising or analytics SDKs and does not track you across apps or websites.</p>
 
+        <h2 id="calls">Call for me</h2>
+        <p>Call for me has Sula phone a business for you, to book, reschedule or ask a question. It runs on Sula&rsquo;s server and Twilio, not on your phone.</p>
+
+        <h3>What Sula sends and keeps</h3>
+        <ul>
+          <li><strong>When you ask for a call:</strong> the business&rsquo;s name and number, what you want (in your words), what you&rsquo;re flexible on, your first name, and, only if you saved one, your callback number. Sula never takes card numbers, PINs, passwords, ID numbers or dates of birth for a call, and refuses requests that include them.</li>
+          <li><strong>During the call:</strong> Twilio connects the call and turns speech into text and text into speech. Claude, running on Amazon Bedrock, decides what Sula says.</li>
+          <li><strong>After the call:</strong> Sula&rsquo;s server keeps the transcript and a summary (the outcome, any booking, anything the business promised) so the app can show them. <strong>These are deleted automatically after 7 days.</strong> The app keeps its own copy of the summary on your phone.</li>
+          <li><strong>Limits:</strong> a call lasts at most 10 minutes, and each install can request 3 a day. Your install ID is used for the limit, as with scanning.</li>
+        </ul>
+
+        <h3>What the business hears</h3>
+        <p>Every call starts with: &ldquo;Hi, this is Sula, an AI assistant calling on behalf of [your first name]. This call is recorded.&rdquo; If anyone asks whether they&rsquo;re talking to a person, Sula says it&rsquo;s an AI. Sula gives your callback number only if you saved one, and only when the business asks for a number. It never invents one.</p>
+
+        <h3>Calls and texts back to Sula&rsquo;s number</h3>
+        <p>Calls show Sula&rsquo;s phone number, so a business may call or text back to it. For 14 days after a call:</p>
+        <ul>
+          <li>If you saved a callback number, a call back from that business is forwarded to you, with a short message first saying who it is.</li>
+          <li>If you didn&rsquo;t save one, or don&rsquo;t answer, the caller can leave a voicemail. Twilio transcribes it, and the text is added to the call for you to see.</li>
+          <li>A text from that business is added to the call. Sula never replies to texts.</li>
+        </ul>
+        <p>Voicemail transcripts and texts are deleted with the call after 7 days. Calls and texts from anyone Sula didn&rsquo;t call are not recorded or kept.</p>
+
+        <h2>Your choices and rights</h2>
+        <ul>
+          <li><strong>In the extension and the app:</strong> what Sula keeps lives on your device. Delete it from Sula&rsquo;s settings, or remove the extension or app to delete all of it.</li>
+          <li><strong>On Sula&rsquo;s server:</strong> Write it for me and receipt scans keep nothing. Call records delete themselves after 7 days. To have a call deleted sooner, email us the call&rsquo;s time and the business&rsquo;s number.</li>
+          <li>If you live somewhere with privacy rights to access, correct or delete your information (for example California, Colorado, Connecticut, Virginia or Texas), email us and we&rsquo;ll respond within 30 days. Sula doesn&rsquo;t sell or share personal information, or use it for targeted advertising.</li>
+        </ul>
+
         <h2>Changes to this policy</h2>
-        <p>If this policy changes, the updated version will be published at this URL and the &ldquo;Last updated&rdquo; date at the top will be revised.</p>
+        <p>If this policy changes, the updated version will be published at this URL and the &ldquo;Last updated&rdquo; date at the top will be revised. Changes to what Sula sends or keeps are also listed in the release notes.</p>
 
         <h2>Contact</h2>
-        <p>Questions about this policy? Email <a href="mailto:matthewduke0@gmail.com?subject=Sula%20privacy">matthewduke0@gmail.com</a>.</p>
+        <p>Questions about this policy, or a privacy request? Email <a href="mailto:sula.support@trysula.com?subject=Sula%20privacy">sula.support@trysula.com</a>.</p>
 
       </div>
     </section>
@@ -404,7 +463,8 @@
       </div>
       <nav class="footer-links">
         <a href="/">Home</a>
-        <a href="mailto:matthewduke0@gmail.com">Contact</a>
+        <a href="mailto:sula.support@trysula.com">Contact</a>
+        <a href="terms.html">Terms</a>
         <a href="support.html#feedback">Report an issue</a>
       </nav>
     </div>
