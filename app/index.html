@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sula Desk</title>
+  <meta name="description" content="Your refund cases, letters, deadlines and subscriptions in one place. Everything stays in this browser." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="96x96" href="../favicon.png" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self' https://api.lemonsqueezy.com; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../"><img src="../sula-logo-144.png" alt="" width="28" height="28" /> Sula <span>Desk</span></a>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" data-tab="cases" aria-selected="true">Cases</button>
+      <button role="tab" data-tab="purchases">Purchases</button>
+      <button role="tab" data-tab="subscriptions">Subscriptions</button>
+      <button role="tab" data-tab="settings">Settings</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="tab-cases" class="tab" role="tabpanel"></section>
+    <section id="tab-purchases" class="tab" role="tabpanel" hidden></section>
+    <section id="tab-subscriptions" class="tab" role="tabpanel" hidden></section>
+    <section id="tab-settings" class="tab" role="tabpanel" hidden></section>
+  </main>
+
+  <div id="print-letter" aria-hidden="true"></div>
+
+  <footer class="foot">
+    Everything here stays in this browser. Sula Desk has no account and no server copy.
+    The only request it makes is the Pro license check to LemonSqueezy. Back it up from Settings.
+    <a href="../privacy.html">Privacy</a>
+  </footer>
+
+  <script src="lib/merchant-table.js"></script>
+  <script src="lib/statement-parser.js"></script>
+  <script src="lib/ledger-store.js"></script>
+  <script src="lib/refund-deadline-engine.js"></script>
+  <script src="lib/refund-templates.js"></script>
+  <script src="lib/advocacy-letters.js"></script>
+  <script src="lib/chargeback-guide.js"></script>
+  <script src="lib/escalation-registry.js"></script>
+  <script src="web-license.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
