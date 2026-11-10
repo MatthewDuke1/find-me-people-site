@@ -493,7 +493,7 @@
             } }, "Activate"),
             h("a", { class: "btn", href: LIC.CHECKOUT.annual, target: "_blank", rel: "noopener" }, "Buy Pro")),
           status,
-          h("p", { class: "fine" }, "Installed Sula before pricing? Your extension keeps Pro, but the web app can't see that yet. Email support@trysula.com and we'll send you a key.")]);
+          h("p", { class: "fine" }, "Installed Sula before pricing? Your extension keeps Pro, but the web app can't see that yet. Email sula.support@trysula.com and we'll send you a key.")]);
 
     return [
       h("div", { class: "head" }, h("h1", {}, "Settings")),
