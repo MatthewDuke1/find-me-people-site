@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sula Pricing - Free forever. Pro from $6/mo.</title>
-  <meta name="description" content="Sula is free to install and use. Pro adds export, Save to CRM, outreach drafting, subscription tracking, and escalation. $6/mo, $57.60/yr, or $80 once." />
+  <meta name="description" content="Sula is free to install and use. Pro remembers what you buy, warns you before renewals, and fills in your refund requests. $57.60/yr or $6/mo." />
 
   <!--
     ============================================================
@@ -34,7 +34,7 @@
   <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()" />
 
   <meta property="og:title" content="Sula Pricing - Free forever. Pro from $6/mo." />
-  <meta property="og:description" content="Sula is free to install and use. Pro adds export, Save to CRM, outreach drafting, subscription tracking, and escalation." />
+  <meta property="og:description" content="Sula is free to install and use. Pro remembers what you buy, warns you before renewals, and fills in your refund requests." />
   <meta property="og:image" content="https://trysula.com/social-card.png" />
   <meta property="og:url" content="https://trysula.com/pricing.html" />
   <meta property="og:site_name" content="Sula" />
@@ -53,7 +53,7 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Sula Pro",
-    "description": "Pro tier for the Sula browser extension. Adds contact export (CSV/vCard), Save to CRM via webhook, outreach drafting, bank-statement subscription tracking, and regulatory escalation.",
+    "description": "Pro tier for the Sula browser extension. Adds a purchase ledger, renewal reminders, refund-request prefill, bank-statement subscription tracking, and regulatory escalation.",
     "brand": { "@type": "Brand", "name": "Sula" },
     "url": "https://trysula.com/pricing.html",
     "offers": [
@@ -69,14 +69,6 @@
         "@type": "Offer",
         "name": "Annual",
         "price": "57.60",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "url": "https://trysula.com/pricing.html"
-      },
-      {
-        "@type": "Offer",
-        "name": "Lifetime",
-        "price": "80.00",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
         "url": "https://trysula.com/pricing.html"
@@ -148,7 +140,7 @@
 
     /* ---------- Plan grid ---------- */
     .plan-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+      display: grid; grid-template-columns: repeat(2, minmax(0, 340px)); justify-content: center; gap: 22px;
       align-items: stretch; margin-top: 8px;
     }
     .plan {
@@ -254,10 +246,10 @@
 
   <div class="container price-hero">
     <span class="eyebrow">Pricing</span>
-    <h1>Sula is free. <span class="accent">Pro is for outbound.</span></h1>
+    <h1>Sula is free. <span class="accent">Pro chases the refund.</span></h1>
     <p class="lead">
-      Finding a contact stays free, forever, with no account. Pro is for people who do this
-      all day and need the results out of the browser and into their workflow.
+      Finding the right contact and writing the email stay free, with no account. Pro remembers
+      what you bought, so the deadline, the order number and the renewal date are already there.
     </p>
   </div>
 
@@ -265,52 +257,11 @@
     <div class="container">
       <div class="plan-grid">
 
-        <!-- MONTHLY -->
-        <div class="plan">
-          <span class="plan-tag ghost">Monthly</span>
-          <h3>Pro, month to month</h3>
-          <p class="blurb">Try it on a real campaign. Cancel whenever.</p>
-          <div class="price">
-            <span class="amount">$6</span>
-            <span class="per">/month</span>
-          </div>
-          <p class="sub">Billed monthly.</p>
-          <ul>
-            <li><span class="check">&#10003;</span> Export every contact as CSV or vCard</li>
-            <li><span class="check">&#10003;</span> Draft the First Touch</li>
-            <li><span class="check">&#10003;</span> Save to CRM by webhook</li>
-            <li><span class="check">&#10003;</span> 3 devices</li>
-          </ul>
-          <!-- TODO(launch): replace with the real LemonSqueezy checkout URL.
-               Same placeholder names as CHECKOUT in the extension's license.js,
-               so one find/replace covers both files. -->
-          <a class="btn btn-secondary" href="https://sula.lemonsqueezy.com/checkout/buy/47598c36-6163-4f4e-93de-9266450ebfaa">Get Pro monthly</a>
-        </div>
-
-        <!-- LIFETIME (featured) -->
+        <!-- ANNUAL (featured, the default plan) -->
         <div class="plan featured">
           <span class="plan-tag">Best value</span>
-          <h3>Pro, forever</h3>
-          <p class="blurb">Pay once. Every future release included.</p>
-          <div class="price">
-            <span class="amount">$80</span>
-            <span class="per">once</span>
-          </div>
-          <p class="sub">Cheaper than annual after about 17 months.</p>
-          <ul>
-            <li><span class="check">&#10003;</span> Everything in Pro</li>
-            <li><span class="check">&#10003;</span> No renewal, no expiry</li>
-            <li><span class="check">&#10003;</span> All future updates</li>
-            <li><span class="check">&#10003;</span> 3 devices</li>
-          </ul>
-          <a class="btn btn-primary" href="https://sula.lemonsqueezy.com/checkout/buy/1f26fe80-e487-4305-9593-5301dd0279cb">Buy Sula Pro</a>
-        </div>
-
-        <!-- ANNUAL -->
-        <div class="plan">
-          <span class="plan-tag ghost">Annual</span>
           <h3>Pro, yearly</h3>
-          <p class="blurb">Same thing, 20% off the monthly rate.</p>
+          <p class="blurb">20% off the monthly rate.</p>
           <div class="price">
             <span class="amount">$57.60</span>
             <span class="per">/year</span>
@@ -322,7 +273,25 @@
             <li><span class="check">&#10003;</span> Renews yearly</li>
             <li><span class="check">&#10003;</span> 3 devices</li>
           </ul>
-          <a class="btn btn-secondary" href="https://sula.lemonsqueezy.com/checkout/buy/ac76da47-0b68-4431-8728-a2b8d6ad5ecf">Get Pro yearly</a>
+          <a class="btn btn-primary" href="https://sula.lemonsqueezy.com/checkout/buy/ac76da47-0b68-4431-8728-a2b8d6ad5ecf">Get Pro yearly</a>
+        </div>
+
+        <!-- MONTHLY -->
+        <div class="plan">
+          <span class="plan-tag ghost">Monthly</span>
+          <h3>Pro, month to month</h3>
+          <p class="blurb">Cancel whenever.</p>
+          <div class="price">
+            <span class="amount">$6</span>
+            <span class="per">/month</span>
+          </div>
+          <p class="sub">Billed monthly.</p>
+          <ul>
+            <li><span class="check">&#10003;</span> Everything in Pro</li>
+            <li><span class="check">&#10003;</span> Renews monthly</li>
+            <li><span class="check">&#10003;</span> 3 devices</li>
+          </ul>
+          <a class="btn btn-secondary" href="https://sula.lemonsqueezy.com/checkout/buy/47598c36-6163-4f4e-93de-9266450ebfaa">Get Pro monthly</a>
         </div>
 
       </div>
@@ -331,8 +300,8 @@
         <div>
           <h3>You do not have to pay to use Sula</h3>
           <p>
-            Install it, scan any page, and copy the contact. That has no time limit, no account,
-            and no card. Pro exists for the people who are doing this fifty times a day.
+            Install it, find the contact, and have Sula write the email. That has no time limit,
+            no account, and no card.
           </p>
         </div>
         <a class="btn btn-secondary" href="index.html#install">Install free</a>
@@ -344,7 +313,7 @@
     <div class="container">
       <div class="section-title">
         <h2>What you get</h2>
-        <p class="lead">The scanner is the product, and the scanner is free. Pro moves what it finds somewhere useful.</p>
+        <p class="lead">Free gets you to the right person with the right words. Pro remembers what you bought, so you don&rsquo;t have to.</p>
       </div>
       <div class="compare-grid">
 
@@ -352,29 +321,28 @@
           <h3>Free</h3>
           <p class="col-sub">No account. No card. No expiry.</p>
           <ul>
-            <li><span class="check">&#10003;</span> The full scan engine &mdash; 20 places Sula looks on a page</li>
-            <li><span class="check">&#10003;</span> Ranked emails and phones, scored by confidence</li>
-            <li><span class="check">&#10003;</span> Quality labels: direct, personal, role inbox, disposable</li>
-            <li><span class="check">&#10003;</span> Where each contact came from, and how fresh it is</li>
-            <li><span class="check">&#10003;</span> Side panel and popup, with searchable history</li>
-            <li><span class="check">&#10003;</span> One-click copy, compose templates, call deep links</li>
-            <li><span class="check">&#10003;</span> Save a single contact as .vcf</li>
-            <li><span class="check">&#10003;</span> Refund policies &amp; deadlines &mdash; read any site's cancellation window</li>
-            <li><span class="check">&#10003;</span> Refund-request letters &mdash; drafted from the facts you enter</li>
+            <li><span class="check">&#10003;</span> Support emails and phone numbers, ranked so the one most likely to reach a person comes first</li>
+            <li><span class="check">&#10003;</span> <strong>Write it for me</strong> &mdash; pick refund, return or cancel, say what happened, and Sula drafts the email</li>
+            <li><span class="check">&#10003;</span> One-tap Call, and Compose straight into Gmail</li>
+            <li><span class="check">&#10003;</span> Refund policies &amp; deadlines &mdash; read any site's return window</li>
+            <li><span class="check">&#10003;</span> Checkout Guard &mdash; auto-renewal terms and final-sale flags, before you pay</li>
+            <li><span class="check">&#10003;</span> Chargeback guidance and the regulator to escalate to</li>
+            <li><span class="check">&#10003;</span> Autofill for contact and refund forms</li>
+            <li><span class="check">&#10003;</span> Back up and restore your purchases</li>
           </ul>
         </div>
 
         <div class="compare-col">
           <h3>Pro</h3>
-          <p class="col-sub">For outbound work, at volume.</p>
+          <p class="col-sub">For people who buy online and want their money back.</p>
           <ul>
-            <li><span class="check">&#10003;</span> <strong>Export</strong> &mdash; every contact on the page, or your whole history, as CSV or vCard</li>
-            <li><span class="check">&#10003;</span> <strong>Save to CRM</strong> &mdash; push contacts straight to your own webhook</li>
-            <li><span class="check">&#10003;</span> <strong>Draft the First Touch</strong> &mdash; a personalized outreach draft, opened pre-filled</li>
+            <li><span class="check">&#10003;</span> <strong>Purchase ledger</strong> &mdash; every order Sula has seen, with upcoming renewals first</li>
+            <li><span class="check">&#10003;</span> <strong>Renewal reminders</strong> &mdash; a card on the page you're on, with Cancel it and Keep it</li>
+            <li><span class="check">&#10003;</span> <strong>Your order in the email</strong> &mdash; Write it for me fills in the order number, amount and date</li>
+            <li><span class="check">&#10003;</span> <strong>Refund-form prefill</strong> &mdash; your deadlines appear as soon as you open the Advocacy tab</li>
             <li><span class="check">&#10003;</span> <strong>Subscription tracking</strong> &mdash; import a bank statement (on-device) to find recurring charges</li>
-            <li><span class="check">&#10003;</span> <strong>Escalate</strong> &mdash; route to the right regulator and draft the complaint</li>
-            <li><span class="check">&#10003;</span> <strong>Resume gap check</strong> &mdash; which of your bullets to rewrite for a posting</li>
-            <li><span class="check">&#10003;</span> <strong>Privacy Guard</strong></li>
+            <li><span class="check">&#10003;</span> <strong>Escalate</strong> &mdash; draft the complaint to the right regulator</li>
+            <li><span class="check">&#10003;</span> <strong>Privacy Guard</strong> &mdash; data-broker opt-out tracker</li>
             <li><span class="check">&#10003;</span> Three devices per licence</li>
             <li><span class="check">&#10003;</span> Everything in Free, unchanged</li>
           </ul>
@@ -402,9 +370,10 @@
         <div class="faq-item">
           <p class="faq-q">Does Pro change the privacy promise?</p>
           <p class="faq-a">
-            No. Scanning still happens entirely on your machine, and contacts still never leave your
-            browser. Save to CRM sends data to <em>your</em> webhook, because you told it to and you
-            chose the destination. Nothing goes to me. See the
+            No. Scanning still happens on your machine, and your purchase list never leaves your
+            browser. Write it for me is the one exception, free or Pro: when you click it, it sends
+            what you typed and the company name (plus, with Pro, that site's order details) to
+            Sula's server to draft the email, and nothing is kept. See the
             <a href="privacy.html">privacy page</a>.
           </p>
         </div>
@@ -420,17 +389,9 @@
         <div class="faq-item">
           <p class="faq-q">What happens if I cancel?</p>
           <p class="faq-a">
-            Pro switches off and Sula goes back to being the free extension. Nothing you already
-            exported disappears, and the scanner keeps working. Lifetime never expires.
-          </p>
-        </div>
-
-        <div class="faq-item">
-          <p class="faq-q">Why is lifetime cheaper than it should be?</p>
-          <p class="faq-a">
-            Because I would rather have you as a user than squeeze you for a subscription. Sula is
-            built by one person, it runs entirely on your machine, and there is no server for me to
-            keep paying for. A one-time price is honest about that.
+            Pro switches off and Sula goes back to being the free extension. Your purchase list stays
+            on your computer, and finding contacts and writing emails keep working. If you bought
+            Lifetime before it was retired, it never expires.
           </p>
         </div>
 
