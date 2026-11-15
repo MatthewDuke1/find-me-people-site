@@ -13,4 +13,4 @@ workers_dev = true
 [[d1_databases]]
 binding = "DB"
 database_name = "fmp-uninstalls"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "b8048446-70c1-439e-b8f9-55ef59f7bc30"
