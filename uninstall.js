@@ -12,7 +12,7 @@
 (function () {
   "use strict";
 
-  var ENDPOINT = "/api/uninstall";
+  var ENDPOINT = "https://fmp-uninstall-survey.uninstall.workers.dev";
   var version = "unknown";
   try {
     var v = new URLSearchParams(location.search).get("v");
