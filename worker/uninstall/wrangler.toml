@@ -2,13 +2,10 @@ name = "fmp-uninstall-survey"
 main = "src/index.js"
 compatibility_date = "2026-06-01"
 
-# Bind the Worker to the same-origin API path the survey page POSTs to.
-# Requires trysula.com to be an active zone on this Cloudflare account
-# (see README.md, Part A). You can also set this route in the dashboard:
-# Workers & Pages -> fmp-uninstall-survey -> Settings -> Triggers -> Routes.
-routes = [
-  { pattern = "trysula.com/api/uninstall", zone_name = "trysula.com" }
-]
+# Served at https://fmp-uninstall-survey.<your-subdomain>.workers.dev, not on
+# trysula.com, so the domain's DNS (and its Zoho mail records) stays on Route 53.
+# uninstall.js posts to that URL; the Worker accepts only trysula.com origins.
+workers_dev = true
 
 # D1 (SQLite) storage. `database_id` is printed by `wrangler d1 create
 # fmp-uninstalls` — paste it here. It is NOT a secret (D1 access still requires
